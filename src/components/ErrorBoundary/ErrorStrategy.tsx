@@ -15,6 +15,4 @@ export const ErrorStrategy = memo(({ error }: IProps) => {
     default:
       return <div>error</div>;
   }
-
-  return null;
 });
