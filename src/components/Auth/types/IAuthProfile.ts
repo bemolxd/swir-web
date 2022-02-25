@@ -1,13 +1,10 @@
-export interface IAuthProfile {
-  service: string;
-  attributes: UserAttributes;
-  id: string;
-  client_id: string;
-}
+import { ContextType } from "types";
 
-interface UserAttributes {
+export interface IAuthProfile {
+  userId: string;
+  personalNumber: string;
   firstName: string;
   lastName: string;
-  mail: string;
-  personNumber: string;
+  email: string;
+  contextType: ContextType;
 }
