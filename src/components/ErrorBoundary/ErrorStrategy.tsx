@@ -1,6 +1,8 @@
 import { memo } from "react";
 import { AxiosError } from "axios";
 
+import { LoginComponent } from "components/Auth/LoginComponent";
+
 import { Fallback } from "./ErrorBoundary";
 
 interface IProps extends Fallback<Error> {
@@ -8,9 +10,11 @@ interface IProps extends Fallback<Error> {
 }
 
 export const ErrorStrategy = memo(({ error }: IProps) => {
+  console.log("error", error);
+
   switch ((error as AxiosError).response?.status) {
     case 401:
-      return <div>login duuude</div>;
+      return <LoginComponent />;
 
     default:
       return <div>error</div>;
