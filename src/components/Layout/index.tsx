@@ -10,7 +10,7 @@ export const AppLayout = ({ children }: IProps) => {
   return (
     <>
       <Navbar />
-      <Box w="100%" minH="100vh" mx={40} mt="64px">
+      <Box minH="100vh" mx={40} mt="64px">
         {children}
       </Box>
     </>
