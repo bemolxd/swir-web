@@ -1,11 +1,11 @@
-import { useMeQuery } from "./components/Auth";
+import { AppLayout } from "components/Layout";
 
 function App() {
-  const me = useMeQuery();
-
-  console.log(me);
-
-  return <div className="App">hello react app</div>;
+  return (
+    <AppLayout>
+      <div>hello react app</div>
+    </AppLayout>
+  );
 }
 
 export default App;
