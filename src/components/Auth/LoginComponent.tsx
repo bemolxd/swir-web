@@ -1,5 +1,5 @@
 export const LoginComponent = () => {
-  const cuiLink = "http://localhost:5000/api/auth/cui";
+  const cuiLink = process.env.REACT_APP_API_URL + "auth/cui";
 
   window.location.replace(cuiLink);
 
