@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { AxiosError } from "axios";
 
-import { LoginComponent } from "components/Auth/LoginComponent";
+import { LoginComponent } from "components/Auth";
 
 import { Fallback } from "./ErrorBoundary";
 

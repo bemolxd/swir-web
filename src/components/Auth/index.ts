@@ -1,2 +1,2 @@
 export { useMeQuery } from "./useMeQuery";
-export {} from "./LoginComponent";
+export { LoginComponent } from "./LoginComponent";

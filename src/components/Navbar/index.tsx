@@ -1,10 +1,8 @@
 import { Heading, HStack, Spacer, useColorModeValue } from "@chakra-ui/react";
 
-import { useMeQuery } from "components/Auth";
+import { UserSection } from "./UserSection";
 
 export const Navbar = () => {
-  const me = useMeQuery();
-
   return (
     <HStack
       bg={useColorModeValue("white", "gray.700")}
@@ -21,6 +19,7 @@ export const Navbar = () => {
         SWiR
       </Heading>
       <Spacer />
+      <UserSection />
     </HStack>
   );
 };

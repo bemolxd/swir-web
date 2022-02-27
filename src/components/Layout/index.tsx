@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import { IChildrenProp } from "types";
 
@@ -10,13 +10,7 @@ export const AppLayout = ({ children }: IProps) => {
   return (
     <>
       <Navbar />
-      <Box
-        w="100%"
-        minH="100vh"
-        bg={useColorModeValue("white", "gray.700")}
-        mx={40}
-        mt="64px"
-      >
+      <Box w="100%" minH="100vh" mx={40} mt="64px">
         {children}
       </Box>
     </>
