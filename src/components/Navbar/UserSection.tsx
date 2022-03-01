@@ -1,37 +1,30 @@
-import {
-  Avatar,
-  HStack,
-  IconButton,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
-import { MdLightMode, MdNightlight } from "react-icons/md";
+import { Avatar, HStack, Text } from "@chakra-ui/react";
 
 import { useMeQuery } from "components/Auth";
+import { ColorModeButton } from "components/ColorMode";
+import { useCheckMobile } from "components/Layout";
+import { MobileNavigation } from "components/MainNavigation";
 
 export const UserSection = () => {
   const me = useMeQuery();
+
+  const isMobile = useCheckMobile();
+
+  if (isMobile) {
+    return (
+      <HStack h="60px">
+        <Text>{me?.firstName}</Text>
+        <Avatar size="sm" />
+        <MobileNavigation />
+      </HStack>
+    );
+  }
 
   return (
     <HStack h="60px">
       <Text>{me?.firstName}</Text>
       <Avatar size="sm" />
-      <ColorModeSwitch />
+      <ColorModeButton />
     </HStack>
-  );
-};
-
-const ColorModeSwitch = () => {
-  const { toggleColorMode, colorMode } = useColorMode();
-
-  return (
-    <IconButton
-      aria-label="color-mode-switch"
-      variant="outline"
-      isRound
-      color={colorMode === "light" ? "blue.900" : "orange"}
-      icon={colorMode === "light" ? <MdNightlight /> : <MdLightMode />}
-      onClick={toggleColorMode}
-    />
   );
 };
