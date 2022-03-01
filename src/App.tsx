@@ -1,9 +1,10 @@
 import { AppLayout } from "components/Layout";
+import { MainRoutes } from "components/MainRoutes";
 
 function App() {
   return (
     <AppLayout>
-      <div>hello react app</div>
+      <MainRoutes />
     </AppLayout>
   );
 }
