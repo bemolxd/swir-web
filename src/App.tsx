@@ -1,5 +1,5 @@
 import { AppLayout } from "components/Layout";
-import { MainRoutes } from "components/MainRoutes";
+import { MainRoutes } from "containers/MainRoutes";
 
 function App() {
   return (
