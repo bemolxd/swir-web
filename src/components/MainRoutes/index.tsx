@@ -1,5 +1,11 @@
-import { Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
+import { ItemsContainer } from "containers/Items";
 
 export const MainRoutes = () => {
-  return <Routes></Routes>;
+  return (
+    <Routes>
+      <Route path="sprzet" element={<ItemsContainer />} />
+    </Routes>
+  );
 };

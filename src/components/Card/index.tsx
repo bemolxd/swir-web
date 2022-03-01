@@ -12,16 +12,16 @@ export const Card = ({
   ...props
 }: IProps) => {
   return (
-    <Fade in>
-      <Box
-        bgColor={useColorModeValue(lightColor, darkColor)}
-        borderRadius={4}
-        boxShadow="md"
-        p={4}
-        {...props}
-      >
-        {children}
-      </Box>
-    </Fade>
+    <Box
+      as={Fade}
+      in
+      bgColor={useColorModeValue(lightColor, darkColor)}
+      borderRadius={4}
+      boxShadow="md"
+      p={4}
+      {...props}
+    >
+      {children}
+    </Box>
   );
 };
