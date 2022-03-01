@@ -1,11 +1,11 @@
 import { Box, Fade, BoxProps, useColorModeValue } from "@chakra-ui/react";
 
-interface IProps extends Omit<BoxProps, "bgColor"> {
+interface IProps extends BoxProps {
   lightColor?: string;
   darkColor?: string;
 }
 
-export const index = ({
+export const Card = ({
   lightColor = "white",
   darkColor = "gray.700",
   children,
@@ -15,10 +15,10 @@ export const index = ({
     <Fade in>
       <Box
         bgColor={useColorModeValue(lightColor, darkColor)}
-        {...props}
         borderRadius={4}
         boxShadow="md"
         p={4}
+        {...props}
       >
         {children}
       </Box>
