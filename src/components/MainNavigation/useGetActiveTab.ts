@@ -6,4 +6,6 @@ export const useGetActiveTab = (path: string) => {
   if (path.includes("rezerwacje")) {
     return 1;
   }
+
+  return -1;
 };
