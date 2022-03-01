@@ -19,7 +19,7 @@ export const MainNavigation = () => {
       <Card maxW="200px" w="100%">
         <Tabs orientation="vertical" index={tabIndex}>
           <TabList alignItems="flex-start">
-            <NavigationTab title="Baza sprzętu" path="baza-sprzetu" />
+            <NavigationTab title="Baza sprzętu" path="sprzet" />
             <NavigationTab title="Rezerwacje" path="rezerwacje" />
           </TabList>
         </Tabs>

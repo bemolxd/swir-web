@@ -1,5 +1,5 @@
 export const useGetActiveTab = (path: string) => {
-  if (path.includes("baza-sprzetu")) {
+  if (path.includes("sprzet")) {
     return 0;
   }
 
