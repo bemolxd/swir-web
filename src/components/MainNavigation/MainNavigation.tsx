@@ -5,6 +5,7 @@ import { ContextType } from "types";
 
 import { Card } from "components/Card";
 import { useGetContextType } from "components/Auth";
+import { useCheckMobile } from "components/Layout";
 
 import { useGetActiveTab } from "./useGetActiveTab";
 
@@ -13,6 +14,9 @@ export const MainNavigation = () => {
 
   const contextType = useGetContextType();
   const tabIndex = useGetActiveTab(pathname);
+  const isMobile = useCheckMobile();
+
+  if (isMobile) return null;
 
   if (contextType === ContextType.USER) {
     return (
