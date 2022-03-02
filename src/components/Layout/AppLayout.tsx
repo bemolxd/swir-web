@@ -22,7 +22,7 @@ export const AppLayout = ({ children }: IProps) => {
           minH="80vh"
           mx={isMobile ? 4 : 40}
           mt="72px"
-          justify="center"
+          justify="flex-start"
           align="flex-start"
           spacing={4}
         >
