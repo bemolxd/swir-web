@@ -1,4 +1,10 @@
-import { Heading, HStack, Spacer, useColorModeValue } from "@chakra-ui/react";
+import {
+  Heading,
+  HStack,
+  Image,
+  Spacer,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 import { useCheckMobile } from "components/Layout";
 
@@ -17,13 +23,16 @@ export const Navbar = () => {
       top="0"
       boxShadow="lg"
       zIndex="10"
-      justify="space-evenly"
+      justify="center"
     >
-      <Heading size="lg" fontWeight="400">
-        SWiR
-      </Heading>
-      <Spacer />
-      <UserSection />
+      <HStack justify="space-evenly" maxW="1500px" w="100%">
+        <Image src="/multimed_logo.png" h="54px" />
+        <Heading size="lg" fontWeight="400">
+          {isMobile ? "SWiR" : "System Wypożyczeń i Rezerwacji"}
+        </Heading>
+        <Spacer />
+        <UserSection />
+      </HStack>
     </HStack>
   );
 };

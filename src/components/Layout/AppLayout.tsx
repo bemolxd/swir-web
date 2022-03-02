@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
 
 import { IChildrenProp } from "types";
 
@@ -15,17 +15,21 @@ export const AppLayout = ({ children }: IProps) => {
   return (
     <>
       <Navbar />
-      <HStack
-        minH="100vh"
-        mx={isMobile ? 4 : 40}
-        mt="72px"
-        justify="flex-start"
-        align="flex-start"
-        spacing={4}
-      >
-        <MainNavigation />
-        {children}
-      </HStack>
+      <VStack w="100%">
+        <HStack
+          maxW="1500px"
+          w="100%"
+          minH="80vh"
+          mx={isMobile ? 4 : 40}
+          mt="72px"
+          justify="center"
+          align="flex-start"
+          spacing={4}
+        >
+          <MainNavigation />
+          {children}
+        </HStack>
+      </VStack>
     </>
   );
 };
