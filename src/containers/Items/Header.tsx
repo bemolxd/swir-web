@@ -4,7 +4,7 @@ import { useIntl } from "react-intl";
 export const Header = () => {
   const { formatMessage } = useIntl();
   return (
-    <VStack justify="flex-start" align="flex-start" mb={4}>
+    <VStack justify="flex-start" align="flex-start" mb={1}>
       <Heading size="md" fontWeight="400">
         {formatMessage({
           id: "Items.header.title",
