@@ -13,6 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { MdSegment } from "react-icons/md";
+import { useIntl } from "react-intl";
 
 import { ColorModeSwitch } from "components/ColorMode";
 
@@ -24,6 +25,7 @@ export const MobileNavigation = () => {
     handler.isOpen,
     handler.onClose,
   ]);
+  const { formatMessage } = useIntl();
 
   return (
     <>
@@ -45,7 +47,12 @@ export const MobileNavigation = () => {
           <DrawerFooter justifyContent="center">
             <VStack w="100%">
               <Divider />
-              <Text>System Wypożyczeń i Rezerwacji</Text>
+              <Text>
+                {formatMessage({
+                  id: "MobileNavigation.appTitle",
+                  defaultMessage: "System Wypożyczeń i Rezerwacji",
+                })}
+              </Text>
               <Text>&copy; {new Date().getFullYear()} Multimed</Text>
             </VStack>
           </DrawerFooter>

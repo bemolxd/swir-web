@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { TabList, Tab, Tabs } from "@chakra-ui/react";
+import { useIntl } from "react-intl";
 
 import { ContextType } from "types";
 
@@ -8,9 +9,11 @@ import { useGetContextType } from "components/Auth";
 import { useCheckMobile } from "components/Layout";
 
 import { useGetActiveTab } from "./useGetActiveTab";
+import { navigationMessages } from "./messages";
 
 export const MainNavigation = () => {
   const { pathname } = useLocation();
+  const { formatMessage } = useIntl();
 
   const contextType = useGetContextType();
   const tabIndex = useGetActiveTab(pathname);
@@ -23,8 +26,14 @@ export const MainNavigation = () => {
       <Card maxW="200px" w="100%">
         <Tabs orientation="vertical" index={tabIndex}>
           <TabList alignItems="flex-start">
-            <NavigationTab title="Baza sprzętu" path="sprzet" />
-            <NavigationTab title="Rezerwacje" path="rezerwacje" />
+            <NavigationTab
+              title={formatMessage(navigationMessages.items)}
+              path="sprzet"
+            />
+            <NavigationTab
+              title={formatMessage(navigationMessages.reservations)}
+              path="rezerwacje"
+            />
           </TabList>
         </Tabs>
       </Card>

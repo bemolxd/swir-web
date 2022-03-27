@@ -5,6 +5,7 @@ import {
   Spacer,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useIntl } from "react-intl";
 
 import { useCheckMobile } from "components/Layout";
 
@@ -12,6 +13,7 @@ import { UserSection } from "./UserSection";
 
 export const Navbar = () => {
   const isMobile = useCheckMobile();
+  const { formatMessage } = useIntl();
 
   return (
     <HStack
@@ -28,7 +30,12 @@ export const Navbar = () => {
       <HStack justify="space-evenly" maxW="1500px" w="100%">
         <Image src="/multimed_logo.png" h="54px" />
         <Heading size="lg" fontWeight="400">
-          {isMobile ? "SWiR" : "System Wypożyczeń i Rezerwacji"}
+          {isMobile
+            ? "SWiR"
+            : formatMessage({
+                id: "Navbar.appTitle",
+                defaultMessage: "System Wypożyczeń i Rezerwacji",
+              })}
         </Heading>
         <Spacer />
         <UserSection />
