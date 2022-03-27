@@ -14,7 +14,7 @@ export const BasicInfoSection = ({ details }: IProps) => {
   if (isMobile) {
     return (
       <>
-        <VStack align="flex-start" justify="space-between" w="100%">
+        <VStack spacing={2} w="100%">
           <Image src={details.imageUrl} w="400px" borderRadius={8} my={1} />
           <BasicInfoContent details={details} />
         </VStack>
