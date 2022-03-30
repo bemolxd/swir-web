@@ -10,15 +10,16 @@ import {
 } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
-import { useFilterModalHandler } from "../useFilterModalHandler";
+import { useFilterModalHandler } from "modules/items/application";
+
 import { ItemTypeSection } from "./ItemTypeSection";
 
 export const FiltersModal = () => {
+  const { formatMessage } = useIntl();
   const [isOpen, onClose] = useFilterModalHandler((handler) => [
     handler.isOpen,
     handler.onClose,
   ]);
-  const { formatMessage } = useIntl();
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInBottom">

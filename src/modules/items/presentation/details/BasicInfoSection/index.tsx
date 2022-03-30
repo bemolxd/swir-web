@@ -1,5 +1,7 @@
-import { HStack, Image, Divider, VStack } from "@chakra-ui/react";
+import { HStack, Divider, VStack } from "@chakra-ui/react";
+
 import { useCheckMobile } from "components/Layout";
+import { Image } from "components/Image";
 
 import { Item } from "modules/items/application";
 import { BasicInfoContent } from "./BasicInfoContent";

@@ -1,13 +1,8 @@
-import {
-  Heading,
-  HStack,
-  Image,
-  Spacer,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Heading, HStack, Spacer, useColorModeValue } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { useCheckMobile } from "components/Layout";
+import { Image } from "components/Image";
 
 import { UserSection } from "./UserSection";
 

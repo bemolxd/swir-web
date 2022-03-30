@@ -4,8 +4,11 @@ import { useIntl } from "react-intl";
 
 import { IconButton } from "components/IconButton";
 
+import { useItemsViewHandler } from "modules/items/application";
+
 export const DisplayTypeButtons = () => {
   const { formatMessage } = useIntl();
+  const setView = useItemsViewHandler((handler) => handler.setView);
 
   return (
     <ButtonGroup spacing={0}>
@@ -16,6 +19,7 @@ export const DisplayTypeButtons = () => {
         })}
         icon={<MdViewList />}
         variant="ghost"
+        onClick={() => setView("list")}
       />
       <IconButton
         tooltip={formatMessage({
@@ -24,6 +28,7 @@ export const DisplayTypeButtons = () => {
         })}
         icon={<MdViewModule />}
         variant="ghost"
+        onClick={() => setView("grid")}
       />
     </ButtonGroup>
   );
