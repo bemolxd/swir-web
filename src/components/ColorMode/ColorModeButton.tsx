@@ -1,6 +1,8 @@
-import { IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/react";
 import { MdNightlight, MdLightMode } from "react-icons/md";
 import { useIntl } from "react-intl";
+
+import { IconButton } from "components/IconButton";
 
 import { colorModeMessages } from "./messages";
 
@@ -9,21 +11,17 @@ export const ColorModeButton = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <Tooltip
-      label={
+    <IconButton
+      tooltip={
         colorMode === "light"
           ? formatMessage(colorModeMessages.darkMode)
           : formatMessage(colorModeMessages.lightMode)
       }
-    >
-      <IconButton
-        aria-label="color-mode-switch"
-        variant="outline"
-        isRound
-        color={colorMode === "light" ? "blue.900" : "orange"}
-        icon={colorMode === "light" ? <MdNightlight /> : <MdLightMode />}
-        onClick={toggleColorMode}
-      />
-    </Tooltip>
+      variant="outline"
+      isRound
+      color={colorMode === "light" ? "blue.900" : "orange"}
+      icon={colorMode === "light" ? <MdNightlight /> : <MdLightMode />}
+      onClick={toggleColorMode}
+    />
   );
 };

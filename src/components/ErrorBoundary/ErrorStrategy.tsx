@@ -2,6 +2,7 @@ import { memo } from "react";
 import { AxiosError } from "axios";
 
 import { LoginComponent } from "components/Auth";
+import { ServerError } from "components/AppState";
 
 import { Fallback } from "./ErrorBoundary";
 
@@ -9,7 +10,7 @@ interface IProps extends Fallback<Error> {
   resetErrorBoundary(...args: unknown[]): void;
 }
 
-export const ErrorStrategy = memo(({ error }: IProps) => {
+export const ErrorStrategy = memo(({ error, resetErrorBoundary }: IProps) => {
   console.log("error", error);
 
   switch ((error as AxiosError).response?.status) {
@@ -17,6 +18,6 @@ export const ErrorStrategy = memo(({ error }: IProps) => {
       return <LoginComponent />;
 
     default:
-      return <div>error</div>;
+      return <ServerError onAction={resetErrorBoundary} />;
   }
 });
