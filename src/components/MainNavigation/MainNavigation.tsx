@@ -28,11 +28,11 @@ export const MainNavigation = () => {
           <TabList alignItems="flex-start">
             <NavigationTab
               title={formatMessage(navigationMessages.items)}
-              path="sprzet"
+              path="/sprzet"
             />
             <NavigationTab
               title={formatMessage(navigationMessages.reservations)}
-              path="rezerwacje"
+              path="/rezerwacje"
             />
           </TabList>
         </Tabs>

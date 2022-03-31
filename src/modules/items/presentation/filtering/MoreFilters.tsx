@@ -3,6 +3,7 @@ import { MdFilterList } from "react-icons/md";
 
 import { IconButton } from "components/IconButton";
 import { NotificationBadge } from "components/Notifications";
+import { filtersAreApplied, useQueryParams } from "components/QueryParamsV2";
 
 import { useFilterModalHandler } from "modules/items/application";
 
@@ -11,6 +12,7 @@ import { FiltersModal } from "./FiltersModal/FiltersModal";
 export const MoreFilters = () => {
   const onOpen = useFilterModalHandler((handler) => handler.onOpen);
   const { formatMessage } = useIntl();
+  const { params } = useQueryParams();
 
   return (
     <>
@@ -24,7 +26,7 @@ export const MoreFilters = () => {
           icon={<MdFilterList />}
           onClick={onOpen}
         />
-        {true && <NotificationBadge />}
+        {filtersAreApplied(params) && <NotificationBadge />}
       </div>
       <FiltersModal />
     </>

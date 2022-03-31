@@ -32,7 +32,7 @@ const ItemComponent = ({ item }: { item: Item }) => {
   const { push } = useHistory();
 
   return (
-    <ListItem onClick={() => push(item.itemId)}>
+    <ListItem onClick={() => push(`/sprzet/${item.itemId}`)}>
       <HStack w="100%" align="center">
         <HStack spacing={8} w="100%" align="flex-start">
           <Image src={item.imageUrl} h="120px" borderRadius={8} />

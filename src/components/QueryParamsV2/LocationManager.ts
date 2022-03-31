@@ -30,8 +30,6 @@ type ChangeFunction = (key: string, value: Value) => string;
 type GetFunction = (key: string, defaultValue?: any) => any;
 type HasFunction = (key: string, value?: SimpleType) => boolean;
 
-export type LocationManager = ReturnType<typeof LocationManager>;
-
 export const LocationManager = <Params extends object>(
   location: Location,
   options?: LocationManagerOptions

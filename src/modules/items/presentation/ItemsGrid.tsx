@@ -35,7 +35,7 @@ const ItemComponent = ({ item }: { item: Item }) => {
       colSpan={1}
       key={item.itemId}
       onClick={() => {
-        push(item.itemId);
+        push(`/sprzet/${item.itemId}`);
       }}
     >
       <Image src={item.imageUrl} />
