@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { TabList, Tab, Tabs } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
@@ -49,7 +49,7 @@ interface NavigationProps {
 }
 
 const NavigationTab = ({ path, title }: NavigationProps) => {
-  const navigate = useNavigate();
+  const { push } = useHistory();
 
-  return <Tab onClick={() => navigate(path)}>{title}</Tab>;
+  return <Tab onClick={() => push(path)}>{title}</Tab>;
 };

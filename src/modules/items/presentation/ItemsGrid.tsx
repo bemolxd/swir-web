@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import {
   Grid,
@@ -28,14 +28,14 @@ export const ItemsGrid = ({ items }: IProps) => {
 };
 
 const ItemComponent = ({ item }: { item: Item }) => {
-  const navigate = useNavigate();
+  const { push } = useHistory();
 
   return (
     <GridItem
       colSpan={1}
       key={item.itemId}
       onClick={() => {
-        navigate(item.itemId);
+        push(item.itemId);
       }}
     >
       <Image src={item.imageUrl} />
