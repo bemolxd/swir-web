@@ -1,13 +1,14 @@
-import { Route, Routes } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import { ItemsContainer } from "containers/Items";
 import { ItemDetailsContainer } from "containers/ItemDetails";
 
 export const MainRoutes = () => {
   return (
-    <Routes>
-      <Route path="sprzet" element={<ItemsContainer />} />
-      <Route path="sprzet/:itemId" element={<ItemDetailsContainer />} />
-    </Routes>
+    <Switch>
+      <Route path="/sprzet" component={ItemsContainer} exact />
+      <Route path="/sprzet/:itemId" component={ItemDetailsContainer} />
+      <Route render={() => <Redirect to="/sprzet" />} />
+    </Switch>
   );
 };

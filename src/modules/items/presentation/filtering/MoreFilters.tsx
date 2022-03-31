@@ -1,10 +1,9 @@
 import { useIntl } from "react-intl";
 import { MdFilterList } from "react-icons/md";
-import { isEmpty, omit } from "lodash";
 
 import { IconButton } from "components/IconButton";
-import { useQueryParams } from "components/QueryParams";
 import { NotificationBadge } from "components/Notifications";
+import { filtersAreApplied, useQueryParams } from "components/QueryParamsV2";
 
 import { useFilterModalHandler } from "modules/items/application";
 
@@ -12,10 +11,8 @@ import { FiltersModal } from "./FiltersModal/FiltersModal";
 
 export const MoreFilters = () => {
   const onOpen = useFilterModalHandler((handler) => handler.onOpen);
-  const { params } = useQueryParams();
   const { formatMessage } = useIntl();
-
-  const areFiltersApplied = !isEmpty(omit(params, ["limit", "offset"]));
+  const { params } = useQueryParams();
 
   return (
     <>
@@ -29,7 +26,7 @@ export const MoreFilters = () => {
           icon={<MdFilterList />}
           onClick={onOpen}
         />
-        {areFiltersApplied && <NotificationBadge />}
+        {filtersAreApplied(params) && <NotificationBadge />}
       </div>
       <FiltersModal />
     </>
