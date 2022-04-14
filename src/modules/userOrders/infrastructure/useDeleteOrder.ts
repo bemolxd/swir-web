@@ -13,11 +13,8 @@ export const useDeleteOrder = (senderId: string, orderId: string) => {
       return await api.delete(`users/${senderId}/orders/${orderId}`);
     },
     {
-      onMutate: () => {
-        queryClient.invalidateQueries(
-          getUserOrdersQueryKey(senderId, defaultParams)
-        );
-        queryClient.refetchQueries(
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(
           getUserOrdersQueryKey(senderId, defaultParams)
         );
       },
