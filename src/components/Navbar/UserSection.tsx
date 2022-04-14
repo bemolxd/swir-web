@@ -1,6 +1,6 @@
 import { Avatar, HStack, Text } from "@chakra-ui/react";
 
-import { useMeQuery } from "components/Auth";
+import { LogoutIconButton, useMeQuery } from "components/Auth";
 import { ColorModeButton } from "components/ColorMode";
 import { useCheckMobile } from "components/Layout";
 import { MobileNavigation } from "components/MainNavigation";
@@ -25,6 +25,7 @@ export const UserSection = () => {
       <Text>{me?.firstName}</Text>
       <Avatar size="sm" />
       <ColorModeButton />
+      <LogoutIconButton />
     </HStack>
   );
 };
