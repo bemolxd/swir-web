@@ -31,7 +31,7 @@ export const DeleteOrderSection = ({ senderId, orderId, status }: IProps) => {
     try {
       await deleteOrder();
       showSuccessNotification();
-      navigate("/orders", { replace: true });
+      navigate("/sprzet", { replace: true });
     } catch (error) {
       showErrorNotification();
     }

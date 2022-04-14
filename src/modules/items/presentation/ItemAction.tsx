@@ -26,11 +26,17 @@ export const ItemAction = ({ itemId }: { itemId: string }) => {
   const [createOrder, isCreating] = useCreateOrder(me?.userId!);
   const [addElement, isAdding] = useAddElement(completingOrder?.orderId!);
 
-  const { showSuccessNotification, showErrorNotification } =
-    useAddElementNotifications();
+  const {
+    showSuccessNotification,
+    showErrorNotification,
+    showAlreadyExistsNotification,
+  } = useAddElementNotifications();
 
   const handleAddElement = async () => {
     try {
+      if (completingOrder?.items.find((item) => item.itemId === itemId)) {
+        return showAlreadyExistsNotification();
+      }
       await addElement({ item: { itemId, quantity: 1 } });
       showSuccessNotification();
     } catch (error) {

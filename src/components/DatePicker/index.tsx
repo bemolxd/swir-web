@@ -23,6 +23,7 @@ export interface DatePickerProps extends ReactDatePickerProps {
 }
 
 export const DatePicker = ({
+  name,
   value,
   onChange,
   isClearable = true,
@@ -64,9 +65,10 @@ export const DatePicker = ({
     >
       <Input
         as={ReactDatePicker}
+        name={name}
         locale="pl"
         autoComplete="off"
-        value={value}
+        value={value && dayjs(value).format("DD/MM/YYYY").toString()}
         isClearable={isClearable}
         minDate={new Date()}
         maxDate={new Date(2999, 1, 1)}
@@ -83,11 +85,11 @@ export const DatePicker = ({
 
           const date = dayjs(value).hour(0).minute(0).second(0);
 
-          onChange(date.format("DD/MM/YYYY") as any, event);
+          onChange(date.format() as any, event);
         }}
         dateFormat="DD/MM/YYYY"
         showPopperArrow={false}
-        selected={value ? new Date(value) : null}
+        selected={value ? dayjs(value).toDate() : undefined}
       />
     </StyledDatePickerBox>
   );

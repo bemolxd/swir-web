@@ -24,7 +24,8 @@ interface IProps {
 
 export const SelectedListItem = ({ item, orderId, index }: IProps) => {
   const selectedItem = useItemDetailsQuery(item.itemId);
-  const { register, setValue } = useFormContext();
+  const { setValue, getValues } = useFormContext();
+  const items: SelectedItem[] = getValues("items");
   const fieldId = `items[${index}].quantity`;
 
   return (
@@ -42,15 +43,24 @@ export const SelectedListItem = ({ item, orderId, index }: IProps) => {
           defaultValue={item.quantity}
           min={1}
           max={selectedItem?.quantity}
-          onChange={(value) => setValue(fieldId, value)}
+          onChange={(value) => setValue(fieldId, parseInt(value))}
         >
-          <NumberInputField {...register(fieldId)} />
+          <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <DeleteSelectedItemButton itemId={item.itemId} orderId={orderId} />
+        <DeleteSelectedItemButton
+          itemId={item.itemId}
+          orderId={orderId}
+          formAction={() => {
+            setValue(
+              "items",
+              items.filter((i) => i.itemId !== item.itemId)
+            );
+          }}
+        />
       </HStack>
     </SimpleListItem>
   );

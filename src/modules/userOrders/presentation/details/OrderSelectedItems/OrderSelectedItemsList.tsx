@@ -1,17 +1,18 @@
 import { SimpleList, SimpleListSkeleton } from "components/List";
 import { withSuspense } from "components/RemoteData";
 
-import { SelectedItem } from "modules/userOrders/application";
+import { OrderStatus, SelectedItem } from "modules/userOrders/application";
 
 import { SelectedItemComponent } from "./SelectedItemComponent";
 
 interface IProps {
   items: SelectedItem[];
   orderId: string;
+  status: OrderStatus;
 }
 
 export const OrderSelectedItemsList = withSuspense(
-  ({ items, orderId }: IProps) => {
+  ({ items, orderId, status }: IProps) => {
     if (items.length === 0) return null;
 
     return (
@@ -21,6 +22,7 @@ export const OrderSelectedItemsList = withSuspense(
             key={item.itemId}
             item={item}
             orderId={orderId}
+            status={status}
           />
         ))}
       </SimpleList>

@@ -4,34 +4,36 @@ import { dayjs } from "utils";
 import { DatePicker } from "components/DatePicker";
 import { FormControl } from "components/Form";
 
-export const DateFromSelect = () => {
+export const DateToSelect = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <FormControl name="dateFrom">
+    <FormControl name="dateTo">
       {(methods, fieldProps, { isInvalid }) => {
-        const dateValue = methods.getValues("dateFrom");
+        const dateFrom = methods.getValues("dateFrom");
+        const dateValue = methods.getValues("dateTo");
 
         return (
           <DatePicker
             {...fieldProps}
-            {...methods.register("dateFrom", { required: true })}
-            name="dateFrom"
+            {...methods.register("dateTo", { required: true })}
+            name="dateTo"
+            minDate={dayjs(dateFrom).add(1, "day").toDate()}
             onChange={(value) => {
-              methods.setValue("dateFrom", value, { shouldDirty: true });
-              methods.setValue("dateTo", null, { shouldDirty: true });
+              methods.setValue("dateTo", value, { shouldDirty: true });
               if (value === null) {
-                methods.setError("dateFrom", {
-                  message: "Ustaw datę początkową",
+                methods.setError("dateTo", {
+                  message: "Ustaw datę końcową",
                 });
                 return;
               }
-              if (value) methods.clearErrors("dateFrom");
+
+              if (value) methods.clearErrors("dateTo");
             }}
             isInvalid={isInvalid}
             placeholderText={formatMessage({
-              id: "UserOrderSummary.DateFrom.placeholder",
-              defaultMessage: "Data początkowa",
+              id: "UserOrderSummary.DateTo.placeholder",
+              defaultMessage: "Data końcowa",
             })}
             value={dateValue ? dayjs(dateValue).toString() : undefined}
           />

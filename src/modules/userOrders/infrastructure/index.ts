@@ -8,3 +8,4 @@ export { useOrderQuery, getOrderQueryKey } from "./useOrderQuery";
 export { useAddElement } from "./useAddElement";
 export { useRemoveElement } from "./useRemoveElement";
 export { useDeleteOrder } from "./useDeleteOrder";
+export { useSubmitOrderRequest } from "./useSubmitOrderRequest";

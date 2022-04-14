@@ -15,8 +15,17 @@ export const useAddElementNotifications = () => {
     formatMessage(messages.error),
     "error"
   );
+  const showAlreadyExistsNotification = useNotification(
+    formatMessage(messages.title),
+    formatMessage(messages.alreadyExists),
+    "warning"
+  );
 
-  return { showSuccessNotification, showErrorNotification };
+  return {
+    showSuccessNotification,
+    showErrorNotification,
+    showAlreadyExistsNotification,
+  };
 };
 
 const messages = defineMessages({
@@ -31,5 +40,9 @@ const messages = defineMessages({
   error: {
     id: "Notification.AddElement.error",
     defaultMessage: "Wystąpił błąd podczas dodawania elementu",
+  },
+  alreadyExists: {
+    id: "Notification.AddElement.alreadyExists",
+    defaultMessage: "Element został już dodany do zgłoszenia",
   },
 });
