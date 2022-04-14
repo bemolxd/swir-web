@@ -1,4 +1,4 @@
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { TabList, Tab, Tabs } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
@@ -31,6 +31,10 @@ export const MainNavigation = () => {
               path="/sprzet"
             />
             <NavigationTab
+              title={formatMessage(navigationMessages.userOrders)}
+              path="/zgloszenia"
+            />
+            <NavigationTab
               title={formatMessage(navigationMessages.reservations)}
               path="/rezerwacje"
             />
@@ -49,7 +53,7 @@ interface NavigationProps {
 }
 
 const NavigationTab = ({ path, title }: NavigationProps) => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
-  return <Tab onClick={() => push(path)}>{title}</Tab>;
+  return <Tab onClick={() => navigate(path)}>{title}</Tab>;
 };

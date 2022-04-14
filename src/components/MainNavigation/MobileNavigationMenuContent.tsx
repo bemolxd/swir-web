@@ -9,10 +9,13 @@ export const MobileNavigationMenuContent = () => {
 
   return (
     <VStack mb={4}>
-      <MobileNavigationItem path="sprzet">
+      <MobileNavigationItem path="/sprzet">
         {formatMessage(navigationMessages.items)}
       </MobileNavigationItem>
-      <MobileNavigationItem path="rezerwacje">
+      <MobileNavigationItem path="/zgloszenia">
+        {formatMessage(navigationMessages.userOrders)}
+      </MobileNavigationItem>
+      <MobileNavigationItem path="/rezerwacje">
         {formatMessage(navigationMessages.reservations)}
       </MobileNavigationItem>
     </VStack>
