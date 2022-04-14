@@ -10,7 +10,10 @@ export const useSubmitOrderRequest = (senderId: string, orderId: string) => {
 
   const { mutateAsync, isLoading } = useMutation(
     async (orderBody: SubmitOrderDto) => {
-      return await api.put(`users/${senderId}/orders/${orderId}`, orderBody);
+      return await api.post(
+        `users/${senderId}/orders/${orderId}/submit`,
+        orderBody
+      );
     },
     {
       onSuccess: async () => {

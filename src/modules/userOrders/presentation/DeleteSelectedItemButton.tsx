@@ -4,7 +4,8 @@ import { useIntl } from "react-intl";
 import { IconButton } from "components/IconButton";
 
 import { useRemoveElementNotification } from "./useRemoveElementNotification";
-import { useRemoveElement } from "../infrastructure";
+import { useOrderQuery, useRemoveElement } from "../infrastructure";
+import { OrderStatus } from "../application";
 
 interface IProps {
   orderId: string;
@@ -20,8 +21,12 @@ export const DeleteSelectedItemButton = ({
   const { formatMessage } = useIntl();
   const { showSuccessNotification, showErrorNotification } =
     useRemoveElementNotification();
-
+  const order = useOrderQuery(orderId);
   const [removeElement, isLoading] = useRemoveElement(orderId);
+
+  if (order?.status !== OrderStatus.COMPLETING) {
+    return null;
+  }
 
   const handleRemove = async () => {
     try {

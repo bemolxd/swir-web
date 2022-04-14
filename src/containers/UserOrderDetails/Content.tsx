@@ -9,6 +9,8 @@ import {
   OrderSelectedItems,
   OrderStatusSection,
   OrderSummarySection,
+  ReservationDatesSection,
+  SenderDetailsCommentSection,
 } from "modules/userOrders/presentation";
 
 interface IProps {
@@ -22,12 +24,18 @@ export const Content = withSuspense(({ orderId }: IProps) => {
     <VStack align="flex-start" w="100%">
       <DetailsHeader orderId={orderDetails?.orderId!} />
       <OrderStatusSection orderStatus={orderDetails?.status!} />
+      <ReservationDatesSection
+        status={orderDetails?.status!}
+        dateFrom={orderDetails?.dateFrom!}
+        dateTo={orderDetails?.dateTo!}
+      />
       <OrderSelectedItems
         items={orderDetails?.items!}
         status={orderDetails?.status!}
         orderId={orderDetails?.orderId!}
       />
       <OrderSummarySection status={orderDetails?.status!} />
+      <SenderDetailsCommentSection order={orderDetails!} />
       <DeleteOrderSection
         senderId={orderDetails?.senderId!}
         orderId={orderId}

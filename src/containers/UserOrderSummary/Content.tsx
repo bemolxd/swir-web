@@ -1,9 +1,11 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { VStack } from "@chakra-ui/react";
-import { Form } from "components/Form";
 
+import { Form } from "components/Form";
 import { withSuspense } from "components/RemoteData";
 
-import { SelectedItem } from "modules/userOrders/application";
+import { OrderStatus, SelectedItem } from "modules/userOrders/application";
 import {
   useOrderQuery,
   useSubmitOrderRequest,
@@ -32,9 +34,17 @@ interface FormData {
 
 export const Content = withSuspense(({ orderId }: IProps) => {
   const order = useOrderQuery(orderId);
+  const navigate = useNavigate();
   const [submitData] = useSubmitOrderRequest(order?.senderId!, orderId);
   const { showSuccessNotification, showErrorNotification } =
     useSubmitOrderNotifications();
+
+  useEffect(() => {
+    if (order?.status !== OrderStatus.COMPLETING) {
+      navigate(`/zgloszenia/${orderId}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [order]);
 
   const formId = `order.${orderId}.summaryForm`;
 
@@ -50,6 +60,7 @@ export const Content = withSuspense(({ orderId }: IProps) => {
     try {
       console.log(data);
       await submitData(data);
+      navigate(`/zgloszenia/${orderId}`, { replace: true });
       showSuccessNotification();
     } catch (error) {
       showErrorNotification();

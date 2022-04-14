@@ -31,7 +31,11 @@ export const OrderSelectedItems = ({ items, status, orderId }: IProps) => {
           })}
         </InfoDetailsLabel>
         <InfoDetailsContent align="flex-end">
-          <OrderSelectedItemsList items={items} orderId={orderId} />
+          <OrderSelectedItemsList
+            items={items}
+            orderId={orderId}
+            status={status}
+          />
           {status === OrderStatus.COMPLETING && <AddElementsButton />}
         </InfoDetailsContent>
       </InfoDetailsContainer>
