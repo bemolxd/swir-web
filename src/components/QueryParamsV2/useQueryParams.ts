@@ -33,7 +33,7 @@ export type QueryParams = ReturnType<typeof useQueryParams>;
 export const useQueryParams = <Params extends object>(
   options?: LocationManagerOptions
 ) => {
-  const { location, history } = useQueryParamsConsumer();
+  const { location, navigate } = useQueryParamsConsumer();
 
   const locationManager = LocationManager<Params>(location, options);
 
@@ -43,11 +43,11 @@ export const useQueryParams = <Params extends object>(
       if (newUrl === locationManager.url) return newUrl;
 
       if (shouldReplace) {
-        history.replace(newUrl);
+        navigate(newUrl, { replace: true });
         return newUrl;
       }
 
-      history.push(newUrl);
+      navigate(newUrl);
       return newUrl;
     };
 
@@ -57,7 +57,7 @@ export const useQueryParams = <Params extends object>(
 
   const remove: RemoveFunction = flow(locationManager.remove, push());
 
-  const toggle: ParamsFunction = flow(locationManager.change, push());
+  const toggle: ParamsFunction = flow(locationManager.toggle, push());
 
   const pick: PickFunction = flow(locationManager.pick, push());
 
