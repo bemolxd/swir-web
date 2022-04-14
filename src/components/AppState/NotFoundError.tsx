@@ -1,4 +1,5 @@
 import { useIntl } from "react-intl";
+import { Link } from "@chakra-ui/react";
 
 import { useQueryParamsConsumer } from "components/QueryParamsV2";
 
@@ -9,45 +10,51 @@ import {
   StateSubtitle,
   StateTitle,
 } from "./components";
-import { ServerDownSvg } from "./svg";
+import { TakenSvg } from "./svg/TakenSvg";
 
 interface IProps {
-  onAction(): void;
+  onAction?(): void;
 }
 
-export const ServerError = ({ onAction }: IProps) => {
+export const NotFoundError = ({ onAction }: IProps) => {
   const { formatMessage } = useIntl();
   const { navigate } = useQueryParamsConsumer();
 
   return (
     <StateContainer>
       <StateImage>
-        <ServerDownSvg style={{ height: "250px" }} />
+        <TakenSvg style={{ height: "250px" }} />
       </StateImage>
       <StateTitle>
         {formatMessage({
-          id: "AppState.ServerError.title",
-          defaultMessage: "Błąd serwera",
+          id: "AppState.NotFoundError.title",
+          defaultMessage: "Brak wyników",
         })}
       </StateTitle>
       <StateSubtitle>
         {formatMessage({
-          id: "AppState.ServerError.subtitle",
+          id: "AppState.NotFoundError.subtitle",
           defaultMessage:
-            "Wystąpił nieoczekiwany błąd serwera. Odśwież stronę lub spróbuj ponownie później!",
+            "Upewnij się, że adres URL jest prawidłowy. Jeśli uważasz, że problem leży po naszej stronie, skontaktuj się z nami.",
         })}
       </StateSubtitle>
       <StateAction
         action={() => {
-          onAction();
+          if (onAction) onAction();
           navigate("/");
         }}
       >
         {formatMessage({
-          id: "AppState.ServerError.actionButton",
+          id: "AppState.NotFoundError.actionButton.goHome",
           defaultMessage: "Wróć na stronę główną",
         })}
       </StateAction>
+      <Link href="mailto:swir.multimed@gmail.com">
+        {formatMessage({
+          id: "AppState.NotFoundError.contactUs",
+          defaultMessage: "Napisz do nas",
+        })}
+      </Link>
     </StateContainer>
   );
 };
