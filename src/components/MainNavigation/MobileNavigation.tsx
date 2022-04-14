@@ -8,14 +8,16 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Heading,
-  IconButton,
   Text,
   VStack,
+  useTheme,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { MdSegment } from "react-icons/md";
 import { useIntl } from "react-intl";
 
 import { ColorModeSwitch } from "components/ColorMode";
+import { IconButton } from "components/IconButton";
 
 import { useMobileMenuHandler } from "./useMobileMenuHandler";
 import { MobileNavigationMenuContent } from "./MobileNavigationMenuContent";
@@ -26,6 +28,8 @@ export const MobileNavigation = () => {
     handler.onClose,
   ]);
   const { formatMessage } = useIntl();
+  const theme = useTheme();
+  const borderColor = useColorModeValue("200", "600");
 
   return (
     <>
@@ -33,7 +37,11 @@ export const MobileNavigation = () => {
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="full">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton mt={2} />
+          <DrawerCloseButton
+            mt={2}
+            borderRadius="full"
+            border={`1px solid ${theme.colors.gray[borderColor]}`}
+          />
           <DrawerHeader w="100%">
             <Heading size="lg" fontWeight="400">
               SWiR
@@ -67,7 +75,6 @@ const MenuIconButton = () => {
 
   return (
     <IconButton
-      aria-label="mobile-menu-button"
       variant="outline"
       isRound
       icon={<MdSegment />}

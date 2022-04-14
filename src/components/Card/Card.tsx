@@ -16,7 +16,7 @@ export const Card = ({
   return (
     <Box
       as={fade ? Fade : undefined}
-      in
+      in="true"
       bgColor={useColorModeValue(lightColor, darkColor)}
       borderRadius={4}
       boxShadow="md"

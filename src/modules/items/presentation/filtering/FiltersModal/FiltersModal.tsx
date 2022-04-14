@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -10,9 +11,12 @@ import {
 } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
+import { ClearFiltersButton } from "components/Filters";
+
 import { useFilterModalHandler } from "modules/items/application";
 
 import { ItemTypeSection } from "./ItemTypeSection";
+import { ItemCategorySection } from "./ItemCategorySection";
 
 export const FiltersModal = () => {
   const { formatMessage } = useIntl();
@@ -22,7 +26,12 @@ export const FiltersModal = () => {
   ]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInBottom">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      motionPreset="slideInBottom"
+      scrollBehavior="inside"
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
@@ -34,14 +43,18 @@ export const FiltersModal = () => {
         <ModalCloseButton />
         <ModalBody>
           <ItemTypeSection />
+          <ItemCategorySection />
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="teal" onClick={onClose}>
-            {formatMessage({
-              id: "Items.filtering.filterModalSave",
-              defaultMessage: "Zapisz",
-            })}
-          </Button>
+          <ButtonGroup>
+            <ClearFiltersButton />
+            <Button colorScheme="teal" onClick={onClose}>
+              {formatMessage({
+                id: "Items.filtering.filterModalClose",
+                defaultMessage: "Zamknij",
+              })}
+            </Button>
+          </ButtonGroup>
         </ModalFooter>
       </ModalContent>
     </Modal>

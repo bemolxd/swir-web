@@ -1,5 +1,7 @@
 import { useIntl } from "react-intl";
 
+import { useQueryParamsConsumer } from "components/QueryParamsV2";
+
 import {
   StateAction,
   StateContainer,
@@ -15,6 +17,7 @@ interface IProps {
 
 export const ServerError = ({ onAction }: IProps) => {
   const { formatMessage } = useIntl();
+  const { navigate } = useQueryParamsConsumer();
 
   return (
     <StateContainer>
@@ -37,6 +40,7 @@ export const ServerError = ({ onAction }: IProps) => {
       <StateAction
         action={() => {
           onAction();
+          navigate("/");
         }}
       >
         {formatMessage({

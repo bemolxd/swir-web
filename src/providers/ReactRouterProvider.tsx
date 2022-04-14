@@ -1,4 +1,4 @@
-import { BrowserRouter, useHistory, useLocation } from "react-router-dom";
+import { BrowserRouter, useLocation, useNavigate } from "react-router-dom";
 
 import { IChildrenProp } from "types";
 
@@ -19,11 +19,11 @@ interface IContextProviderProps extends IChildrenProp {}
 export const RouterQueryParamsProvider = ({
   children,
 }: IContextProviderProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <QueryParamsProvider location={location} history={history}>
+    <QueryParamsProvider location={location} navigate={navigate}>
       {children}
     </QueryParamsProvider>
   );

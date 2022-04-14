@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { IChildrenProp } from "types";
 
@@ -10,13 +10,13 @@ interface IProps extends IChildrenProp {
 }
 
 export const MobileNavigationItem = ({ children, path }: IProps) => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const onClose = useMobileMenuHandler((handler) => handler.onClose);
 
   const handleClick = () => {
     onClose();
-    push(path);
+    navigate(path);
   };
 
   return (

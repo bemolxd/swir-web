@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { HStack, VStack } from "@chakra-ui/react";
 
 import {
@@ -8,6 +8,7 @@ import {
   ListItemTitle,
 } from "components/List";
 import { Image } from "components/Image";
+import { EmptyList } from "components/AppState";
 
 import { Item } from "../application";
 import { ItemAction } from "./ItemAction";
@@ -17,7 +18,7 @@ interface IProps {
 }
 
 export const ItemsList = ({ items }: IProps) => {
-  if (!items) return <div>no items</div>;
+  if (!items || items.length === 0) return <EmptyList />;
 
   return (
     <List>
@@ -29,10 +30,10 @@ export const ItemsList = ({ items }: IProps) => {
 };
 
 const ItemComponent = ({ item }: { item: Item }) => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   return (
-    <ListItem onClick={() => push(`/sprzet/${item.itemId}`)}>
+    <ListItem onClick={() => navigate(`/sprzet/${item.itemId}`)}>
       <HStack w="100%" align="center">
         <HStack spacing={8} w="100%" align="flex-start">
           <Image src={item.imageUrl} h="120px" borderRadius={8} />

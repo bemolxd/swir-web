@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { NavigateFunction } from "react-router";
 
 import { IChildrenProp } from "types";
 
@@ -6,28 +7,23 @@ import { Location } from "./LocationManager";
 
 export interface Values {
   location: Location;
-  history: History;
+  navigate: NavigateFunction;
 }
-
-type History = {
-  push: Function;
-  replace: Function;
-};
 
 interface IProps extends IChildrenProp {
   location: Location;
-  history: History;
+  navigate: NavigateFunction;
 }
 
 export const QueryParamsContext = createContext<Values | undefined>(undefined);
 
 export const QueryParamsProvider = ({
   location,
-  history,
+  navigate,
   children,
 }: IProps) => {
   return (
-    <QueryParamsContext.Provider value={{ history, location }}>
+    <QueryParamsContext.Provider value={{ location, navigate }}>
       {children}
     </QueryParamsContext.Provider>
   );

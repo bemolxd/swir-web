@@ -8,7 +8,7 @@ interface IProps extends IChildrenProp {
 
 export const StateContainer = ({ my = 24, children }: IProps) => {
   return (
-    <VStack my={my} spacing={4}>
+    <VStack my={my} spacing={4} w="100%">
       {children}
     </VStack>
   );
