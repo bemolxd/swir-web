@@ -1,32 +1,38 @@
-import { Divider, VStack, Text, Checkbox } from "@chakra-ui/react";
-import { useIntl } from "react-intl";
+import { Divider, VStack } from "@chakra-ui/react";
+import { defineMessages, useIntl } from "react-intl";
+
+import { CheckboxFilterGroup } from "components/Filters";
+
+import { ItemType } from "modules/items/application";
 
 export const ItemTypeSection = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <>
-      <VStack align="flex-start">
-        <Text>
-          {formatMessage({
-            id: "Items.filtering.filterModal.itemTypeTitle",
-            defaultMessage: "Typ sprzętu:",
-          })}
-        </Text>
-        <Checkbox>
-          {formatMessage({
-            id: "Items.filtering.filterModal.itemType.audio",
-            defaultMessage: "Sprzęt audio",
-          })}
-        </Checkbox>
-        <Checkbox>
-          {formatMessage({
-            id: "Items.filtering.filterModal.itemType.video",
-            defaultMessage: "Sprzęt wideo",
-          })}
-        </Checkbox>
-      </VStack>
-      <Divider my={4} />
-    </>
+    <VStack align="flex-start" w="100%" mb={2}>
+      <CheckboxFilterGroup
+        filterName="type"
+        title={formatMessage({
+          id: "ItemTypeFilters.title",
+          defaultMessage: "Typ sprzętu:",
+        })}
+        options={options}
+        messages={messages}
+      />
+      <Divider />
+    </VStack>
   );
 };
+
+const options = Object.values(ItemType);
+
+const messages = defineMessages({
+  [ItemType.AUDIO]: {
+    id: "TypeLabels.ItemType.Audio",
+    defaultMessage: "Sprzęt audio",
+  },
+  [ItemType.VIDEO]: {
+    id: "TypeLabels.ItemType.Video",
+    defaultMessage: "Sprzęt wideo",
+  },
+});

@@ -1,25 +1,26 @@
-import { Divider, HStack } from "@chakra-ui/react";
+import { useIntl } from "react-intl";
 
-import { useCheckMobile } from "components/Layout";
+import { Separator, SearchFilter, FiltersContainer } from "components/Filters";
 
 import { DisplayTypeButtons } from "./DisplayTypeButtons";
 import { MoreFilters } from "./MoreFilters";
-import { Searchbox } from "./Searchbox";
 
 export const FilterSection = () => {
-  const isMobile = useCheckMobile();
+  const { formatMessage } = useIntl();
 
   return (
-    <HStack justify={isMobile ? "center" : "flex-end"} mt={2}>
-      {!isMobile && (
-        <>
-          <DisplayTypeButtons />
-          <Divider orientation="vertical" h="20px" />
-        </>
-      )}
-      <Searchbox />
-      <Divider orientation="vertical" h="20px" />
+    <FiltersContainer mt={2}>
+      <DisplayTypeButtons />
+      <SearchFilter
+        filterName="search"
+        maxW="250px"
+        placeholder={formatMessage({
+          id: "Items.filtering.searchboxPlaceholder",
+          defaultMessage: "Szukaj",
+        })}
+      />
+      <Separator />
       <MoreFilters />
-    </HStack>
+    </FiltersContainer>
   );
 };
