@@ -1,31 +1,15 @@
-import { useFormContext } from "react-hook-form";
 import { HStack } from "@chakra-ui/react";
 import { MdEast } from "react-icons/md";
 
-import { DatePicker } from "components/DatePicker";
-
 import { DateFromSelect } from "./DateFromSelect";
+import { DateToSelect } from "./DateToSelect";
 
 export const DateSelects = () => {
-  const {
-    register,
-    setValue,
-    formState: { errors },
-    watch,
-  } = useFormContext<{ dateFrom: any; dateTo: any }>();
-
   return (
-    <HStack align="flex-start">
+    <HStack align="flex-start" justify="center">
       <DateFromSelect />
-      <MdEast size={"32px"} />
-      <DatePicker
-        {...register("dateTo", { required: true })}
-        placeholderText="Data zakończenia"
-        onChange={(date) => {
-          setValue("dateTo", date);
-        }}
-        isInvalid={!!errors.dateTo}
-      />
+      <MdEast fontSize="40px" />
+      <DateToSelect />
     </HStack>
   );
 };
