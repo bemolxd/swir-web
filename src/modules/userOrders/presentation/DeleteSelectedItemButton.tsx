@@ -9,9 +9,14 @@ import { useRemoveElement } from "../infrastructure";
 interface IProps {
   orderId: string;
   itemId: string;
+  formAction?(): void;
 }
 
-export const DeleteSelectedItemButton = ({ orderId, itemId }: IProps) => {
+export const DeleteSelectedItemButton = ({
+  orderId,
+  itemId,
+  formAction,
+}: IProps) => {
   const { formatMessage } = useIntl();
   const { showSuccessNotification, showErrorNotification } =
     useRemoveElementNotification();
@@ -21,6 +26,7 @@ export const DeleteSelectedItemButton = ({ orderId, itemId }: IProps) => {
   const handleRemove = async () => {
     try {
       await removeElement({ itemId });
+      if (formAction) formAction();
       showSuccessNotification();
     } catch (error) {
       showErrorNotification();
