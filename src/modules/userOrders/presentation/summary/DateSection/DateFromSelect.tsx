@@ -15,16 +15,17 @@ export const DateFromSelect = () => {
         return (
           <DatePicker
             {...fieldProps}
+            {...methods.register("dateFrom", { required: true })}
             name="dateFrom"
             onChange={(value) => {
               methods.setValue("dateFrom", value, { shouldDirty: true });
+              methods.setValue("dateTo", null, { shouldDirty: true });
               if (value === null) {
                 methods.setError("dateFrom", {
                   message: "Ustaw datę początkową",
                 });
                 return;
               }
-
               if (value) methods.clearErrors("dateFrom");
             }}
             isInvalid={isInvalid}

@@ -38,12 +38,7 @@ export const FormControl = ({
   const isInvalid = !!get(methods.formState.errors, name);
 
   return (
-    <ChakraFormControl
-      mb={2}
-      isRequired={isRequired}
-      isInvalid={isInvalid}
-      {...props}
-    >
+    <ChakraFormControl isRequired={isRequired} isInvalid={isInvalid} {...props}>
       <Controller
         name={name}
         render={(props) => children(methods, props as any, { isInvalid })}

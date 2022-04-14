@@ -20,10 +20,15 @@ export const TechSelect = withSuspense(
 
     return (
       <FormControl name="techId" w="100%">
-        {({ setValue, setError, clearErrors }, fieldProps, { isInvalid }) => {
+        {(
+          { setValue, setError, clearErrors, register, getValues },
+          fieldProps,
+          { isInvalid }
+        ) => {
           return (
             <Select
               {...fieldProps}
+              {...register("techId", { required: true })}
               options={options!}
               isInvalid={isInvalid}
               placeholder={formatMessage({

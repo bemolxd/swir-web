@@ -68,7 +68,7 @@ export const DatePicker = ({
         name={name}
         locale="pl"
         autoComplete="off"
-        value={value ? dayjs(value).format("DD/MM/YYYY").toString() : value}
+        value={value && dayjs(value).format("DD/MM/YYYY").toString()}
         isClearable={isClearable}
         minDate={new Date()}
         maxDate={new Date(2999, 1, 1)}
@@ -89,7 +89,7 @@ export const DatePicker = ({
         }}
         dateFormat="DD/MM/YYYY"
         showPopperArrow={false}
-        selected={value ? dayjs(value).toDate() : null}
+        selected={value ? dayjs(value).toDate() : undefined}
       />
     </StyledDatePickerBox>
   );

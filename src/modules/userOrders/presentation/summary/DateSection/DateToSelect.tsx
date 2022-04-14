@@ -16,6 +16,7 @@ export const DateToSelect = () => {
         return (
           <DatePicker
             {...fieldProps}
+            {...methods.register("dateTo", { required: true })}
             name="dateTo"
             minDate={dayjs(dateFrom).add(1, "day").toDate()}
             onChange={(value) => {
