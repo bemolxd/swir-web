@@ -19,7 +19,7 @@ import { ClearFiltersButton } from "./ClearFiltersButton";
 interface IProps extends IChildrenProp {
   isOpen: boolean;
   onClose(): void;
-  header: ReactNode;
+  header?: ReactNode;
 }
 
 export const FiltersModal = ({ isOpen, onClose, header, children }: IProps) => {
@@ -34,7 +34,13 @@ export const FiltersModal = ({ isOpen, onClose, header, children }: IProps) => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{header}</ModalHeader>
+        <ModalHeader>
+          {header ??
+            formatMessage({
+              id: "Filters.filterModalTitle",
+              defaultMessage: "Wyszukiwanie zaawansowane",
+            })}
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>
         <ModalFooter>

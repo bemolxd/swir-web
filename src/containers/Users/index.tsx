@@ -8,6 +8,7 @@ import { buildUrl } from "utils";
 import { useQueryParams } from "components/QueryParamsV2";
 
 import { Header } from "./Header";
+import { Content } from "./Content";
 
 export const Users = () => {
   const { params, url } = useQueryParams();
@@ -23,6 +24,7 @@ export const Users = () => {
   return (
     <VStack w="100%" align="flex-start">
       <Header />
+      <Content />
     </VStack>
   );
 };
