@@ -38,7 +38,7 @@ export const SelectRole = ({ defaultValue, userId }: IProps) => {
 
   const handleChange = async (value: ContextType) => {
     try {
-      await changeRole(value);
+      await changeRole({ contextType: value });
       showSuccessNotification();
     } catch (error) {
       showErrorNotification();
