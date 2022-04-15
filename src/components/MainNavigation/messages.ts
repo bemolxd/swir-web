@@ -10,4 +10,8 @@ export const navigationMessages = defineMessages({
     id: "MainNavigation.reservations",
     defaultMessage: "Rezerwacje",
   },
+  users: {
+    id: "MainNavigation.users",
+    defaultMessage: "Użytkownicy",
+  },
 });
