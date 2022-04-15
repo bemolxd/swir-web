@@ -3,15 +3,21 @@ import { useMutation } from "react-query";
 import { api } from "utils";
 
 import { useQueryParams } from "components/QueryParamsV2";
-import { useGetQueryData, useSetQueryData } from "components/RemoteData";
+import {
+  useGetQueryData,
+  useSetQueryData,
+  useInvalidateQuery,
+} from "components/RemoteData";
 
 import { ChangeRoleDto, UsersResponse } from "../application";
 import { getUsersQueryKey } from "./useUsersQuery";
+import { getUserDetailsQueryKey } from "./useUserDetailsQuery";
 
 export const useChangeUserRole = (userId: string) => {
   const { params } = useQueryParams();
+  const invalidateQuery = useInvalidateQuery();
+  const setQueryData = useSetQueryData();
   const queryData = useGetQueryData<UsersResponse>(getUsersQueryKey(params));
-  const setQueryData = useSetQueryData<UsersResponse>(getUsersQueryKey(params));
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: ChangeRoleDto) => {
@@ -22,7 +28,7 @@ export const useChangeUserRole = (userId: string) => {
         if (!res) return;
 
         if (!!queryData) {
-          setQueryData({
+          setQueryData<UsersResponse>(getUsersQueryKey(params), {
             ...queryData,
             data: {
               ...queryData.data,
@@ -38,6 +44,7 @@ export const useChangeUserRole = (userId: string) => {
             },
           });
         }
+        invalidateQuery(getUserDetailsQueryKey(userId));
       },
     }
   );

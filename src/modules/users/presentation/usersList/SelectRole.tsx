@@ -54,6 +54,7 @@ export const SelectRole = ({ defaultValue, userId }: IProps) => {
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => handleChange(e.target.value as ContextType)}
         isDisabled={isLoading}
+        isTruncated={true}
         maxW="200px"
         w="100%"
       />

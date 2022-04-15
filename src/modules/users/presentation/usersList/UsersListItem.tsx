@@ -1,4 +1,3 @@
-import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { HStack, Avatar, Text, VStack } from "@chakra-ui/react";
 
@@ -6,7 +5,6 @@ import { ListItem } from "components/List";
 
 import { User } from "modules/users/application";
 
-import { contextMessages } from "../contextMessages";
 import { SelectRole } from "./SelectRole";
 
 interface IProps {
