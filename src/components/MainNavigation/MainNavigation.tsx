@@ -16,7 +16,7 @@ export const MainNavigation = () => {
   const { formatMessage } = useIntl();
 
   const contextType = useGetContextType();
-  const tabIndex = useGetActiveTab(pathname);
+  const tabIndex = useGetActiveTab(pathname, contextType!);
   const isMobile = useCheckMobile();
 
   if (isMobile) return null;
@@ -44,7 +44,18 @@ export const MainNavigation = () => {
     );
   }
 
-  return <Card>admin routes</Card>;
+  return (
+    <Card maxW="200px" w="100%">
+      <Tabs orientation="vertical" index={tabIndex}>
+        <TabList alignItems="flex-start">
+          <NavigationTab
+            title={formatMessage(navigationMessages.users)}
+            path="/uzytkownicy"
+          />
+        </TabList>
+      </Tabs>
+    </Card>
+  );
 };
 
 interface NavigationProps {
