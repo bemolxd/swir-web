@@ -1,7 +1,9 @@
-import { Heading, Text, VStack } from "@chakra-ui/react";
+import { Divider, Heading, Text, VStack } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { Card } from "components/Card";
+
+import { FilterSection } from "modules/users/presentation";
 
 export const Header = () => {
   const { formatMessage } = useIntl();
@@ -22,6 +24,8 @@ export const Header = () => {
           })}
         </Text>
       </VStack>
+      <Divider />
+      <FilterSection />
     </Card>
   );
 };
