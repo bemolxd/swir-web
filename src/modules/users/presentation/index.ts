@@ -1,3 +1,3 @@
 export * from "./filtering";
-export { UsersList } from "./UsersList";
+export { UsersList } from "./usersList/UsersList";
 export { contextMessages } from "./contextMessages";
