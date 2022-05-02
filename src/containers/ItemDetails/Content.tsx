@@ -20,7 +20,7 @@ export const Content = withSuspense(({ itemId }: IProps) => {
 
   return (
     <VStack align="flex-start" w="100%">
-      <DetailsHeader itemName={itemDetails?.name!} />
+      <DetailsHeader itemName={itemDetails?.name!} itemId={itemId} />
       <BasicInfoSection details={itemDetails!} />
       <DescriptionSection description={itemDetails?.description!} />
       <ParametersSection parameters={itemDetails?.parameters!} />

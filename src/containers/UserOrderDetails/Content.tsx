@@ -1,6 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 
 import { withSuspense } from "components/RemoteData";
+import { AwardingJustificationSection } from "modules/adminOrders/presentation/management/AwardingJustificationSection";
 
 import { useOrderQuery } from "modules/userOrders/infrastructure";
 import {
@@ -23,7 +24,8 @@ export const Content = withSuspense(({ orderId }: IProps) => {
   return (
     <VStack align="flex-start" w="100%">
       <DetailsHeader orderId={orderDetails?.orderId!} />
-      <OrderStatusSection orderStatus={orderDetails?.status!} />
+      <OrderStatusSection order={orderDetails!} />
+      <AwardingJustificationSection order={orderDetails!} />
       <ReservationDatesSection
         status={orderDetails?.status!}
         dateFrom={orderDetails?.dateFrom!}

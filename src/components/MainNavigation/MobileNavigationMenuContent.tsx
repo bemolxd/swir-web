@@ -20,12 +20,22 @@ export const MobileNavigationMenuContent = () => {
         <MobileNavigationItem path="/zgloszenia">
           {formatMessage(navigationMessages.userOrders)}
         </MobileNavigationItem>
-        <MobileNavigationItem path="/rezerwacje">
-          {formatMessage(navigationMessages.reservations)}
-        </MobileNavigationItem>
       </VStack>
     );
   }
 
-  return <div>admin nav</div>;
+  // ContextType.GLOBAL
+  return (
+    <VStack mb={4}>
+      <MobileNavigationItem path="/sprzet">
+        {formatMessage(navigationMessages.items)}
+      </MobileNavigationItem>
+      <MobileNavigationItem path="/zgloszenia">
+        {formatMessage(navigationMessages.userOrders)}
+      </MobileNavigationItem>
+      <MobileNavigationItem path="/uzytkownicy">
+        {formatMessage(navigationMessages.users)}
+      </MobileNavigationItem>
+    </VStack>
+  );
 };

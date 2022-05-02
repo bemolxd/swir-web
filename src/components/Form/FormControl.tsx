@@ -3,6 +3,7 @@ import {
   FormControlProps,
   FormErrorMessage,
   FormHelperText,
+  FormLabel,
 } from "@chakra-ui/react";
 import { get } from "lodash";
 import { ReactElement, ReactNode } from "react";
@@ -13,7 +14,7 @@ import {
   UseFormReturn,
 } from "react-hook-form";
 
-interface IProps extends Omit<FormControlProps, "children"> {
+interface IProps extends Omit<FormControlProps, "children" | "label"> {
   children(
     methods: UseFormReturn,
     controllerProps: ControllerRenderProps,
@@ -21,6 +22,7 @@ interface IProps extends Omit<FormControlProps, "children"> {
   ): ReactElement;
   name: string;
   helperText?: ReactNode;
+  label?: ReactNode;
 }
 
 interface InnerProps {
@@ -32,6 +34,7 @@ export const FormControl = ({
   name,
   helperText,
   isRequired = true,
+  label,
   ...props
 }: IProps) => {
   const methods = useFormContext();
@@ -39,6 +42,7 @@ export const FormControl = ({
 
   return (
     <ChakraFormControl isRequired={isRequired} isInvalid={isInvalid} {...props}>
+      {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
       <Controller
         name={name}
         render={(props) => children(methods, props as any, { isInvalid })}

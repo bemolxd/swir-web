@@ -1,6 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { TabList, Tab, Tabs } from "@chakra-ui/react";
+import { TabList, Tab, Tabs, HStack } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
+import { ReactElement } from "react";
+import {
+  MdDevicesOther,
+  MdOutlineAllInbox,
+  MdOutlineDescription,
+  MdOutlineManageAccounts,
+} from "react-icons/md";
 
 import { ContextType } from "types";
 
@@ -29,14 +36,17 @@ export const MainNavigation = () => {
             <NavigationTab
               title={formatMessage(navigationMessages.items)}
               path="/sprzet"
+              icon={<MdDevicesOther />}
             />
             <NavigationTab
               title={formatMessage(navigationMessages.userOrders)}
               path="/zgloszenia"
+              icon={<MdOutlineDescription />}
             />
             <NavigationTab
-              title={formatMessage(navigationMessages.reservations)}
-              path="/rezerwacje"
+              title={formatMessage(navigationMessages.archive)}
+              path="/archiwum"
+              icon={<MdOutlineAllInbox />}
             />
           </TabList>
         </Tabs>
@@ -44,13 +54,30 @@ export const MainNavigation = () => {
     );
   }
 
+  // ContextType.GLOBAL
   return (
     <Card maxW="200px" w="100%">
       <Tabs orientation="vertical" index={tabIndex}>
         <TabList alignItems="flex-start">
           <NavigationTab
+            title={formatMessage(navigationMessages.items)}
+            path="/sprzet"
+            icon={<MdDevicesOther />}
+          />
+          <NavigationTab
+            title={formatMessage(navigationMessages.userOrders)}
+            path="/zgloszenia"
+            icon={<MdOutlineDescription />}
+          />
+          <NavigationTab
+            title={formatMessage(navigationMessages.archive)}
+            path="/archiwum"
+            icon={<MdOutlineAllInbox />}
+          />
+          <NavigationTab
             title={formatMessage(navigationMessages.users)}
             path="/uzytkownicy"
+            icon={<MdOutlineManageAccounts />}
           />
         </TabList>
       </Tabs>
@@ -61,10 +88,18 @@ export const MainNavigation = () => {
 interface NavigationProps {
   path: string;
   title: string;
+  icon: ReactElement;
 }
 
-const NavigationTab = ({ path, title }: NavigationProps) => {
+const NavigationTab = ({ path, title, icon }: NavigationProps) => {
   const navigate = useNavigate();
 
-  return <Tab onClick={() => navigate(path)}>{title}</Tab>;
+  return (
+    <Tab onClick={() => navigate(path)}>
+      <HStack>
+        <span>{icon}</span>
+        <span>{title}</span>
+      </HStack>
+    </Tab>
+  );
 };

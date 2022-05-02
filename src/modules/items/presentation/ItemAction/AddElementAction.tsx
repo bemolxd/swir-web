@@ -1,9 +1,8 @@
-import { HStack } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 import { MdAddTask } from "react-icons/md";
 
-import { IconButton } from "components/IconButton";
 import { useMeQuery } from "components/Auth";
+import { IconButton } from "components/IconButton";
 
 import {
   useAddElement,
@@ -12,9 +11,13 @@ import {
 } from "modules/userOrders/infrastructure";
 import { defaultParams, OrderStatus } from "modules/userOrders/application";
 
-import { useAddElementNotifications } from "./useAddElementNotifications";
+import { useAddElementNotifications } from "../useAddElementNotifications";
 
-export const ItemAction = ({ itemId }: { itemId: string }) => {
+interface IProps {
+  itemId: string;
+}
+
+export const AddElementAction = ({ itemId }: IProps) => {
   const { formatMessage } = useIntl();
 
   const me = useMeQuery();
@@ -22,7 +25,6 @@ export const ItemAction = ({ itemId }: { itemId: string }) => {
   const completingOrder = orders?.collection.find(
     (order) => order.status === OrderStatus.COMPLETING
   );
-
   const [createOrder, isCreating] = useCreateOrder(me?.userId!);
   const [addElement, isAdding] = useAddElement(completingOrder?.orderId!);
 
@@ -62,24 +64,22 @@ export const ItemAction = ({ itemId }: { itemId: string }) => {
   };
 
   return (
-    <HStack w="100%" justify="flex-end">
-      <IconButton
-        tooltip={formatMessage({
-          id: "ItemAction.addToOrder",
-          defaultMessage: "Dodaj element do zgłoszenia",
-        })}
-        icon={<MdAddTask />}
-        isLoading={isCreating || isAdding}
-        onClick={async (e) => {
-          e.stopPropagation();
+    <IconButton
+      tooltip={formatMessage({
+        id: "ItemAction.addToOrder",
+        defaultMessage: "Dodaj element do zgłoszenia",
+      })}
+      icon={<MdAddTask />}
+      isLoading={isCreating || isAdding}
+      onClick={async (e) => {
+        e.stopPropagation();
 
-          if (!!completingOrder) {
-            return handleAddElement();
-          }
+        if (!!completingOrder) {
+          return handleAddElement();
+        }
 
-          handleCreateOrder();
-        }}
-      />
-    </HStack>
+        handleCreateOrder();
+      }}
+    />
   );
 };

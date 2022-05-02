@@ -8,6 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
+import { MdOutlineEmail } from "react-icons/md";
 
 import { User } from "modules/users/application";
 
@@ -32,6 +33,8 @@ export const BasicInfoSection = ({ user }: IProps) => {
           </VStack>
         </HStack>
         <Button
+          leftIcon={<MdOutlineEmail />}
+          fontWeight="400"
           onClick={(e) => {
             window.location.href = `mailto:${user?.email}`;
             e.preventDefault();

@@ -1,5 +1,10 @@
 import { Avatar, HStack, Text } from "@chakra-ui/react";
-import { MdCheck, MdWorkspacesFilled, MdNotInterested } from "react-icons/md";
+import {
+  MdCheck,
+  MdWorkspacesFilled,
+  MdNotInterested,
+  MdRemoveCircleOutline,
+} from "react-icons/md";
 
 interface IProps {
   initMessage: string;
@@ -8,6 +13,7 @@ interface IProps {
   isActive: boolean;
   isDone: boolean;
   isVisible: boolean;
+  isRejected?: boolean;
 }
 
 export const StatusMessage = ({
@@ -17,8 +23,23 @@ export const StatusMessage = ({
   isActive,
   isDone,
   isVisible,
+  isRejected = false,
 }: IProps) => {
   if (!isVisible) return null;
+
+  if (isRejected)
+    return (
+      <HStack>
+        <Avatar
+          size="sm"
+          bg="red.300"
+          textColor="red.600"
+          fontSize="22px"
+          icon={<MdRemoveCircleOutline />}
+        />
+        <Text>{activeMessage}</Text>
+      </HStack>
+    );
 
   if (isActive)
     return (

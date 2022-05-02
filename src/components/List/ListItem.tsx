@@ -5,12 +5,14 @@ import { IChildrenProp } from "types";
 
 interface IProps extends IChildrenProp {
   onClick?(): void;
+  border?: string;
 }
 
-export const ListItem = ({ children, onClick }: IProps) => {
+export const ListItem = ({ children, onClick, border }: IProps) => {
   return (
     <Card
       w="100%"
+      border={border}
       opacity="1"
       boxShadow="md"
       fade={false}

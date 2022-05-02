@@ -15,7 +15,7 @@ export const AppLayout = ({ children }: IProps) => {
   return (
     <>
       <Navbar />
-      <Center w="100%" px={isMobile ? 4 : 40}>
+      <Center w="100%" px={isMobile ? 4 : 40} pb={16}>
         <HStack
           maxW="1500px"
           w="100%"

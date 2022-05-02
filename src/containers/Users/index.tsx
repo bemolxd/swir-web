@@ -16,7 +16,7 @@ export const Users = () => {
 
   useEffect(() => {
     if (isEmpty(params)) {
-      navigate(buildUrl(url, { limit: 20, offset: 0 }), { replace: true });
+      navigate(buildUrl(url, { limit: 10, offset: 0 }), { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);

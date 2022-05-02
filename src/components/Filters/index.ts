@@ -6,3 +6,4 @@ export { CheckboxFilterGroup } from "./CheckboxFilterGroup";
 export { ClearFiltersButton } from "./ClearFiltersButton";
 export { FiltersModal } from "./FiltersModal";
 export { MoreFiltersButton } from "./MoreFiltersButton";
+export { RadioFilterGroup } from "./RadioFilterGroup";

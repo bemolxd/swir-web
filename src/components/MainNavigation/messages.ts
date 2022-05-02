@@ -14,4 +14,8 @@ export const navigationMessages = defineMessages({
     id: "MainNavigation.users",
     defaultMessage: "Użytkownicy",
   },
+  archive: {
+    id: "MainNavigation.archive",
+    defaultMessage: "Archiwum",
+  },
 });
