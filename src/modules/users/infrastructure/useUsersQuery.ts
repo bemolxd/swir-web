@@ -8,10 +8,10 @@ export const getUsersQueryKey = (params?: UsersQueryParams) =>
   buildUrl("users", params);
 
 export const useUsersQuery = (params?: UsersQueryParams) => {
-  const data = useQuery<UsersResponse>({
-    fetchPath: getUsersQueryKey(params),
-    queryKeys: getUsersQueryKey(params),
-  });
+  const data = useQuery<UsersResponse>(
+    getUsersQueryKey(params),
+    getUsersQueryKey(params)
+  );
 
   return data;
 };

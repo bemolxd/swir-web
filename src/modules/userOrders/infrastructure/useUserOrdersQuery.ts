@@ -12,10 +12,10 @@ export const getUserOrdersQueryKey = (
 ) => buildUrl(`users/${senderId}/orders`, params);
 
 export const useUserOrdersQuery = (senderId: string, params?: IQueryParams) => {
-  const data = useQuery<OrdersResponse>({
-    queryKeys: getUserOrdersQueryKey(senderId, params),
-    fetchPath: getUserOrdersQueryKey(senderId, params),
-  });
+  const data = useQuery<OrdersResponse>(
+    getUserOrdersQueryKey(senderId, params),
+    getUserOrdersQueryKey(senderId, params)
+  );
 
   return data;
 };

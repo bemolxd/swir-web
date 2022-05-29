@@ -8,10 +8,10 @@ export const getOrdersQueryKey = (params?: OrdersQueryParams) =>
   buildUrl("orders", params);
 
 export const useOrdersQuery = (params?: OrdersQueryParams) => {
-  const data = useQuery<OrdersResponse>({
-    queryKeys: getOrdersQueryKey(params),
-    fetchPath: getOrdersQueryKey(params),
-  });
+  const data = useQuery<OrdersResponse>(
+    getOrdersQueryKey(params),
+    getOrdersQueryKey(params)
+  );
 
   return data;
 };

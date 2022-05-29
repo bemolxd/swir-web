@@ -4,3 +4,4 @@ export * from "./ListItemComponents";
 export { SimpleListItem } from "./SimpleListItem";
 export { SimpleList } from "./SimpleList";
 export * from "./Suspense";
+export { InfiniteList } from "./InfiniteList";

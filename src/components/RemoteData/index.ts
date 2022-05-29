@@ -4,3 +4,4 @@ export { useGetQueryData } from "./useGetQueryData";
 export type { QueryData } from "./QueryData";
 export { useSetQueryData } from "./useSetQueryData";
 export { useInvalidateQuery } from "./useInvalidateQuery";
+export { useInfiniteQuery } from "./useInfiniteQuery";
