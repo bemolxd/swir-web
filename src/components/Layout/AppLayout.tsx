@@ -1,15 +1,16 @@
-import { HStack, Center } from "@chakra-ui/react";
+import { HStack, Center, chakra } from "@chakra-ui/react";
 
 import { IChildrenProp } from "types";
 
 import { Navbar } from "components/Navbar";
 import { MainNavigation } from "components/MainNavigation";
+import { ScrollTopButton } from "./ScrollTopButton";
 
 interface IProps extends IChildrenProp {}
 
 export const AppLayout = ({ children }: IProps) => {
   return (
-    <>
+    <chakra.div style={{ width: "100%", height: "100%", position: "relative" }}>
       <Navbar />
       <Center w="100%" px={{ base: 4, lg: 20, xl: 40 }} pb={16}>
         <HStack
@@ -25,6 +26,7 @@ export const AppLayout = ({ children }: IProps) => {
           {children}
         </HStack>
       </Center>
-    </>
+      <ScrollTopButton />
+    </chakra.div>
   );
 };
