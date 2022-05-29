@@ -8,10 +8,10 @@ export const getItemsQueryKey = (params?: ItemsQueryParams) =>
   buildUrl("items", params);
 
 export const useItemsQuery = (params?: ItemsQueryParams) => {
-  const data = useQuery<ItemsResponse>({
-    queryKeys: getItemsQueryKey(params),
-    fetchPath: getItemsQueryKey(params),
-  });
+  const data = useQuery<ItemsResponse>(
+    getItemsQueryKey(params),
+    getItemsQueryKey(params)
+  );
 
   return data;
 };
