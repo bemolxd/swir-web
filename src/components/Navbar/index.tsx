@@ -15,7 +15,7 @@ export const Navbar = () => {
       bg={useColorModeValue("white", "gray.700")}
       w="100%"
       h="60px"
-      px={isMobile ? 4 : 40}
+      px={{ base: 4, lg: 20, xl: 40 }}
       position="fixed"
       top="0"
       boxShadow="lg"

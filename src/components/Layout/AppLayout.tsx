@@ -5,17 +5,13 @@ import { IChildrenProp } from "types";
 import { Navbar } from "components/Navbar";
 import { MainNavigation } from "components/MainNavigation";
 
-import { useCheckMobile } from "./useCheckMobile";
-
 interface IProps extends IChildrenProp {}
 
 export const AppLayout = ({ children }: IProps) => {
-  const isMobile = useCheckMobile();
-
   return (
     <>
       <Navbar />
-      <Center w="100%" px={isMobile ? 4 : 40} pb={16}>
+      <Center w="100%" px={{ base: 4, lg: 20, xl: 40 }} pb={16}>
         <HStack
           maxW="1500px"
           w="100%"
