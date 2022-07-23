@@ -39,7 +39,7 @@ export const AwardingJustificationSection = ({ order }: IProps) => {
               ? formatMessage(messages.rejected)
               : formatMessage(messages.accepted)}
           </Text>
-          <Text>{order.techComment}</Text>
+          <Text whiteSpace="pre-wrap">{order.techComment}</Text>
         </InfoDetailsContent>
       </InfoDetailsContainer>
       <Divider />

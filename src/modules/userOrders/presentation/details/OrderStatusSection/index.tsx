@@ -66,8 +66,7 @@ export const OrderStatusSection = ({ order }: IProps) => {
             initMessage={formatMessage(initMessages.finished)}
             activeMessage={formatMessage(activeMessages.finished)}
             doneMessage={formatMessage(doneMessages.finished)}
-            isActive={status === OrderStatus.FINISHED}
-            isDone={checkDone(OrderStatus.FINISHED, status)}
+            isDone={status === OrderStatus.FINISHED}
             isVisible={true}
           />
         </InfoDetailsContent>

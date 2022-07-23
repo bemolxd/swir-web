@@ -4,7 +4,7 @@ import { OrderStatusPolicy } from "utils";
 import { useQueryParams } from "components/QueryParamsV2";
 import { withSuspense } from "components/RemoteData";
 
-import { useOrdersQuery } from "modules/userOrders/infrastructure";
+import { useOrdersQuery } from "modules/adminOrders/infrastructure";
 import { OrdersList } from "modules/userOrders/presentation";
 
 export const Content = withSuspense(() => {

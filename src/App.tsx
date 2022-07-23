@@ -1,5 +1,3 @@
-import { ContextType } from "types";
-
 import { AppLayout } from "components/Layout";
 import { useGetContextType } from "components/Auth";
 
@@ -7,9 +5,9 @@ import { GlobalRoutes } from "containers/GlobalRoutes";
 import { MainRoutes } from "containers/MainRoutes";
 
 function App() {
-  const contextType = useGetContextType();
+  const { isGlobal, isTech } = useGetContextType();
 
-  if (contextType === ContextType.GLOBAL) {
+  if (isGlobal || isTech) {
     return (
       <AppLayout>
         <GlobalRoutes />

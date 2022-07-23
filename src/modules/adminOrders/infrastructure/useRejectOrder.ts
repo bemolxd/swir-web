@@ -10,9 +10,9 @@ import {
   OrderStatus,
 } from "modules/userOrders/application";
 import { getOrderQueryKey } from "modules/userOrders/infrastructure";
-import { getOrdersQueryKey } from "modules/userOrders/infrastructure/useOrdersQuery";
 
 import { RejectOrderDto } from "../application";
+import { getOrdersQueryKey } from "./useOrdersQuery";
 
 export const useRejectOrder = (orderId: string) => {
   const { params } = useQueryParams();

@@ -5,13 +5,12 @@ import { useGetContextType } from "components/Auth";
 
 import { navigationMessages } from "./messages";
 import { MobileNavigationItem } from "./MobileNavigationItem";
-import { ContextType } from "types";
 
 export const MobileNavigationMenuContent = () => {
   const { formatMessage } = useIntl();
-  const contextType = useGetContextType();
+  const { isUser } = useGetContextType();
 
-  if (contextType === ContextType.USER) {
+  if (isUser) {
     return (
       <VStack mb={4}>
         <MobileNavigationItem path="/sprzet">
@@ -19,6 +18,9 @@ export const MobileNavigationMenuContent = () => {
         </MobileNavigationItem>
         <MobileNavigationItem path="/zgloszenia">
           {formatMessage(navigationMessages.userOrders)}
+        </MobileNavigationItem>
+        <MobileNavigationItem path="/archiwum">
+          {formatMessage(navigationMessages.archive)}
         </MobileNavigationItem>
       </VStack>
     );
@@ -32,6 +34,9 @@ export const MobileNavigationMenuContent = () => {
       </MobileNavigationItem>
       <MobileNavigationItem path="/zgloszenia">
         {formatMessage(navigationMessages.userOrders)}
+      </MobileNavigationItem>
+      <MobileNavigationItem path="/archiwum">
+        {formatMessage(navigationMessages.archive)}
       </MobileNavigationItem>
       <MobileNavigationItem path="/uzytkownicy">
         {formatMessage(navigationMessages.users)}
