@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { dayjs } from "utils";
