@@ -11,6 +11,7 @@ import { AdminOrderDetails } from "containers/AdminOrderDetails";
 import { Privacy } from "containers/Privacy";
 import { ArchivedOrders } from "containers/ArchivedOrders";
 import { EditItemDetails } from "containers/EditItemDetails";
+import { CreateItem } from "containers/CreateItem";
 
 export const GlobalRoutes = () => {
   return (
@@ -18,6 +19,7 @@ export const GlobalRoutes = () => {
       <Route path="/sprzet" element={<ItemsContainer />} />
       <Route path="/sprzet/:itemId" element={<ItemDetailsContainer />} />
       <Route path="/sprzet/:itemId/edytuj" element={<EditItemDetails />} />
+      <Route path="/sprzet/dodaj" element={<CreateItem />} />
       <Route path="/uzytkownicy" element={<Users />} />
       <Route path="/uzytkownicy/:userId" element={<UserDetails />} />
       <Route path="/zgloszenia" element={<AdminOrders />} />

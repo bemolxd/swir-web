@@ -12,14 +12,12 @@ interface IProps {
 
 export const EditBasicInfoSection = ({ item }: IProps) => {
   return (
-    <>
-      <VStack w="100%" spacing={4}>
-        <ImageSection imageUrl={item.imageUrl} />
-        <Divider />
-        <NameSection />
-        <TypeCategorySection />
-        <Divider />
-      </VStack>
-    </>
+    <VStack w="100%" spacing={4}>
+      <ImageSection imageUrl={item.imageUrl} />
+      <Divider />
+      <NameSection />
+      <TypeCategorySection />
+      <Divider />
+    </VStack>
   );
 };

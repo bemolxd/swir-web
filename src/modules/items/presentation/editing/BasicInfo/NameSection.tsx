@@ -18,7 +18,7 @@ export const NameSection = () => {
   }
 
   return (
-    <HStack w="100%" align="center" justify="space-evenly" spacing={4}>
+    <HStack w="100%" align="flex-start" justify="space-evenly" spacing={4}>
       <ItemNameField />
       <ItemVendorField />
     </HStack>

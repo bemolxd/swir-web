@@ -36,7 +36,7 @@ const ItemComponent = ({ item }: { item: Item }) => {
     <ListItem onClick={() => navigate(`/sprzet/${item.itemId}`)}>
       <HStack w="100%" align="center">
         <HStack spacing={8} w="100%" align="flex-start">
-          <Image src={item.imageUrl} h="120px" borderRadius={8} />
+          <Image src={item.imageUrl} h="120px" w="120px" borderRadius={8} />
           <VStack align="flex-start">
             <ListItemTitle>{item.name}</ListItemTitle>
             <ListItemSubtitle>{item.vendor}</ListItemSubtitle>

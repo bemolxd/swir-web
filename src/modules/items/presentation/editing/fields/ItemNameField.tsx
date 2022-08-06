@@ -15,11 +15,32 @@ export const ItemNameField = () => {
         defaultMessage: "Nazwa przedmiotu",
       })}
     >
-      {({ setValue, register }, fieldProps) => (
+      {({ setValue, register, setError, clearErrors }, fieldProps) => (
         <Input
           {...fieldProps}
           {...register("name")}
-          onChange={(e) => setValue("name", e.target.value)}
+          placeholder={formatMessage({
+            id: "name.placeholder",
+            defaultMessage: "Wprowadź nazwę przedmiotu",
+          })}
+          onChange={(e) => {
+            if (e.target.value === "") {
+              setError("name", {
+                message: "Nazwa przedmiotu nie może być pusta",
+              });
+              return;
+            }
+
+            setValue("name", e.target.value);
+            clearErrors("name");
+          }}
+          onBlur={(e) => {
+            if (e.target.value === "") {
+              setError("name", {
+                message: "Nazwa przedmiotu nie może być pusta",
+              });
+            }
+          }}
         />
       )}
     </FormControl>

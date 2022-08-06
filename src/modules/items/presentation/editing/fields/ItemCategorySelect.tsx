@@ -26,13 +26,37 @@ export const ItemCategorySelect = () => {
         defaultMessage: "Kategoria",
       })}
     >
-      {({ setValue, getValues, register }, fieldProps) => (
+      {(
+        { setValue, getValues, register, setError, clearErrors },
+        fieldProps
+      ) => (
         <Select
           {...fieldProps}
           {...register("category")}
+          placeholder={formatMessage({
+            id: "category.placeholder",
+            defaultMessage: "Wybierz kategorię",
+          })}
           options={options}
           value={getValues("category")}
-          onChange={({ target: { value } }) => setValue("category", value)}
+          onChange={({ target: { value } }) => {
+            if (!value) {
+              setError("category", {
+                message: "Należy wybrać kategorię przedmiotu",
+              });
+            }
+
+            setValue("category", value);
+            clearErrors("category");
+          }}
+          onBlur={({ target: { value } }) => {
+            if (!value) {
+              setError("category", {
+                message: "Należy wybrać kategorię przedmiotu",
+              });
+              return;
+            }
+          }}
         />
       )}
     </FormControl>
