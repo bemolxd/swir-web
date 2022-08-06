@@ -2,7 +2,7 @@ import { EmptyList } from "components/AppState";
 import { List } from "components/List";
 
 import { User } from "../../application";
-import { UsersListItem } from "./UsersListItem";
+import { UsersListItem } from "./listItem/UsersListItem";
 
 interface IProps {
   users: User[] | undefined;
