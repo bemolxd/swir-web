@@ -2,7 +2,6 @@ import { useIntl } from "react-intl";
 import { HStack, Heading, VStack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-import { ContextType } from "types";
 import { OrderStatusPolicy } from "utils";
 
 import { useGetContextType } from "components/Auth";
@@ -21,8 +20,8 @@ export const OrderComponent = ({ order }: IProps) => {
   const navigate = useNavigate();
   const { formatMessage } = useIntl();
   const isPending = OrderStatusPolicy(order.status).isPending();
-  const contextType = useGetContextType();
-  const showBorder = isPending && contextType !== ContextType.USER;
+  const { isUser } = useGetContextType();
+  const showBorder = isPending && !isUser;
 
   return (
     <ListItem

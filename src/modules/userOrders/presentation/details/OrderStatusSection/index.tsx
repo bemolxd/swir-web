@@ -66,8 +66,7 @@ export const OrderStatusSection = ({ order }: IProps) => {
             initMessage={formatMessage(initMessages.finished)}
             activeMessage={formatMessage(activeMessages.finished)}
             doneMessage={formatMessage(doneMessages.finished)}
-            isActive={status === OrderStatus.FINISHED}
-            isDone={checkDone(OrderStatus.FINISHED, status)}
+            isDone={status === OrderStatus.FINISHED}
             isVisible={true}
           />
         </InfoDetailsContent>
@@ -78,13 +77,7 @@ export const OrderStatusSection = ({ order }: IProps) => {
 };
 
 const checkDone = (status: OrderStatus, activeStatus: OrderStatus) => {
-  const statuses = [
-    "completing",
-    "pending",
-    "awarded",
-    "published",
-    "finished",
-  ];
+  const statuses = Array.from(Object.values(OrderStatus));
 
   const statusIdx = statuses.findIndex((s) => s === status);
 

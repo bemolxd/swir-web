@@ -4,4 +4,4 @@ import { IQueryParams } from "types";
 
 export const filtersAreApplied = <Params extends IQueryParams>(
   params: Params
-) => !isEmpty(omit(params, ["limit", "offset", "search"]));
+) => !isEmpty(omit(params, ["limit", "offset", "search", "sort"]));

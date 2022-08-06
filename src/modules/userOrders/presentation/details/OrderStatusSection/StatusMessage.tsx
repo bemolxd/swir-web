@@ -10,7 +10,7 @@ interface IProps {
   initMessage: string;
   activeMessage: string;
   doneMessage: string;
-  isActive: boolean;
+  isActive?: boolean;
   isDone: boolean;
   isVisible: boolean;
   isRejected?: boolean;
@@ -20,7 +20,7 @@ export const StatusMessage = ({
   initMessage,
   activeMessage,
   doneMessage,
-  isActive,
+  isActive = false,
   isDone,
   isVisible,
   isRejected = false,

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
-import { Button, Divider } from "@chakra-ui/react";
+import { Button, Divider, useDisclosure } from "@chakra-ui/react";
 import { MdDeleteForever } from "react-icons/md";
 
 import {
@@ -13,6 +13,7 @@ import { useDeleteOrder } from "modules/userOrders/infrastructure";
 import { OrderStatus } from "modules/userOrders/application";
 
 import { useDeleteOrderNotifications } from "./useDeleteOrderNotifications";
+import { DeleteOrderConfirmModal } from "./DeleteOrderConfirmModal";
 
 interface IProps {
   senderId: string;
@@ -26,11 +27,13 @@ export const DeleteOrderSection = ({ senderId, orderId, status }: IProps) => {
   const [deleteOrder, isLoading] = useDeleteOrder(senderId, orderId);
   const { showSuccessNotification, showErrorNotification } =
     useDeleteOrderNotifications();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleClick = async () => {
+  const handleDelete = async () => {
     try {
       await deleteOrder();
       showSuccessNotification();
+      onClose();
       navigate("/sprzet", { replace: true });
     } catch (error) {
       showErrorNotification();
@@ -54,8 +57,7 @@ export const DeleteOrderSection = ({ senderId, orderId, status }: IProps) => {
             variant="ghost"
             colorScheme="red"
             leftIcon={<MdDeleteForever />}
-            onClick={handleClick}
-            isLoading={isLoading}
+            onClick={onOpen}
           >
             {formatMessage({
               id: "UserOrderDetails.deleteOrderSection.button",
@@ -64,6 +66,12 @@ export const DeleteOrderSection = ({ senderId, orderId, status }: IProps) => {
           </Button>
         </InfoDetailsContent>
       </InfoDetailsContainer>
+      <DeleteOrderConfirmModal
+        isOpen={isOpen}
+        onClose={onClose}
+        isLoading={isLoading}
+        onDelete={handleDelete}
+      />
     </>
   );
 };

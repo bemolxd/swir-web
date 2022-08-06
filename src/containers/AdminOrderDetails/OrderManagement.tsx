@@ -5,6 +5,7 @@ import { Card } from "components/Card";
 import {
   AssignedTech,
   AwardingSection,
+  FinishSection,
   ManagementHeader,
   OrderStatusInfo,
 } from "modules/adminOrders/presentation";
@@ -24,6 +25,7 @@ export const OrderManagement = ({ order }: IProps) => {
         <OrderStatusInfo status={order.status} />
         <AwardingSection order={order} />
         <AwardingJustificationSection order={order} />
+        <FinishSection order={order} />
       </VStack>
     </Card>
   );

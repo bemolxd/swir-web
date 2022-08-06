@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import { Item } from "modules/items/application";
 
 import { BasicPropertyInfo } from "./BasicPropertyInfo";
+import { itemCategoryMessages, itemTypeMessages } from "../../messages";
 
 interface IProps {
   details: Item;
@@ -32,14 +33,14 @@ export const BasicInfoContent = ({ details }: IProps) => {
           id: "ItemDetails.content.BasicInfoSection.type",
           defaultMessage: "rodzaj",
         })}
-        value={type}
+        value={formatMessage(itemTypeMessages[type])}
       />
       <BasicPropertyInfo
         property={formatMessage({
           id: "ItemDetails.content.BasicInfoSection.category",
           defaultMessage: "kategoria",
         })}
-        value={category}
+        value={formatMessage(itemCategoryMessages[category])}
       />
       <BasicPropertyInfo
         property={formatMessage({

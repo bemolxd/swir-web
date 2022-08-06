@@ -34,7 +34,7 @@ export const OrderFilters = () => {
         onClose={onClose}
         header={formatMessage({
           id: "Users.filtersModal",
-          defaultMessage: "Filtruj użytkowników",
+          defaultMessage: "Filtruj zgłoszenia",
         })}
       >
         <TechFilter />

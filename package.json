@@ -1,6 +1,6 @@
 {
   "name": "swir-web",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha2",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.8.5",

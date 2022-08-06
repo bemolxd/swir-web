@@ -4,6 +4,7 @@ import { HStack, Spinner } from "@chakra-ui/react";
 import { ContextType, IOption } from "types";
 
 import { Select } from "components/Select";
+import { useGetContextType } from "components/Auth";
 
 import { useChangeUserRole } from "modules/users/infrastructure";
 
@@ -16,6 +17,7 @@ interface IProps {
 }
 
 export const SelectRole = ({ defaultValue, userId }: IProps) => {
+  const { isGlobal } = useGetContextType();
   const { formatMessage } = useIntl();
   const [changeRole, isLoading] = useChangeUserRole(userId);
   const { showSuccessNotification, showErrorNotification } =
@@ -36,14 +38,16 @@ export const SelectRole = ({ defaultValue, userId }: IProps) => {
     },
   ];
 
-  const handleChange = async (value: ContextType) => {
+  const handleChange = async (contextType: ContextType) => {
     try {
-      await changeRole({ contextType: value });
+      await changeRole({ contextType });
       showSuccessNotification();
     } catch (error) {
       showErrorNotification();
     }
   };
+
+  if (!isGlobal) return null;
 
   return (
     <HStack w="100%" justify="flex-end">

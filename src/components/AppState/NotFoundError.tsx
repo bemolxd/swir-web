@@ -23,7 +23,7 @@ export const NotFoundError = ({ onAction }: IProps) => {
   return (
     <StateContainer>
       <StateImage>
-        <TakenSvg style={{ height: "250px" }} />
+        <TakenSvg style={{ height: "250px", width: "100%" }} />
       </StateImage>
       <StateTitle>
         {formatMessage({

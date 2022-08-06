@@ -1,7 +1,9 @@
-import { ContextType } from "types";
+import { useGetContextType } from "components/Auth";
 
-export const useGetActiveTab = (path: string, ctx: ContextType) => {
-  if (ctx === ContextType.USER) {
+export const useGetActiveTab = (path: string) => {
+  const { isUser, isGlobal, isTech } = useGetContextType();
+
+  if (isUser) {
     if (path.includes("sprzet")) {
       return 0;
     }
@@ -15,7 +17,7 @@ export const useGetActiveTab = (path: string, ctx: ContextType) => {
     }
   }
 
-  if (ctx === ContextType.GLOBAL) {
+  if (isGlobal || isTech) {
     if (path.includes("sprzet")) {
       return 0;
     }

@@ -11,17 +11,13 @@ export const CasualList = withSuspense(() => {
   const items = useItemsQuery(params);
   const view = useItemsViewHandler((handler) => handler.view);
 
-  if (view === "grid")
-    return (
-      <>
-        <ItemsGrid items={items?.collection} />
-        <Pagination meta={items?.meta!} />
-      </>
-    );
-
   return (
     <>
-      <ItemsList items={items?.collection} />
+      {view === "grid" ? (
+        <ItemsGrid items={items?.collection} />
+      ) : (
+        <ItemsList items={items?.collection} />
+      )}
       <Pagination meta={items?.meta!} />
     </>
   );

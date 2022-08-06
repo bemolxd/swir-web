@@ -1,4 +1,4 @@
-import { Divider, Spinner, VStack } from "@chakra-ui/react";
+import { Center, Divider, Spinner, VStack } from "@chakra-ui/react";
 import { defineMessages, useIntl } from "react-intl";
 
 import { RadioFilterGroup } from "components/Filters";
@@ -38,5 +38,11 @@ export const TechFilter = withSuspense(
       </VStack>
     );
   },
-  { fallback: <Spinner /> }
+  {
+    fallback: (
+      <Center w="100%">
+        <Spinner />
+      </Center>
+    ),
+  }
 );

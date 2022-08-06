@@ -6,6 +6,7 @@ import {
   InfoDetailsLabel,
   InfoDetailsContent,
 } from "components/Card";
+import { useGetContextType } from "components/Auth";
 
 import { User } from "modules/users/application";
 
@@ -17,6 +18,9 @@ interface IProps {
 
 export const ChangeRoleSection = ({ user }: IProps) => {
   const { formatMessage } = useIntl();
+  const { isGlobal } = useGetContextType();
+
+  if (!isGlobal) return null;
 
   return (
     <>

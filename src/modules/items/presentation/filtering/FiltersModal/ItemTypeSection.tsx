@@ -1,12 +1,15 @@
 import { Divider, VStack } from "@chakra-ui/react";
-import { defineMessages, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 import { CheckboxFilterGroup } from "components/Filters";
 
 import { ItemType } from "modules/items/application";
 
+import { itemTypeMessages } from "../../messages";
+
 export const ItemTypeSection = () => {
   const { formatMessage } = useIntl();
+  const options = Object.values(ItemType);
 
   return (
     <VStack align="flex-start" w="100%" mb={2}>
@@ -17,22 +20,9 @@ export const ItemTypeSection = () => {
           defaultMessage: "Typ sprzętu:",
         })}
         options={options}
-        messages={messages}
+        messages={itemTypeMessages}
       />
       <Divider />
     </VStack>
   );
 };
-
-const options = Object.values(ItemType);
-
-const messages = defineMessages({
-  [ItemType.AUDIO]: {
-    id: "TypeLabels.ItemType.Audio",
-    defaultMessage: "Sprzęt audio",
-  },
-  [ItemType.VIDEO]: {
-    id: "TypeLabels.ItemType.Video",
-    defaultMessage: "Sprzęt wideo",
-  },
-});

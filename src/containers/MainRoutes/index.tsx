@@ -7,6 +7,8 @@ import { ItemDetailsContainer } from "containers/ItemDetails";
 import { UserOrders } from "containers/UserOrders";
 import { UserOrderDetails } from "containers/UserOrderDetails";
 import { UserOrderSummary } from "containers/UserOrderSummary";
+import { Privacy } from "containers/Privacy";
+import { ArchivedOrders } from "containers/ArchivedOrders";
 
 export const MainRoutes = () => {
   return (
@@ -19,6 +21,8 @@ export const MainRoutes = () => {
         path="/zgloszenia/:orderId/podsumowanie"
         element={<UserOrderSummary />}
       />
+      <Route path="/archiwum" element={<ArchivedOrders />} />
+      <Route path="/privacy" element={<Privacy />} />
       <Route path="*" element={<Redirect to="/sprzet" />} />
     </Routes>
   );
