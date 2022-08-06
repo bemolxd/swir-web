@@ -1,4 +1,8 @@
-import { Select as ChakraSelect, SelectProps } from "@chakra-ui/react";
+import {
+  forwardRef,
+  Select as ChakraSelect,
+  SelectProps,
+} from "@chakra-ui/react";
 
 import { IOption } from "types";
 
@@ -6,9 +10,9 @@ interface IProps extends SelectProps {
   options: IOption[];
 }
 
-export const Select = ({ options, ...props }: IProps) => {
+export const Select = forwardRef(({ options, ...props }: IProps, ref) => {
   return (
-    <ChakraSelect {...props}>
+    <ChakraSelect {...props} ref={ref}>
       {options.map(({ value, label }) => (
         <option key={value} value={value}>
           {label}
@@ -16,4 +20,4 @@ export const Select = ({ options, ...props }: IProps) => {
       ))}
     </ChakraSelect>
   );
-};
+});

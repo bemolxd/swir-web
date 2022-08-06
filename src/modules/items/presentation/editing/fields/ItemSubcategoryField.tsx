@@ -1,14 +1,16 @@
-import { Input } from "@chakra-ui/input";
+import { Input, InputProps } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { FormControl } from "components/Form";
 
-export const ItemSubcategoryField = () => {
+interface IProps extends InputProps {}
+
+export const ItemSubcategoryField = (inputProps: IProps) => {
   const { formatMessage } = useIntl();
 
   return (
     <FormControl
-      w="50%"
+      {...inputProps}
       name="subcategory"
       label={formatMessage({
         id: "subcategory",

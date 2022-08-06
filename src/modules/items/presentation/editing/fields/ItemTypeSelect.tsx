@@ -26,13 +26,34 @@ export const ItemTypeSelect = () => {
         defaultMessage: "Rodzaj",
       })}
     >
-      {({ setValue, getValues, register }, fieldProps) => (
+      {(
+        { setValue, getValues, register, setError, clearErrors },
+        fieldProps
+      ) => (
         <Select
           {...fieldProps}
           {...register("type")}
+          placeholder={formatMessage({
+            id: "type.placeholder",
+            defaultMessage: "Wybierz rodzaj",
+          })}
           options={options}
           value={getValues("type")}
-          onChange={(e) => setValue("type", e.target.value)}
+          onChange={({ target: { value } }) => {
+            if (!value) {
+              setError("type", { message: "Należy wybrać rodzaj przedmiotu" });
+              return;
+            }
+
+            setValue("type", value);
+            clearErrors("type");
+          }}
+          onBlur={({ target: { value } }) => {
+            if (!value) {
+              setError("type", { message: "Należy wybrać rodzaj przedmiotu" });
+              return;
+            }
+          }}
         />
       )}
     </FormControl>

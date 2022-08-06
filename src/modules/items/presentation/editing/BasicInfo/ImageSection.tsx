@@ -17,7 +17,7 @@ export const ImageSection = ({ imageUrl }: IProps) => {
   if (isMobile) {
     return (
       <VStack align="center" justify="flex-start" w="100%" spacing={4}>
-        <Image key={imageUrl} src={image} boxSize="128px" borderRadius={8} />
+        <Image src={image} boxSize="128px" borderRadius={8} />
         <ImageUrlField onImageChange={setImage} />
       </VStack>
     );
@@ -25,7 +25,7 @@ export const ImageSection = ({ imageUrl }: IProps) => {
 
   return (
     <HStack align="center" justify="flex-start" w="100%" spacing={4}>
-      <Image key={imageUrl} src={image} boxSize="128px" borderRadius={8} />
+      <Image src={image} boxSize="128px" borderRadius={8} />
       <ImageUrlField onImageChange={setImage} />
     </HStack>
   );
