@@ -3,7 +3,7 @@ import { MdLogout } from "react-icons/md";
 
 import { IconButton } from "components/IconButton";
 
-import { logout } from "./logout";
+import { logout, logoutMessages } from "./logout";
 
 export const LogoutIconButton = () => {
   const { formatMessage } = useIntl();
@@ -14,10 +14,7 @@ export const LogoutIconButton = () => {
       isRound
       variant="outline"
       onClick={logout}
-      tooltip={formatMessage({
-        id: "Auth.logoutIconBtn",
-        defaultMessage: "Wyloguj",
-      })}
+      tooltip={formatMessage(logoutMessages.logout)}
     />
   );
 };

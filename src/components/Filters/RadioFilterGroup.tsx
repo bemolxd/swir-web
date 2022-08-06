@@ -1,4 +1,4 @@
-import { useRadioGroup, Wrap, Radio, VStack, Text } from "@chakra-ui/react";
+import { useRadioGroup, Radio, VStack, Text } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { useQueryParams } from "components/QueryParamsV2";
@@ -30,9 +30,9 @@ export const RadioFilterGroup = ({
   const defaultRadioProps = getRadioProps({ value: "all" });
 
   return (
-    <VStack spacing={1} align="flex-start">
+    <VStack spacing={2} align="flex-start">
       <Text>{title}</Text>
-      <Wrap {...groupProps}>
+      <VStack justify="flex-start" align="flex-start" {...groupProps}>
         <Radio {...defaultRadioProps} checked={!get(filterName)}>
           {formatMessage({ id: "defaultOption", defaultMessage: "Brak" })}
         </Radio>
@@ -45,7 +45,7 @@ export const RadioFilterGroup = ({
             </Radio>
           );
         })}
-      </Wrap>
+      </VStack>
     </VStack>
   );
 };

@@ -23,8 +23,8 @@ export const Header = () => {
             defaultMessage: "Zbiór wszystkich użytkowników systemu.",
           })}
         </Text>
+        <Divider />
       </VStack>
-      <Divider />
       <FilterSection />
     </Card>
   );

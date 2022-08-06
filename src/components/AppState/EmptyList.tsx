@@ -14,7 +14,7 @@ export const EmptyList = () => {
   return (
     <StateContainer>
       <StateImage>
-        <FloatingSvg style={{ height: "150px" }} />
+        <FloatingSvg style={{ height: "150px", width: "100%" }} />
       </StateImage>
       <StateTitle>
         {formatMessage({
