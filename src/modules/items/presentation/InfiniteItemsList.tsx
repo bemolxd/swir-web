@@ -22,7 +22,7 @@ export const InfiniteItemsList = withSuspense(() => {
       data={data?.pages}
       limit={10}
       next={fetchNextPage}
-      hasMore={hasNextPage ?? true}
+      hasMore={hasNextPage ?? false}
     >
       {({ collection }) => <ItemsList items={collection} />}
     </InfiniteList>
