@@ -18,6 +18,7 @@ import { useIntl } from "react-intl";
 
 import { ColorModeSwitch } from "components/ColorMode";
 import { IconButton } from "components/IconButton";
+import { MobileLogoutButton } from "components/Auth";
 
 import { useMobileMenuHandler } from "./useMobileMenuHandler";
 import { MobileNavigationMenuContent } from "./MobileNavigationMenuContent";
@@ -35,8 +36,8 @@ export const MobileNavigation = () => {
     <>
       <MenuIconButton />
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="full">
-        <DrawerOverlay />
-        <DrawerContent>
+        <DrawerOverlay zIndex={10} />
+        <DrawerContent zIndex={10}>
           <DrawerCloseButton
             mt={2}
             borderRadius="full"
@@ -54,6 +55,7 @@ export const MobileNavigation = () => {
           </DrawerBody>
           <DrawerFooter justifyContent="center">
             <VStack w="100%">
+              <MobileLogoutButton />
               <Divider />
               <Text>
                 {formatMessage({

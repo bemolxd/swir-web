@@ -20,7 +20,7 @@ export const CollectingData = () => {
       </Center>
       <Stack textAlign="justify">
         <Text>{formatMessage(messages.listHeader)}</Text>
-        <OrderedList>
+        <OrderedList paddingStart={4}>
           {Object.keys(listMessages).map((message, index) => (
             <ListItem key={index}>
               {/* @ts-ignore */}

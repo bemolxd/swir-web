@@ -1,3 +1,4 @@
+import { VStack } from "@chakra-ui/react";
 import { useMeQuery } from "components/Auth";
 import { useQueryParams } from "components/QueryParamsV2";
 import { withSuspense } from "components/RemoteData";
@@ -11,8 +12,10 @@ export const Content = withSuspense(() => {
   const me = useMeQuery();
 
   return (
-    <UsersList
-      users={users?.collection.filter((user) => user.userId !== me?.userId)}
-    />
+    <VStack w="100%">
+      <UsersList
+        users={users?.collection.filter((user) => user.userId !== me?.userId)}
+      />
+    </VStack>
   );
 });

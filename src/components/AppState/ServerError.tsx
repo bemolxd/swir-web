@@ -22,7 +22,7 @@ export const ServerError = ({ onAction }: IProps) => {
   return (
     <StateContainer>
       <StateImage>
-        <ServerDownSvg style={{ height: "250px" }} />
+        <ServerDownSvg style={{ height: "250px", width: "100%" }} />
       </StateImage>
       <StateTitle>
         {formatMessage({

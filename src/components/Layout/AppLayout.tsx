@@ -4,11 +4,15 @@ import { IChildrenProp } from "types";
 
 import { Navbar } from "components/Navbar";
 import { MainNavigation } from "components/MainNavigation";
+import { useCookiesNotification } from "components/Cookies";
+
 import { ScrollTopButton } from "./ScrollTopButton";
 
 interface IProps extends IChildrenProp {}
 
 export const AppLayout = ({ children }: IProps) => {
+  useCookiesNotification();
+
   return (
     <chakra.div style={{ width: "100%", height: "100%", position: "relative" }}>
       <Navbar />
