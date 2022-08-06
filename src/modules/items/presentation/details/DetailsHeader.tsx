@@ -4,6 +4,8 @@ import { MdEdit } from "react-icons/md";
 import { useIntl } from "react-intl";
 
 import { useGetContextType } from "components/Auth";
+import { useCheckMobile } from "components/Layout";
+import { IconButton } from "components/IconButton";
 
 interface IProps {
   itemName: string;
@@ -15,14 +17,21 @@ export const DetailsHeader = ({ itemName, itemId }: IProps) => {
   const { formatMessage } = useIntl();
   const { isGlobal, isTech } = useGetContextType();
   const isAdmin = isGlobal || isTech;
+  const isMobile = useCheckMobile();
 
   return (
     <>
       <HStack w="100%" justify="space-between">
-        <Heading size="lg" fontWeight="600">
+        <Heading size="lg" fontWeight="600" isTruncated>
           {itemName}
         </Heading>
-        {isAdmin && (
+        {isAdmin && isMobile ? (
+          <IconButton
+            variant="outline"
+            icon={<MdEdit />}
+            onClick={() => navigate(`/sprzet/${itemId}/edytuj`)}
+          />
+        ) : (
           <Button
             variant="outline"
             fontWeight="400"
