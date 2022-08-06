@@ -9,9 +9,9 @@ export const Image = (props: IProps) => {
   return (
     <ChakraImage
       key={IMAGE_FALLBACK_SRC}
-      {...props}
-      objectFit="cover"
+      objectFit="scale-down"
       fallbackSrc={IMAGE_FALLBACK_SRC}
+      {...props}
     />
   );
 };
