@@ -1,12 +1,14 @@
 import { useMutation, useQueryClient } from "react-query";
-
 import { api } from "utils";
 
-import { AddElementDto, Order } from "../application";
-import { getOrderQueryKey } from "./useOrderQuery";
+import { useMeQuery } from "components/Auth";
+
+import { getUserOrdersQueryKey } from "./useUserOrdersQuery";
+import { AddElementDto, defaultParams, Order } from "../application";
 
 export const useAddElement = (orderId: string) => {
   const queryClient = useQueryClient();
+  const me = useMeQuery();
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: AddElementDto) => {
@@ -20,18 +22,9 @@ export const useAddElement = (orderId: string) => {
       onSuccess: (response) => {
         if (!response) return;
 
-        const oldData = queryClient.getQueryData<Order>([
-          getOrderQueryKey(orderId),
-        ]);
-
-        if (!oldData) return;
-
-        queryClient.setQueryData<Order>([getOrderQueryKey(orderId)], (prev) => {
-          return {
-            ...prev,
-            items: response.items,
-          } as Order;
-        });
+        queryClient.refetchQueries(
+          getUserOrdersQueryKey(me?.userId!, defaultParams)
+        );
       },
     }
   );

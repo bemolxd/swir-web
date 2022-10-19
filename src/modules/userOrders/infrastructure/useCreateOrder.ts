@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "react-query";
-
 import { api } from "utils";
 
-import { CreateOrderDto, defaultParams } from "../application";
+import { CreateOrderDto, defaultParams, Order } from "../application";
 import { getUserOrdersQueryKey } from "./useUserOrdersQuery";
 
 export const useCreateOrder = (senderId: string) => {
@@ -10,12 +9,13 @@ export const useCreateOrder = (senderId: string) => {
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: CreateOrderDto) => {
-      const { data } = await api.post("orders", dto);
-      return data;
+      return await api.post<Order>("orders", dto);
     },
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(
+      onSuccess: (res) => {
+        if (!res) return;
+
+        queryClient.refetchQueries(
           getUserOrdersQueryKey(senderId, defaultParams)
         );
       },
