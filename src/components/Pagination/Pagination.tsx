@@ -10,15 +10,18 @@ import { useCheckMobile } from "components/Layout";
 import { PaginationButton } from "./PaginationButton";
 
 interface IProps {
-  meta: Meta;
+  meta: Meta | undefined;
   isLoading?: boolean;
   margin?: number;
 }
 
 export const Pagination = ({ meta, isLoading = false, margin = 3 }: IProps) => {
   const { pages: pagesHelper } = useQueryParams();
-  const { total, current, change } = pagesHelper({ ...meta });
   const isMobile = useCheckMobile();
+
+  if (!meta) return null;
+
+  const { total, current, change } = pagesHelper({ ...meta });
 
   if (isMobile) return null;
 
