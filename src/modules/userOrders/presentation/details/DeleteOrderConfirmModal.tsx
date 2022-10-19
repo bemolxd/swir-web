@@ -43,7 +43,7 @@ export const DeleteOrderConfirmModal = ({
         </Button>
       }
     >
-      <Text>
+      <Text align="center">
         {formatMessage({
           id: "DeleteOrderConfirmModal.body",
           defaultMessage:
