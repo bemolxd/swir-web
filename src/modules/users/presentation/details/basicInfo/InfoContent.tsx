@@ -1,4 +1,7 @@
-import { Avatar, Heading, HStack, VStack, Text } from "@chakra-ui/react";
+import { Avatar, Heading, HStack, VStack } from "@chakra-ui/react";
+
+import { SecondaryText } from "components/Typography";
+
 import { EmailButton } from "./EmailButton";
 
 export interface InfoContentProps {
@@ -21,7 +24,7 @@ export const InfoContent = ({
             fontWeight="400"
             size="lg"
           >{`${firstName} ${lastName}`}</Heading>
-          <Text textColor="gray.500">{email}</Text>
+          <SecondaryText>{email}</SecondaryText>
         </VStack>
       </HStack>
       <EmailButton email={email} />

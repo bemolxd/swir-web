@@ -4,6 +4,7 @@ import { HStack, Tag, Text, VStack } from "@chakra-ui/react";
 import { SimpleListItem } from "components/List";
 import { useCheckMobile } from "components/Layout";
 import { withErrorBoundary } from "components/ErrorBoundary";
+import { SecondaryText } from "components/Typography";
 
 import { useItemDetailsQuery } from "modules/items/infrastructure";
 import { OrderStatus, SelectedItem } from "modules/userOrders/application";
@@ -29,16 +30,16 @@ export const SelectedItemComponent = withErrorBoundary(
           {isMobile ? (
             <VStack w="100%" align="flex-start">
               <Text fontSize="18px">{selectedItem?.name}</Text>
-              <Text textTransform="uppercase" textColor="gray.500">
+              <SecondaryText textTransform="uppercase">
                 {selectedItem?.vendor}
-              </Text>
+              </SecondaryText>
             </VStack>
           ) : (
             <HStack w="100%">
               <Text fontSize="18px">{selectedItem?.name} •</Text>
-              <Text textTransform="uppercase" textColor="gray.500">
+              <SecondaryText textTransform="uppercase">
                 {selectedItem?.vendor}
-              </Text>
+              </SecondaryText>
             </HStack>
           )}
           {showCount && (

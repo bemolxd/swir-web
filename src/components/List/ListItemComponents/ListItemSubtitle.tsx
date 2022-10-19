@@ -1,5 +1,5 @@
-import { Text } from "@chakra-ui/react";
 import { useCheckMobile } from "components/Layout";
+import { SecondaryText } from "components/Typography";
 
 import { IChildrenProp } from "types";
 
@@ -9,7 +9,7 @@ export const ListItemSubtitle = ({ children }: IProps) => {
   const isMobile = useCheckMobile();
 
   return (
-    <Text
+    <SecondaryText
       textColor="gray.400"
       textTransform="uppercase"
       maxW={isMobile ? "156px" : "240px"}
@@ -18,6 +18,6 @@ export const ListItemSubtitle = ({ children }: IProps) => {
       isTruncated
     >
       {children}
-    </Text>
+    </SecondaryText>
   );
 };
