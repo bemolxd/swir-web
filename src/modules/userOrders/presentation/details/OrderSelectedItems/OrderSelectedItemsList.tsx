@@ -4,6 +4,7 @@ import { withSuspense } from "components/RemoteData";
 import { OrderStatus, SelectedItem } from "modules/userOrders/application";
 
 import { SelectedItemComponent } from "./SelectedItemComponent";
+import { ListHeader } from "./ListHeader";
 
 interface IProps {
   items: SelectedItem[];
@@ -17,6 +18,7 @@ export const OrderSelectedItemsList = withSuspense(
 
     return (
       <SimpleList>
+        <ListHeader isSummary={status !== OrderStatus.COMPLETING} />
         {items.map((item) => (
           <SelectedItemComponent
             key={item.itemId}
