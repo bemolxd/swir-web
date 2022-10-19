@@ -1,6 +1,8 @@
-import { Avatar, Button, HStack, VStack, Text } from "@chakra-ui/react";
+import { Avatar, Button, HStack, VStack, Text, Stack } from "@chakra-ui/react";
 import { MdOutlineEmail } from "react-icons/md";
 import { useIntl } from "react-intl";
+
+import { useCheckMobile } from "components/Layout";
 
 interface IProps {
   name: string;
@@ -14,9 +16,15 @@ export const PersonInfoContainer = ({
   allowContacting = true,
 }: IProps) => {
   const { formatMessage } = useIntl();
+  const isMobile = useCheckMobile();
 
   return (
-    <HStack align="center" justify="space-between" w="100%">
+    <Stack
+      flexDir={isMobile ? "column" : "row"}
+      align={isMobile ? "flex-start" : "center"}
+      justify="space-between"
+      w="100%"
+    >
       <HStack spacing={4}>
         <Avatar size="md" />
         <VStack spacing={0} align="flex-start">
@@ -33,6 +41,7 @@ export const PersonInfoContainer = ({
             e.preventDefault();
           }}
           variant="outline"
+          alignSelf={"flex-end"}
         >
           {formatMessage({
             id: "OrderDetails.PersonInfoContainer.contactBtn",
@@ -40,6 +49,6 @@ export const PersonInfoContainer = ({
           })}
         </Button>
       )}
-    </HStack>
+    </Stack>
   );
 };
