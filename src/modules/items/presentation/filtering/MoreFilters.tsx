@@ -2,7 +2,10 @@ import { useIntl } from "react-intl";
 import { filtersAreApplied, useQueryParams } from "components/QueryParamsV2";
 import { MoreFiltersButton, FiltersModal } from "components/Filters";
 
-import { useFilterModalHandler } from "modules/items/application";
+import {
+  DEFAULT_PARAMS,
+  useFilterModalHandler,
+} from "modules/items/application";
 
 import { ItemCategorySection, ItemTypeSection } from "./FiltersModal";
 
@@ -28,6 +31,7 @@ export const MoreFilters = () => {
           id: "Items.filtering.filterModalTitle",
           defaultMessage: "Wyszukiwanie zaawansowane",
         })}
+        defaultParams={DEFAULT_PARAMS}
       >
         <ItemTypeSection />
         <ItemCategorySection />
