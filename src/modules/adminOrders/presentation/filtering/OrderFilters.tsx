@@ -5,6 +5,8 @@ import {
   FiltersModal,
   MoreFiltersButton,
   FiltersContainer,
+  Separator,
+  SearchFilter,
 } from "components/Filters";
 
 import { useFilterModalHandler } from "modules/adminOrders/application";
@@ -21,6 +23,15 @@ export const OrderFilters = () => {
 
   return (
     <FiltersContainer>
+      <SearchFilter
+        filterName="search"
+        maxW="250px"
+        placeholder={formatMessage({
+          id: "Orders.filtering.searchboxPlaceholder",
+          defaultMessage: "Szukaj",
+        })}
+      />
+      <Separator />
       <MoreFiltersButton
         onClick={onOpen}
         areFiltersApplied={filtersAreApplied(params)}
