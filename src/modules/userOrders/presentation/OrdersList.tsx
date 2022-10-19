@@ -5,7 +5,7 @@ import { Order } from "../application";
 import { OrderComponent } from "./OrderComponent";
 
 interface IProps {
-  orders: Order[];
+  orders: Order[] | undefined;
 }
 
 export const OrdersList = ({ orders }: IProps) => {
