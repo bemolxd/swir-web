@@ -9,7 +9,7 @@ export const Header = () => {
 
   return (
     <Card maxW="1300px" w="100%">
-      <VStack justify="flex-start" align="flex-start" mb={1}>
+      <VStack justify="flex-start" align="flex-start">
         <Heading size="md" fontWeight="400">
           {formatMessage({
             id: "AdminOrders.header.title",

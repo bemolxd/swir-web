@@ -24,7 +24,7 @@ export const AdminOrders = withErrorBoundary(() => {
   }, [params]);
 
   return (
-    <VStack w="100%" align="flex-start" spacing={1}>
+    <VStack w="100%" align="flex-start" spacing={2}>
       <Header />
       <Content />
     </VStack>
