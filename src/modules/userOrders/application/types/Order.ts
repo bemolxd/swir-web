@@ -13,4 +13,5 @@ export interface Order {
   dateTo: string | null;
   isPublic: boolean;
   isRejected: boolean;
+  isArchived: boolean;
 }
