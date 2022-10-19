@@ -1,9 +1,11 @@
 import { Card } from "components/Card";
 import { withSuspense } from "components/RemoteData";
 
-import { useUserOrdersQuery } from "modules/userOrders/infrastructure";
 import { OrdersList } from "modules/userOrders/presentation";
-import { useUserDetailsQuery } from "modules/users/infrastructure";
+import {
+  useUserDetailOrdersQuery,
+  useUserDetailsQuery,
+} from "modules/users/infrastructure";
 import {
   BasicInfoSection,
   ChangeRoleSection,
@@ -16,7 +18,7 @@ interface IProps {
 
 export const Content = withSuspense(({ userId }: IProps) => {
   const user = useUserDetailsQuery(userId);
-  const orders = useUserOrdersQuery(userId);
+  const orders = useUserDetailOrdersQuery(userId);
 
   return (
     <>
