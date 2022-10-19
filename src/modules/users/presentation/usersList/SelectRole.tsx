@@ -51,13 +51,13 @@ export const SelectRole = ({ defaultValue, userId }: IProps) => {
 
   return (
     <HStack w="100%" justify="flex-end">
-      {isLoading && <Spinner />}
       <Select
         options={options}
         value={defaultValue}
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => handleChange(e.target.value as ContextType)}
         isDisabled={isLoading}
+        icon={isLoading ? <Spinner /> : undefined}
         isTruncated={true}
         maxW="200px"
         w="100%"
