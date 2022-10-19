@@ -3,8 +3,8 @@ import { InfiniteList } from "components/List";
 import { ContentLoading } from "components/Loading";
 import { withSuspense } from "components/RemoteData";
 
-import { ItemsResponse } from "../application";
-import { useInfiniteItemsQuery } from "../infrastructure";
+import { ItemsResponse } from "../../../application";
+import { useInfiniteItemsQuery } from "../../../infrastructure";
 import { ItemsList } from "./ItemsList";
 
 export const InfiniteItemsList = withSuspense(() => {
@@ -13,7 +13,7 @@ export const InfiniteItemsList = withSuspense(() => {
 
   if (isLoading) return <ContentLoading />;
 
-  if (!!data?.pages && data.pages[0]?.collection.length === 0) {
+  if (!data || data?.pages[0]?.collection.length === 0) {
     return <EmptyList />;
   }
 
