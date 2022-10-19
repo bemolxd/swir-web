@@ -16,7 +16,12 @@ interface IProps {
 export const FinishSection = ({ order }: IProps) => {
   const { formatMessage } = useIntl();
 
-  if (!OrderStatusPolicy(order.status).isActive()) return null;
+  if (
+    !OrderStatusPolicy(order.status).isActive() ||
+    OrderStatusPolicy(order.status).isPending() ||
+    order.isRejected
+  )
+    return null;
 
   return (
     <InfoDetailsContainer>
