@@ -9,3 +9,4 @@ export { useRemoveElement } from "./useRemoveElement";
 export { useDeleteOrder } from "./useDeleteOrder";
 export { useSubmitOrderRequest } from "./useSubmitOrderRequest";
 export { useArchivedOrdersQuery } from "./useArchivedOrdersQuery";
+export { useInfiniteArchivedOrdersQuery } from "./useInfiniteArchivedOrdersQuery";
