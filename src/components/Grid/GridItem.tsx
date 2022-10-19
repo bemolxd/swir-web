@@ -29,8 +29,9 @@ export const GridItem = ({ colSpan, onClick, children }: IProps) => {
           transition: "opacity ease-in-out 0.1s, box-shadow ease-in-out 0.1s",
         }}
         onClick={onClick}
+        h="100%"
       >
-        <VStack w="100%" align="flex-start" justify="center">
+        <VStack w="100%" align="flex-start" justify="center" h="100%">
           {children}
         </VStack>
       </Card>
