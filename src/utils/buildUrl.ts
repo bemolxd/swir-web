@@ -7,9 +7,9 @@ export const buildUrl = <Params extends IQueryParams>(
   path: string,
   params?: Params
 ) => {
-  if (isEmpty(params)) {
+  if (!params || isEmpty(params)) {
     return path;
   }
 
-  return `${path}?${stringify(params as any, { arrayFormat: "comma" })}`;
+  return `${path}?${stringify(params, { arrayFormat: "comma" })}`;
 };
