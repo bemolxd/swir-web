@@ -3,6 +3,7 @@ import { dayjs } from "utils";
 
 import { DatePicker } from "components/DatePicker";
 import { FormControl } from "components/Form";
+import { isNil } from "lodash";
 
 export const DateFromSelect = () => {
   const { formatMessage } = useIntl();
@@ -20,13 +21,20 @@ export const DateFromSelect = () => {
             onChange={(value) => {
               methods.setValue("dateFrom", value, { shouldDirty: true });
               methods.setValue("dateTo", null, { shouldDirty: true });
-              if (value === null) {
+              if (isNil(value)) {
                 methods.setError("dateFrom", {
                   message: "Ustaw datę początkową",
                 });
                 return;
               }
               if (value) methods.clearErrors("dateFrom");
+            }}
+            onBlur={(e) => {
+              if (e.target.value === "") {
+                methods.setError("dateFrom", {
+                  message: "Ustaw datę początkową",
+                });
+              }
             }}
             isInvalid={isInvalid}
             placeholderText={formatMessage({

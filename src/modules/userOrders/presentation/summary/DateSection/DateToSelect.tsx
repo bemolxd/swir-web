@@ -13,12 +13,16 @@ export const DateToSelect = () => {
         const dateFrom = methods.getValues("dateFrom");
         const dateValue = methods.getValues("dateTo");
 
+        const minDate = dateFrom
+          ? dayjs(dateFrom).add(1, "day").toDate()
+          : dayjs().add(1, "day").toDate();
+
         return (
           <DatePicker
             {...fieldProps}
             {...methods.register("dateTo", { required: true })}
             name="dateTo"
-            minDate={dayjs(dateFrom).add(1, "day").toDate()}
+            minDate={minDate}
             onChange={(value) => {
               methods.setValue("dateTo", value, { shouldDirty: true });
               if (value === null) {
@@ -29,6 +33,13 @@ export const DateToSelect = () => {
               }
 
               if (value) methods.clearErrors("dateTo");
+            }}
+            onBlur={(e) => {
+              if (e.target.value === "") {
+                methods.setError("dateTo", {
+                  message: "Ustaw datę końcową",
+                });
+              }
             }}
             isInvalid={isInvalid}
             placeholderText={formatMessage({
