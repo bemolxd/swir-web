@@ -1,9 +1,8 @@
 import { VStack } from "@chakra-ui/react";
 
-import { withSuspense } from "components/RemoteData";
 import { AwardingJustificationSection } from "modules/adminOrders/presentation/management/AwardingJustificationSection";
+import { Order } from "modules/userOrders/application";
 
-import { useOrderQuery } from "modules/userOrders/infrastructure";
 import {
   DeleteOrderSection,
   DetailsHeader,
@@ -12,19 +11,19 @@ import {
   OrderSummarySection,
   ReservationDatesSection,
   SenderDetailsCommentSection,
+  TechUserSection,
 } from "modules/userOrders/presentation";
 
 interface IProps {
-  orderId: string;
+  orderDetails: Order | undefined;
 }
 
-export const Content = withSuspense(({ orderId }: IProps) => {
-  const orderDetails = useOrderQuery(orderId);
-
+export const Content = ({ orderDetails }: IProps) => {
   return (
     <VStack align="flex-start" w="100%">
       <DetailsHeader orderId={orderDetails?.orderId!} />
       <OrderStatusSection order={orderDetails!} />
+      {orderDetails?.techId && <TechUserSection techId={orderDetails.techId} />}
       <AwardingJustificationSection order={orderDetails!} />
       <ReservationDatesSection
         status={orderDetails?.status!}
@@ -40,9 +39,9 @@ export const Content = withSuspense(({ orderId }: IProps) => {
       <SenderDetailsCommentSection order={orderDetails!} />
       <DeleteOrderSection
         senderId={orderDetails?.senderId!}
-        orderId={orderId}
+        orderId={orderDetails?.orderId!}
         status={orderDetails?.status!}
       />
     </VStack>
   );
-});
+};
