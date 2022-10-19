@@ -1,6 +1,7 @@
 import { HStack, VStack } from "@chakra-ui/react";
 
 import { useCheckMobile } from "components/Layout";
+
 import { DeleteButton } from "./DeleteButton";
 import { SaveButton } from "./SaveButton";
 

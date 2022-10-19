@@ -4,8 +4,9 @@ import { useIntl } from "react-intl";
 
 import { ConfirmModal } from "components/ConfirmModal";
 
-import { useDeleteItemNotifications } from "../notifications";
 import { useDeleteItem } from "modules/items/infrastructure";
+
+import { useDeleteItemNotifications } from "../notifications";
 
 interface IProps {
   itemId: string;
@@ -20,8 +21,6 @@ export const DeleteButton = ({ itemId }: IProps) => {
   const [deleteItem, isLoading] = useDeleteItem(itemId);
 
   const handleDelete = async () => {
-    console.log("deleting item", itemId);
-
     try {
       await deleteItem();
       showSuccessNotification();
