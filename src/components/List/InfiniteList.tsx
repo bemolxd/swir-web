@@ -11,7 +11,7 @@ interface IProps<Data extends QueryListData>
   limit: number;
   data: Data[] | undefined;
   children(data: Data, index: number): ReactElement;
-  next(): any;
+  next(): void;
   hasMore: boolean;
 }
 
