@@ -5,6 +5,7 @@ import {
   CSSReset,
 } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
+import { GlobalProps } from "@emotion/react";
 
 import { IChildrenProp } from "types";
 
@@ -12,7 +13,7 @@ const customTheme = extendTheme({
   initialColorMode: "light",
   useSystemColorMode: false,
   styles: {
-    global: (props: any) => ({
+    global: (props: GlobalProps) => ({
       body: {
         bg: mode("#FAFAFA", "gray.800")(props),
       },
