@@ -1,5 +1,5 @@
 import { flow } from "lodash";
-
+import { buildUrl } from "utils";
 import { LocationManager, LocationManagerOptions } from "./LocationManager";
 import { SimpleType, Value } from "./utils";
 import { useQueryParamsConsumer } from "./QueryParamsProvider";
@@ -65,6 +65,8 @@ export const useQueryParams = <Params extends object>(
 
   const extend: SetFunction<Params> = flow(locationManager.extend, push());
 
+  const has: HasFunction = flow(locationManager.has, push());
+
   function pages(options: Options): Pages;
   function pages(options: RequiredOptions): BasicPages;
   function pages({ limit, offset, total }: any): BasicPages | Pages {
@@ -109,6 +111,18 @@ export const useQueryParams = <Params extends object>(
     set({ limit: 10, offset: 0 } as Params);
   };
 
+  const correctedUrl = () => {
+    if (!has("limit") || !has("offset")) {
+      return buildUrl(locationManager.url, {
+        limit: 10,
+        offset: 0,
+        ...locationManager.params,
+      });
+    }
+
+    return locationManager.url;
+  };
+
   return {
     add,
     change,
@@ -125,5 +139,6 @@ export const useQueryParams = <Params extends object>(
     resetPagination,
     buildUrl: locationManager.buildUrl,
     extend,
+    correctedUrl,
   };
 };
