@@ -43,6 +43,7 @@ export const useFinishOrder = (orderId: string) => {
                     ...order,
                     techComment,
                     isPublic: false,
+                    isArchived: true,
                     status: OrderStatus.FINISHED,
                   };
                 }
@@ -59,6 +60,7 @@ export const useFinishOrder = (orderId: string) => {
               ...orderDetailsQueryData.data,
               techComment,
               isPublic: false,
+              isArchived: true,
               status: OrderStatus.FINISHED,
             },
           });

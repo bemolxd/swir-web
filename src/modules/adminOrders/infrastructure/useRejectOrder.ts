@@ -43,6 +43,8 @@ export const useRejectOrder = (orderId: string) => {
                     ...order,
                     techComment,
                     isRejected: true,
+                    isArchived: true,
+                    isPublic: false,
                     status: OrderStatus.AWARDED,
                   };
                 }
@@ -59,6 +61,8 @@ export const useRejectOrder = (orderId: string) => {
               ...orderDetailsQueryData.data,
               techComment,
               isRejected: true,
+              isArchived: true,
+              isPublic: false,
               status: OrderStatus.AWARDED,
             },
           });
