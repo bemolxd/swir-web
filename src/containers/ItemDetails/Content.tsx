@@ -4,6 +4,7 @@ import { withSuspense } from "components/RemoteData";
 
 import { useItemDetailsQuery } from "modules/items/infrastructure";
 import {
+  AddItemSection,
   AvailabilitySection,
   BasicInfoSection,
   DescriptionSection,
@@ -19,12 +20,13 @@ export const Content = withSuspense(({ itemId }: IProps) => {
   const itemDetails = useItemDetailsQuery(itemId);
 
   return (
-    <VStack align="flex-start" w="100%">
+    <VStack align="flex-start" w="100%" h="100%">
       <DetailsHeader itemName={itemDetails?.name!} itemId={itemId} />
       <BasicInfoSection details={itemDetails!} />
       <DescriptionSection description={itemDetails?.description!} />
       <ParametersSection parameters={itemDetails?.parameters!} />
-      <AvailabilitySection />
+      <AvailabilitySection itemId={itemId} />
+      <AddItemSection itemId={itemId} />
     </VStack>
   );
 });
