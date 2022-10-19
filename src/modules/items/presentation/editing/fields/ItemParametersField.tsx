@@ -1,7 +1,12 @@
-import { Textarea } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { FormControl } from "components/Form";
+import {
+  DEFAULT_VALUES,
+  deserializeHtml,
+  serializeValue,
+  SlateEditor,
+} from "components/SlateEditor";
 
 export const ItemParametersField = () => {
   const { formatMessage } = useIntl();
@@ -11,34 +16,50 @@ export const ItemParametersField = () => {
       name="parameters"
       label={formatMessage({ id: "parameters", defaultMessage: "Parametry" })}
     >
-      {({ setValue, register, setError, clearErrors }, fieldProps) => (
-        <Textarea
-          {...fieldProps}
-          {...register("parameters")}
-          onChange={(e) => {
-            if (e.target.value === "") {
-              setError("parameters", {
-                message: "Parametry przedmiotu nie mogą być puste",
-              });
-              return;
+      {({
+        setValue,
+        getValues,
+        register,
+        setError,
+        clearErrors,
+        formState: { errors },
+      }) => {
+        return (
+          <SlateEditor
+            initialValue={
+              deserializeHtml(getValues("parameters")) ?? DEFAULT_VALUES
             }
+            onValueChange={(value) => {
+              if (serializeValue(value) === "<p></p>") {
+                setError("parameters", {
+                  message: "Parametry przedmiotu nie mogą pozostać puste",
+                });
+                return;
+              }
 
-            setValue("parameters", e.target.value);
-            clearErrors("parameters");
-          }}
-          onBlur={(e) => {
-            if (e.target.value === "") {
-              setError("parameters", {
-                message: "Parametry przedmiotu nie mogą być pusta",
-              });
-            }
-          }}
-          placeholder={formatMessage({
-            id: "parameters.placeholder",
-            defaultMessage: "Wprowadź parametry przedmiotu",
-          })}
-        />
-      )}
+              clearErrors("parameters");
+              setValue("parameters", serializeValue(value));
+            }}
+            onSlateBlur={(value) => {
+              if (serializeValue(value) === "<p></p>") {
+                setError("parameters", {
+                  message: "Parametry przedmiotu nie mogą pozostać puste",
+                });
+                return;
+              }
+
+              clearErrors("parameters");
+              setValue("parameters", serializeValue(value));
+            }}
+            placeholder={formatMessage({
+              id: "parameters.placeholder",
+              defaultMessage: "Wprowadź parametry przedmiotu",
+            })}
+            isInvalid={!!errors?.parameters}
+            {...register("parameters")}
+          />
+        );
+      }}
     </FormControl>
   );
 };

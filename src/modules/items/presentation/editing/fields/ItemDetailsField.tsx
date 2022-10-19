@@ -1,7 +1,12 @@
-import { Textarea } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { FormControl } from "components/Form";
+import {
+  DEFAULT_VALUES,
+  deserializeHtml,
+  serializeValue,
+  SlateEditor,
+} from "components/SlateEditor";
 
 export const ItemDetailsField = () => {
   const { formatMessage } = useIntl();
@@ -11,34 +16,50 @@ export const ItemDetailsField = () => {
       name="description"
       label={formatMessage({ id: "details", defaultMessage: "Opis" })}
     >
-      {({ setValue, register, setError, clearErrors }, fieldProps) => (
-        <Textarea
-          {...fieldProps}
-          {...register("description")}
-          onChange={(e) => {
-            if (e.target.value === "") {
-              setError("description", {
-                message: "Opis przedmiotu nie może być pusty",
-              });
-              return;
+      {({
+        setValue,
+        getValues,
+        register,
+        setError,
+        clearErrors,
+        formState: { errors },
+      }) => {
+        return (
+          <SlateEditor
+            initialValue={
+              deserializeHtml(getValues("description")) ?? DEFAULT_VALUES
             }
+            onValueChange={(value) => {
+              if (serializeValue(value) === "<p></p>") {
+                setError("description", {
+                  message: "Opis przedmiotu nie może być pusty",
+                });
+                return;
+              }
 
-            setValue("description", e.target.value);
-            clearErrors("description");
-          }}
-          onBlur={(e) => {
-            if (e.target.value === "") {
-              setError("description", {
-                message: "Opis przedmiotu nie może być pusty",
-              });
-            }
-          }}
-          placeholder={formatMessage({
-            id: "description.placeholder",
-            defaultMessage: "Wprowadź opis przedmiotu",
-          })}
-        />
-      )}
+              clearErrors("description");
+              setValue("description", serializeValue(value));
+            }}
+            onSlateBlur={(value) => {
+              if (serializeValue(value) === "<p></p>") {
+                setError("description", {
+                  message: "Opis przedmiotu nie może być pusty",
+                });
+                return;
+              }
+
+              clearErrors("description");
+              setValue("description", serializeValue(value));
+            }}
+            placeholder={formatMessage({
+              id: "description.placeholder",
+              defaultMessage: "Wprowadź opis przedmiotu",
+            })}
+            isInvalid={!!errors?.description}
+            {...register("description")}
+          />
+        );
+      }}
     </FormControl>
   );
 };

@@ -22,7 +22,7 @@ export const ItemSubcategoryField = (inputProps: IProps) => {
         <Input
           {...fieldProps}
           {...register("subcategory")}
-          onChange={(e) => setValue("name", e.target.value)}
+          onChange={(e) => setValue("subcategory", e.target.value)}
           placeholder={formatMessage({
             id: "subcategory.placeholder",
             defaultMessage: "Wprowadź podkategorię",
