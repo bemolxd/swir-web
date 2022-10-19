@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router";
-import { Heading, Divider, HStack, Button } from "@chakra-ui/react";
+import { Heading, Divider, Stack, Button } from "@chakra-ui/react";
 import { MdEdit } from "react-icons/md";
 import { useIntl } from "react-intl";
 
 import { useGetContextType } from "components/Auth";
+import { useCheckMobile } from "components/Layout";
+
+import { AddElementButton } from "../ItemAction";
 
 interface IProps {
   itemName: string;
@@ -15,14 +18,19 @@ export const DetailsHeader = ({ itemName, itemId }: IProps) => {
   const { formatMessage } = useIntl();
   const { isGlobal, isTech } = useGetContextType();
   const isAdmin = isGlobal || isTech;
+  const isMobile = useCheckMobile();
 
   return (
     <>
-      <HStack w="100%" justify="space-between">
-        <Heading size="lg" fontWeight="600">
+      <Stack
+        flexDir={isMobile ? "column" : "row"}
+        w="100%"
+        justify="space-between"
+      >
+        <Heading size="lg" fontWeight="600" isTruncated>
           {itemName}
         </Heading>
-        {isAdmin && (
+        {isAdmin ? (
           <Button
             variant="outline"
             fontWeight="400"
@@ -34,8 +42,10 @@ export const DetailsHeader = ({ itemName, itemId }: IProps) => {
               defaultMessage: "Edytuj informacje",
             })}
           </Button>
+        ) : (
+          <AddElementButton itemId={itemId} />
         )}
-      </HStack>
+      </Stack>
       <Divider />
     </>
   );
