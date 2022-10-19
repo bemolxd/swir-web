@@ -1,20 +1,17 @@
 import { VStack } from "@chakra-ui/react";
 
-import { Pagination } from "components/Pagination";
-import { useQueryParams } from "components/QueryParamsV2";
-import { withSuspense } from "components/RemoteData";
+import { useCheckMobile } from "components/Layout";
 
-import { useArchivedOrdersQuery } from "modules/userOrders/infrastructure";
-import { OrdersList } from "modules/userOrders/presentation";
+import { InfiniteOrdersList } from "modules/userOrders/presentation";
 
-export const Content = withSuspense(() => {
-  const { params } = useQueryParams();
-  const archivedOrders = useArchivedOrdersQuery(params);
+import { CasualList } from "./CasualList";
+
+export const Content = () => {
+  const isMobile = useCheckMobile();
 
   return (
     <VStack w="100%">
-      <OrdersList orders={archivedOrders.collection!} />
-      <Pagination meta={archivedOrders.meta!} />
+      {isMobile ? <InfiniteOrdersList /> : <CasualList />}
     </VStack>
   );
-});
+};
