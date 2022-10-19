@@ -19,6 +19,7 @@ import {
   TechSelectSection,
   useSubmitOrderNotifications,
 } from "modules/userOrders/presentation";
+import { useReloadWarning } from "components/Layout";
 
 interface IProps {
   orderId: string;
@@ -33,6 +34,8 @@ interface FormData {
 }
 
 export const Content = withSuspense(({ orderId }: IProps) => {
+  useReloadWarning();
+
   const order = useOrderQuery(orderId);
   const navigate = useNavigate();
   const [submitData] = useSubmitOrderRequest(order?.senderId!, orderId);
