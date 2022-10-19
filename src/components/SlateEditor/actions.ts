@@ -1,4 +1,4 @@
-import { Editor, Element as SlateElement, Transforms, Node } from "slate";
+import { Editor, Element as SlateElement, Transforms } from "slate";
 import { HistoryEditor } from "slate-history";
 import { ReactEditor } from "slate-react";
 
@@ -6,7 +6,7 @@ export type EditorProps = Editor | ReactEditor | HistoryEditor;
 
 export const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
-export const DEFAULT_VALUES: Node[] = [
+export const createDefaultValue = () => [
   {
     type: "paragraph",
     children: [{ text: "" }],

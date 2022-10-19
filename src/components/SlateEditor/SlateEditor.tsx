@@ -40,7 +40,6 @@ export const SlateEditor = forwardRef(
     }: SlateEditorProps,
     ref
   ) => {
-    // const boxRef = useRef<HTMLDivElement>(null);
     const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
     const [, setFocused] = useState(false);

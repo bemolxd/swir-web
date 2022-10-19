@@ -2,7 +2,7 @@ import { useIntl } from "react-intl";
 
 import { FormControl } from "components/Form";
 import {
-  DEFAULT_VALUES,
+  createDefaultValue,
   deserializeHtml,
   serializeValue,
   SlateEditor,
@@ -27,7 +27,7 @@ export const ItemDetailsField = () => {
         return (
           <SlateEditor
             initialValue={
-              deserializeHtml(getValues("description")) ?? DEFAULT_VALUES
+              deserializeHtml(getValues("description")) ?? createDefaultValue
             }
             onValueChange={(value) => {
               if (serializeValue(value) === "<p></p>") {
