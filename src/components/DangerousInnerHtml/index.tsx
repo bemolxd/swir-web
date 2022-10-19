@@ -1,5 +1,5 @@
 import { createElement } from "react";
-// import sanitizeHtml, { AllowedAttribute } from "sanitize-html";
+import sanitizeHtml from "sanitize-html";
 
 interface IProps {
   html: string;
@@ -9,10 +9,8 @@ interface IProps {
 export const DangerousInnerHtml = ({ html, as = "div" }: IProps) =>
   createElement(as, {
     dangerouslySetInnerHTML: {
-      //   __html: sanitizeHtml(html, {
-      //     allowedTags,
-      //     allowedAttributes,
-      //   }),
-      __html: html,
+      __html: sanitizeHtml(html, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["code"]),
+      }),
     },
   });
