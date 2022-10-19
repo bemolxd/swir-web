@@ -1,4 +1,5 @@
 import { useIntl } from "react-intl";
+import { Spinner } from "@chakra-ui/react";
 
 import { IOption } from "types";
 
@@ -21,7 +22,7 @@ export const TechSelect = withSuspense(
     return (
       <FormControl name="techId" w="100%">
         {(
-          { setValue, setError, clearErrors, register, getValues },
+          { setValue, setError, clearErrors, register },
           fieldProps,
           { isInvalid }
         ) => {
@@ -45,12 +46,29 @@ export const TechSelect = withSuspense(
                 }
                 if (value) clearErrors("techId");
               }}
+              onBlur={({ target: { value } }) => {
+                if (value === "") {
+                  setError("techId", {
+                    message: "Określ opiekuna zgłoszenia",
+                  });
+                  return;
+                }
+              }}
             />
           );
         }}
       </FormControl>
     );
   },
-  //TODO: lepszy fallback
-  { fallback: <></> }
+  {
+    fallback: (
+      <Select
+        options={[]}
+        placeholder="Wczytuję opiekunów..."
+        w="100%"
+        isDisabled
+        icon={<Spinner />}
+      />
+    ),
+  }
 );
