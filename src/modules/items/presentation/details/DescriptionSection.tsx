@@ -1,5 +1,6 @@
 import { Heading, Divider } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
+import styled from "@emotion/styled";
 
 import { DangerousInnerHtml } from "components/DangerousInnerHtml";
 
@@ -18,8 +19,29 @@ export const DescriptionSection = ({ description }: IProps) => {
           defaultMessage: "Opis:",
         })}
       </Heading>
-      <DangerousInnerHtml html={description} />
+      <StyledHtml>
+        <DangerousInnerHtml html={description} />
+      </StyledHtml>
       <Divider />
     </>
   );
 };
+
+const StyledHtml = styled.div`
+  * {
+    width: 100%;
+  }
+
+  ul,
+  ol,
+  dl {
+    list-style-position: inside;
+  }
+
+  // TODO: kolorystyka na zmiennych motywach
+  // code {
+  //   padding: 3px;
+  //   background-color: #2d3748;
+  //   font-size: 90%;
+  // }
+`;
