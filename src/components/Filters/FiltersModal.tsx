@@ -12,7 +12,7 @@ import {
 import { ReactNode } from "react";
 import { useIntl } from "react-intl";
 
-import { IChildrenProp } from "types";
+import { IChildrenProp, IQueryParams } from "types";
 
 import { ClearFiltersButton } from "./ClearFiltersButton";
 
@@ -20,9 +20,16 @@ interface IProps extends IChildrenProp {
   isOpen: boolean;
   onClose(): void;
   header?: ReactNode;
+  defaultParams?: {} & IQueryParams;
 }
 
-export const FiltersModal = ({ isOpen, onClose, header, children }: IProps) => {
+export const FiltersModal = ({
+  isOpen,
+  onClose,
+  header,
+  defaultParams,
+  children,
+}: IProps) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -45,7 +52,7 @@ export const FiltersModal = ({ isOpen, onClose, header, children }: IProps) => {
         <ModalBody>{children}</ModalBody>
         <ModalFooter>
           <ButtonGroup>
-            <ClearFiltersButton />
+            <ClearFiltersButton defaultParams={defaultParams} />
             <Button colorScheme="teal" onClick={onClose}>
               {formatMessage({
                 id: "Filters.filterModalClose",

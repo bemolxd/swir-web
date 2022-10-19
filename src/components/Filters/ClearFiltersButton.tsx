@@ -1,10 +1,11 @@
 import { useIntl } from "react-intl";
 import { Button, ButtonProps } from "@chakra-ui/react";
+import { IQueryParams } from "types";
 
 import { useQueryParams } from "components/QueryParamsV2";
 
 interface IProps extends ButtonProps {
-  defaultParams?: any;
+  defaultParams?: {} & IQueryParams;
 }
 
 export const ClearFiltersButton = ({ defaultParams, ...props }: IProps) => {
