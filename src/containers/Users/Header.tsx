@@ -20,7 +20,8 @@ export const Header = () => {
         <Text>
           {formatMessage({
             id: "Users.header.description",
-            defaultMessage: "Zbiór wszystkich użytkowników systemu.",
+            defaultMessage:
+              "Poniżej znajdziesz wszystkich użytkowników systemu.",
           })}
         </Text>
         <Divider />

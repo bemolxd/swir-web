@@ -1,5 +1,7 @@
 import { VStack } from "@chakra-ui/react";
+
 import { useMeQuery } from "components/Auth";
+import { Pagination } from "components/Pagination";
 import { useQueryParams } from "components/QueryParamsV2";
 import { withSuspense } from "components/RemoteData";
 
@@ -16,6 +18,7 @@ export const Content = withSuspense(() => {
       <UsersList
         users={users?.collection.filter((user) => user.userId !== me?.userId)}
       />
+      <Pagination meta={{ ...users?.meta!, total: users?.meta.total! - 1 }} />
     </VStack>
   );
 });
