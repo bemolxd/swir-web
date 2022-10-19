@@ -1,13 +1,15 @@
-import { Button } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
 import { MdSend } from "react-icons/md";
 import { useIntl } from "react-intl";
 import { useFormContext } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 import {
   InfoDetailsContainer,
   InfoDetailsLabel,
   InfoDetailsContent,
 } from "components/Card";
+import { isEmpty } from "lodash";
 
 interface IProps {
   formId: string;
@@ -15,7 +17,8 @@ interface IProps {
 
 export const SendSection = ({ formId }: IProps) => {
   const { formatMessage } = useIntl();
-  const { formState } = useFormContext();
+  const { formState, getValues } = useFormContext();
+  const navigate = useNavigate();
 
   return (
     <InfoDetailsContainer>
@@ -26,20 +29,34 @@ export const SendSection = ({ formId }: IProps) => {
         })}
       </InfoDetailsLabel>
       <InfoDetailsContent align="flex-end">
-        <Button
-          variant="outline"
-          leftIcon={<MdSend />}
-          colorScheme="teal"
-          onClick={() => {}}
-          form={formId}
-          type="submit"
-          isLoading={formState.isSubmitting}
-        >
-          {formatMessage({
-            id: "UserOrderSummary.summarySection.button",
-            defaultMessage: "Wyślij",
-          })}
-        </Button>
+        <HStack>
+          <Button
+            variant="outline"
+            colorScheme="red"
+            onClick={() => navigate(-1)}
+          >
+            {formatMessage({
+              id: "UserOrderSummary.summarySection.cancelBtn",
+              defaultMessage: "Anuluj",
+            })}
+          </Button>
+          <Button
+            variant="outline"
+            leftIcon={<MdSend />}
+            colorScheme="teal"
+            form={formId}
+            type="submit"
+            isDisabled={
+              !isEmpty(formState.errors) || isEmpty(getValues("items"))
+            }
+            isLoading={formState.isSubmitting}
+          >
+            {formatMessage({
+              id: "UserOrderSummary.summarySection.submitBtn",
+              defaultMessage: "Wyślij",
+            })}
+          </Button>
+        </HStack>
       </InfoDetailsContent>
     </InfoDetailsContainer>
   );
