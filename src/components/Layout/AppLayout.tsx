@@ -1,4 +1,4 @@
-import { HStack, Center, chakra } from "@chakra-ui/react";
+import { HStack, Center, chakra, VStack } from "@chakra-ui/react";
 
 import { IChildrenProp } from "types";
 
@@ -7,11 +7,13 @@ import { MainNavigation } from "components/MainNavigation";
 import { useCookiesNotification } from "components/Cookies";
 
 import { ScrollTopButton } from "./ScrollTopButton";
+import { useCheckMobile } from "./useCheckMobile";
 
 interface IProps extends IChildrenProp {}
 
 export const AppLayout = ({ children }: IProps) => {
   useCookiesNotification();
+  const isMobile = useCheckMobile();
 
   return (
     <chakra.div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -26,7 +28,11 @@ export const AppLayout = ({ children }: IProps) => {
           align="flex-start"
           spacing={4}
         >
-          <MainNavigation />
+          {!isMobile && (
+            <VStack maxW="200px" width="100%" h="100%">
+              <MainNavigation />
+            </VStack>
+          )}
           {children}
         </HStack>
       </Center>

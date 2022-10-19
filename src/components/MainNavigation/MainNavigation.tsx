@@ -13,7 +13,6 @@ import { IChildrenProp } from "types";
 
 import { Card } from "components/Card";
 import { useGetContextType } from "components/Auth";
-import { useCheckMobile } from "components/Layout";
 
 import { useGetActiveTab } from "./useGetActiveTab";
 import { navigationMessages } from "./messages";
@@ -25,9 +24,6 @@ export const MainNavigation = () => {
 
   const { isUser } = useGetContextType();
   const tabIndex = useGetActiveTab(pathname);
-  const isMobile = useCheckMobile();
-
-  if (isMobile) return null;
 
   if (isUser) {
     return (
@@ -111,7 +107,7 @@ const NavigationTab = ({ path, title, icon }: NavigationProps) => {
 
 const MainNavigationContainer = ({ children }: IChildrenProp) => {
   return (
-    <VStack maxW="200px" width="100%" spacing={1}>
+    <VStack maxW="200px" width="100%" spacing={1} position="fixed">
       {children}
       <UsefulLinks />
     </VStack>
