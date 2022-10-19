@@ -5,3 +5,4 @@ export { OrderSummarySection } from "./OrderSummarySection";
 export { DeleteOrderSection } from "./DeleteOrderSection";
 export { SenderDetailsCommentSection } from "./SenderDetailsCommentSection";
 export { ReservationDatesSection } from "./ReservationDatesSection";
+export { TechUserSection } from "./TechUserSection";
