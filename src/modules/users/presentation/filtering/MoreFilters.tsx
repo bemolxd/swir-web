@@ -5,8 +5,11 @@ import { ContextType } from "types";
 import { useQueryParams, filtersAreApplied } from "components/QueryParamsV2";
 import {
   CheckboxFilterGroup,
+  FiltersContainer,
   FiltersModal,
   MoreFiltersButton,
+  SearchFilter,
+  Separator,
 } from "components/Filters";
 
 import { useUserFilterModalHandler } from "modules/users/application";
@@ -21,7 +24,16 @@ export const MoreFilters = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <>
+    <FiltersContainer>
+      <SearchFilter
+        filterName="search"
+        maxW="250px"
+        placeholder={formatMessage({
+          id: "Users.filtering.searchboxPlaceholder",
+          defaultMessage: "Szukaj",
+        })}
+      />
+      <Separator />
       <MoreFiltersButton
         onClick={onOpen}
         areFiltersApplied={filtersAreApplied(params)}
@@ -51,7 +63,7 @@ export const MoreFilters = () => {
           <Divider />
         </VStack>
       </FiltersModal>
-    </>
+    </FiltersContainer>
   );
 };
 
