@@ -1,4 +1,5 @@
 import { useIntl } from "react-intl";
+import { Spinner } from "@chakra-ui/react";
 
 import { IOption } from "types";
 
@@ -42,6 +43,19 @@ export const TechSelectField = withSuspense(
       </FormControl>
     );
   },
-  //TODO: lepszy fallback
-  { fallback: <></> }
+  {
+    fallback: (
+      <FormControl name="techId" w="100%" label={"Opiekun zgłoszenia:"}>
+        {(_, fieldProps) => (
+          <Select
+            {...fieldProps}
+            options={[]}
+            placeholder="Wczytuję opiekunów..."
+            isDisabled
+            icon={<Spinner />}
+          />
+        )}
+      </FormControl>
+    ),
+  }
 );
