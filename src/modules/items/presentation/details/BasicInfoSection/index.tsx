@@ -27,8 +27,13 @@ export const BasicInfoSection = ({ details }: IProps) => {
 
   return (
     <>
-      <HStack align="flex-start" justify="space-between" w="100%">
-        <Image src={details.imageUrl} w="400px" borderRadius={8} my={1} />
+      <HStack align="flex-start" justify="space-evenly" spacing={4} w="100%">
+        <Image
+          src={details.imageUrl}
+          w={{ base: "400px", md: "280px", lg: "320px", xl: "400px" }}
+          borderRadius={8}
+          my={1}
+        />
         <BasicInfoContent details={details} />
       </HStack>
       <Divider />
