@@ -27,7 +27,7 @@ export const SenderDetailsCommentSection = ({ order }: IProps) => {
         })}
       </InfoDetailsLabel>
       <InfoDetailsContent>
-        <Text>{order.senderComment}</Text>
+        <Text whiteSpace="pre-wrap">{order.senderComment}</Text>
       </InfoDetailsContent>
     </InfoDetailsContainer>
   );
