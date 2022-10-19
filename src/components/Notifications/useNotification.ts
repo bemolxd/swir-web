@@ -1,4 +1,5 @@
 import { useToast } from "@chakra-ui/react";
+import { useCheckMobile } from "components/Layout";
 
 type Status = "error" | "info" | "warning" | "success";
 
@@ -8,6 +9,8 @@ export const useNotification = (
   status: Status,
   duration?: number
 ) => {
+  const isMobile = useCheckMobile();
+
   return useToast({
     title,
     description,
@@ -15,6 +18,6 @@ export const useNotification = (
     duration: duration ?? 3000,
     isClosable: true,
     variant: "solid",
-    position: "top-right",
+    position: isMobile ? "bottom" : "top-right",
   });
 };
