@@ -7,6 +7,11 @@ const queryClient = new QueryClient({
     queries: {
       suspense: true,
       retry: 0,
+      useErrorBoundary: true,
+    },
+    mutations: {
+      useErrorBoundary: true,
+      retry: 0,
     },
   },
 });
