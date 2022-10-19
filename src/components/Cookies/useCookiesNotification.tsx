@@ -1,16 +1,18 @@
 import { useEffect } from "react";
-import { useToast } from "@chakra-ui/react";
+import { Link, useColorModeValue, useToast } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
+import { useNavigate } from "react-router";
 
 import { useLocalStorage } from "utils";
 
 export const useCookiesNotification = () => {
   const [value, setValue] = useLocalStorage("cookie-consent", false);
   const { formatMessage } = useIntl();
+  const variant = useColorModeValue("subtle", "solid");
 
   const notifId = "cookie-consent";
-  const privacyUrl = process.env.REACT_APP_CLIENT_URL + "/privacy";
   const toast = useToast();
+  const navigate = useNavigate();
 
   const onConsent = () => {
     setValue(true);
@@ -33,18 +35,20 @@ export const useCookiesNotification = () => {
           },
           {
             privacy: (
-              <a
-                href={privacyUrl}
+              <Link
                 style={{ textDecoration: "underline" }}
-                onClick={onConsent}
+                onClick={() => {
+                  navigate("/privacy");
+                  onConsent();
+                }}
               >
                 polityką prywatności
-              </a>
+              </Link>
             ),
           }
         ),
         status: "warning",
-        variant: "subtle",
+        variant,
         duration: null,
         position: "bottom-left",
         onCloseComplete: onConsent,
