@@ -1,28 +1,26 @@
-import { OrderStatusPolicy } from "utils";
+import { buildUrl } from "utils";
 
-import { useGetContextType, useMeQuery } from "components/Auth";
+import { useMeQuery } from "components/Auth";
 import { useQuery } from "components/RemoteData";
 
-import { getOrdersQueryKey } from "modules/adminOrders/infrastructure";
-
 import { OrdersQueryParams, OrdersResponse } from "../application";
-import { getUserOrdersQueryKey } from "./useUserOrdersQuery";
+import { ContextType } from "types";
+
+export const getArchivedOrdersQueryKey = (
+  isAdmin: boolean,
+  params?: OrdersQueryParams,
+  senderId?: string
+) =>
+  isAdmin
+    ? buildUrl("/archived-orders", params)
+    : buildUrl(`/users/${senderId}/archived-orders`, params);
 
 export const useArchivedOrdersQuery = (params?: OrdersQueryParams) => {
   const me = useMeQuery();
-  const { isGlobal } = useGetContextType();
+  const isAdmin = me?.contextType !== ContextType.USER;
 
-  const queryKey = isGlobal
-    ? getOrdersQueryKey(params)
-    : getUserOrdersQueryKey(me?.userId!, params);
-
-  const data = useQuery<OrdersResponse>(queryKey, queryKey);
-
-  // TODO: brać bezpośrednio z api, bo się meta chrzani
-  return {
-    collection: data?.collection.filter((order) =>
-      OrderStatusPolicy(order.status).isFinished()
-    ),
-    meta: data?.meta,
-  };
+  return useQuery<OrdersResponse>(
+    getArchivedOrdersQueryKey(isAdmin, params, me?.userId),
+    getArchivedOrdersQueryKey(isAdmin, params, me?.userId)
+  );
 };
