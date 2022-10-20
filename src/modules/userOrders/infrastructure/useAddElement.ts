@@ -1,14 +1,27 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { api } from "utils";
 
 import { useMeQuery } from "components/Auth";
+import { useGetQueryData, useSetQueryData } from "components/RemoteData";
 
+import {
+  AddElementDto,
+  defaultParams,
+  Order,
+  OrdersResponse,
+} from "../application";
 import { getUserOrdersQueryKey } from "./useUserOrdersQuery";
-import { AddElementDto, defaultParams, Order } from "../application";
+import { getOrderQueryKey } from "./useOrderQuery";
 
 export const useAddElement = (orderId: string) => {
-  const queryClient = useQueryClient();
   const me = useMeQuery();
+  const setQueryData = useSetQueryData();
+  const ordersQueryData = useGetQueryData<OrdersResponse>(
+    getUserOrdersQueryKey(me?.userId!, defaultParams)
+  );
+  const orderDetailsQueryData = useGetQueryData<Order>(
+    getOrderQueryKey(orderId)
+  );
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: AddElementDto) => {
@@ -19,12 +32,39 @@ export const useAddElement = (orderId: string) => {
       return data;
     },
     {
-      onSuccess: (response) => {
+      onSuccess: (response, { item }) => {
         if (!response) return;
 
-        queryClient.refetchQueries(
-          getUserOrdersQueryKey(me?.userId!, defaultParams)
-        );
+        if (!!ordersQueryData) {
+          setQueryData<OrdersResponse>(
+            getUserOrdersQueryKey(me?.userId!, defaultParams),
+            {
+              ...ordersQueryData,
+              data: {
+                ...ordersQueryData.data,
+                collection: ordersQueryData.data.collection.map((order) => {
+                  if (order.orderId === orderId) {
+                    return {
+                      ...order,
+                      items: [...order.items, item],
+                    };
+                  }
+                  return order;
+                }),
+              },
+            }
+          );
+        }
+
+        if (!!orderDetailsQueryData) {
+          setQueryData<Order>(getOrderQueryKey(orderId), {
+            ...orderDetailsQueryData,
+            data: {
+              ...orderDetailsQueryData.data,
+              items: [...orderDetailsQueryData.data.items, item],
+            },
+          });
+        }
       },
     }
   );
