@@ -2,7 +2,12 @@ import { useMutation } from "react-query";
 import { api } from "utils";
 
 import { useQueryParams } from "components/QueryParamsV2";
-import { useGetQueryData, useSetQueryData } from "components/RemoteData";
+import {
+  useGetQueryData,
+  useInvalidateQuery,
+  useSetQueryData,
+} from "components/RemoteData";
+import { useCheckMobile } from "components/Layout";
 
 import {
   OrdersResponse,
@@ -23,6 +28,8 @@ export const useFinishOrder = (orderId: string) => {
   const orderDetailsQueryData = useGetQueryData<Order>(
     getOrderQueryKey(orderId)
   );
+  const invalidateQuery = useInvalidateQuery();
+  const isMobile = useCheckMobile();
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: FinishOrderDto) => {
@@ -31,6 +38,12 @@ export const useFinishOrder = (orderId: string) => {
     {
       onSuccess: (res, { techComment }) => {
         if (!res) return;
+
+        if (isMobile) {
+          invalidateQuery(getOrdersQueryKey(params));
+          invalidateQuery(getOrderQueryKey(orderId));
+          return;
+        }
 
         if (!!ordersQueryData) {
           setQueryData<OrdersResponse>(getOrdersQueryKey(params), {
