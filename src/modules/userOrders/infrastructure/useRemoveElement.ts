@@ -1,12 +1,14 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 
 import { api } from "utils";
+
+import { useInvalidateQuery } from "components/RemoteData";
 
 import { Order, RemoveElementDto } from "../application";
 import { getOrderQueryKey } from "./useOrderQuery";
 
 export const useRemoveElement = (orderId: string) => {
-  const queryClient = useQueryClient();
+  const invalidateQuery = useInvalidateQuery();
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: RemoveElementDto) => {
@@ -17,10 +19,10 @@ export const useRemoveElement = (orderId: string) => {
       return data;
     },
     {
-      onSuccess: (response, dto) => {
+      onSuccess: (response) => {
         if (!response) return;
 
-        queryClient.invalidateQueries([getOrderQueryKey(orderId)]);
+        invalidateQuery(getOrderQueryKey(orderId));
       },
     }
   );
