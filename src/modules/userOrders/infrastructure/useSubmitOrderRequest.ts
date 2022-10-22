@@ -1,4 +1,5 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useInvalidateQuery } from "components/RemoteData";
+import { useMutation } from "react-query";
 
 import { api } from "utils";
 
@@ -6,7 +7,7 @@ import { SubmitOrderDto } from "../application";
 import { getOrderQueryKey } from "./useOrderQuery";
 
 export const useSubmitOrderRequest = (senderId: string, orderId: string) => {
-  const queryClient = useQueryClient();
+  const invalidateQuery = useInvalidateQuery();
 
   const { mutateAsync, isLoading } = useMutation(
     async (orderBody: SubmitOrderDto) => {
@@ -16,8 +17,8 @@ export const useSubmitOrderRequest = (senderId: string, orderId: string) => {
       );
     },
     {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries(getOrderQueryKey(orderId));
+      onSuccess: () => {
+        invalidateQuery(getOrderQueryKey(orderId));
       },
     }
   );

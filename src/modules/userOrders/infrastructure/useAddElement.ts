@@ -2,7 +2,12 @@ import { useMutation } from "react-query";
 import { api } from "utils";
 
 import { useMeQuery } from "components/Auth";
-import { useGetQueryData, useSetQueryData } from "components/RemoteData";
+import {
+  useGetQueryData,
+  useInvalidateQuery,
+  useSetQueryData,
+} from "components/RemoteData";
+import { useCheckMobile } from "components/Layout";
 
 import {
   AddElementDto,
@@ -22,6 +27,8 @@ export const useAddElement = (orderId: string) => {
   const orderDetailsQueryData = useGetQueryData<Order>(
     getOrderQueryKey(orderId)
   );
+  const invalidateQuery = useInvalidateQuery();
+  const isMobile = useCheckMobile();
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: AddElementDto) => {
@@ -34,6 +41,12 @@ export const useAddElement = (orderId: string) => {
     {
       onSuccess: (response, { item }) => {
         if (!response) return;
+
+        if (isMobile) {
+          invalidateQuery(getUserOrdersQueryKey(me?.userId!, defaultParams));
+          invalidateQuery(getOrderQueryKey(orderId));
+          return;
+        }
 
         if (!!ordersQueryData) {
           setQueryData<OrdersResponse>(

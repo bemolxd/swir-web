@@ -8,6 +8,7 @@ import {
   useSetQueryData,
   useInvalidateQuery,
 } from "components/RemoteData";
+import { useCheckMobile } from "components/Layout";
 
 import { ChangeRoleDto, UsersResponse } from "../application";
 import { getUsersQueryKey } from "./useUsersQuery";
@@ -18,6 +19,7 @@ export const useChangeUserRole = (userId: string) => {
   const invalidateQuery = useInvalidateQuery();
   const setQueryData = useSetQueryData();
   const queryData = useGetQueryData<UsersResponse>(getUsersQueryKey(params));
+  const isMobile = useCheckMobile();
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: ChangeRoleDto) => {
@@ -26,6 +28,12 @@ export const useChangeUserRole = (userId: string) => {
     {
       onSuccess: (res, { contextType }) => {
         if (!res) return;
+
+        if (isMobile) {
+          invalidateQuery(getUsersQueryKey(params));
+          invalidateQuery(getUserDetailsQueryKey(userId));
+          return;
+        }
 
         if (!!queryData) {
           setQueryData<UsersResponse>(getUsersQueryKey(params), {
