@@ -1,23 +1,17 @@
 import { VStack } from "@chakra-ui/react";
-import { OrderStatusPolicy } from "utils";
 
-import { useQueryParams } from "components/QueryParamsV2";
-import { withSuspense } from "components/RemoteData";
+import { useCheckMobile } from "components/Layout";
 
-import { useOrdersQuery } from "modules/adminOrders/infrastructure";
-import { OrdersList } from "modules/userOrders/presentation";
+import { InfiniteAdminOrdersList } from "modules/adminOrders/presentation";
 
-export const Content = withSuspense(() => {
-  const { params } = useQueryParams();
-  const orders = useOrdersQuery(params);
+import { CasualList } from "./CasualList";
 
-  const activeOrders = orders?.collection.filter((order) =>
-    OrderStatusPolicy(order.status).isActive()
-  );
+export const Content = () => {
+  const isMobile = useCheckMobile();
 
   return (
     <VStack w="100%">
-      <OrdersList orders={activeOrders!} />
+      {isMobile ? <InfiniteAdminOrdersList /> : <CasualList />}
     </VStack>
   );
-});
+};
