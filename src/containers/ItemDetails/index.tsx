@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useIntl } from "react-intl";
+import { VStack } from "@chakra-ui/react";
 
 import { Card } from "components/Card";
 import { withErrorBoundary } from "components/ErrorBoundary";
 import { GetBackButton } from "components/GetBackButton";
 
 import { Content } from "./Content";
-import { VStack } from "@chakra-ui/react";
 
 export const ItemDetailsContainer = withErrorBoundary(() => {
   const { itemId } = useParams<{ itemId: string }>();
