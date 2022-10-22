@@ -11,8 +11,6 @@ export const InfiniteArchivedOrdersList = withSuspense(() => {
   const { data, isLoading, hasNextPage, fetchNextPage } =
     useInfiniteArchivedOrdersQuery();
 
-  console.log("infinite archived data:", data);
-
   if (isLoading) return <ContentLoading />;
 
   if (!data || data?.pages[0]?.collection.length === 0) {

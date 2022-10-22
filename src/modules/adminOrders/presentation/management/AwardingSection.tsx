@@ -1,15 +1,17 @@
 import { useIntl } from "react-intl";
-import { HStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
+import { OrderStatusPolicy } from "utils";
 
 import {
   InfoDetailsContainer,
   InfoDetailsLabel,
   InfoDetailsContent,
 } from "components/Card";
+import { useCheckMobile } from "components/Layout";
 
 import { Order } from "modules/userOrders/application";
+
 import { RejectButton } from "./Rejecting/RejectButton";
-import { OrderStatusPolicy } from "utils";
 import { AcceptButton } from "./Accepting/AcceptButton";
 
 interface IProps {
@@ -18,6 +20,7 @@ interface IProps {
 
 export const AwardingSection = ({ order }: IProps) => {
   const { formatMessage } = useIntl();
+  const isMobile = useCheckMobile();
 
   if (!OrderStatusPolicy(order.status).isPending()) return null;
 
@@ -30,10 +33,17 @@ export const AwardingSection = ({ order }: IProps) => {
         })}
       </InfoDetailsLabel>
       <InfoDetailsContent>
-        <HStack w="100%" justify="flex-end" spacing={4}>
-          <RejectButton orderId={order.orderId} />
-          <AcceptButton order={order} />
-        </HStack>
+        {isMobile ? (
+          <VStack w="100%" spacing={2} mt={1}>
+            <RejectButton orderId={order.orderId} />
+            <AcceptButton order={order} />
+          </VStack>
+        ) : (
+          <HStack w="100%" justify="flex-end" spacing={4}>
+            <RejectButton orderId={order.orderId} />
+            <AcceptButton order={order} />
+          </HStack>
+        )}
       </InfoDetailsContent>
     </InfoDetailsContainer>
   );
