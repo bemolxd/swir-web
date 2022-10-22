@@ -16,7 +16,7 @@ export const useInfiniteArchivedOrdersQuery = () => {
   const { data, isLoading, hasNextPage, fetchNextPage, refetch } =
     useInfiniteQuery(
       getArchivedOrdersQueryKey(isAdmin, params, me?.userId),
-      async ({ pageParam }) => {
+      async ({ pageParam = 0 }) => {
         return (
           await api.get<OrdersResponse>(
             getArchivedOrdersQueryKey(

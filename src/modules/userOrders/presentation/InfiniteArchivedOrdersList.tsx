@@ -2,13 +2,16 @@ import { EmptyList } from "components/AppState";
 import { InfiniteList } from "components/List";
 import { ContentLoading } from "components/Loading";
 import { withSuspense } from "components/RemoteData";
+
 import { OrdersResponse } from "../application";
 import { useInfiniteArchivedOrdersQuery } from "../infrastructure";
 import { OrdersList } from "./OrdersList";
 
-export const InfiniteOrdersList = withSuspense(() => {
+export const InfiniteArchivedOrdersList = withSuspense(() => {
   const { data, isLoading, hasNextPage, fetchNextPage } =
     useInfiniteArchivedOrdersQuery();
+
+  console.log("infinite archived data:", data);
 
   if (isLoading) return <ContentLoading />;
 

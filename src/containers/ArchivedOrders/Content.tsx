@@ -2,7 +2,7 @@ import { VStack } from "@chakra-ui/react";
 
 import { useCheckMobile } from "components/Layout";
 
-import { InfiniteOrdersList } from "modules/userOrders/presentation";
+import { InfiniteArchivedOrdersList } from "modules/userOrders/presentation";
 
 import { CasualList } from "./CasualList";
 
@@ -11,7 +11,7 @@ export const Content = () => {
 
   return (
     <VStack w="100%">
-      {isMobile ? <InfiniteOrdersList /> : <CasualList />}
+      {isMobile ? <InfiniteArchivedOrdersList /> : <CasualList />}
     </VStack>
   );
 };
