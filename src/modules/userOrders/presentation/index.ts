@@ -4,5 +4,6 @@ export * from "./details";
 export * from "./summary";
 export { PersonInfoContainer } from "./PersonInfoContainer";
 export { messages } from "./messages";
-export { InfiniteOrdersList } from "./InfiniteOrdersList";
+export { InfiniteArchivedOrdersList } from "./InfiniteArchivedOrdersList";
 export { ArchivedOrderAlert } from "./ArchivedOrderAlert";
+export { InfiniteUserOrdersList } from "./InfiniteUserOrdersList";
