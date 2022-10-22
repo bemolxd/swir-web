@@ -53,7 +53,6 @@ export const MainNavigation = () => {
     );
   }
 
-  // ContextType.GLOBAL
   return (
     <MainNavigationContainer>
       <Card w="100%">
