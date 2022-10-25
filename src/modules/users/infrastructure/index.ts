@@ -10,3 +10,4 @@ export {
   getUserDetailOrdersQueryKey,
 } from "./useUserDetailOrdersQuery";
 export { useInfiniteUserDetailOrders } from "./useInfiniteUserDetailOrdersQuery";
+export { useInfiniteUsersQuery } from "./useInfiniteUsersQuery";

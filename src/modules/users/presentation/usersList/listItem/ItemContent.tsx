@@ -1,6 +1,8 @@
 import { HStack, Avatar, VStack, Text } from "@chakra-ui/react";
 import { ContextType } from "types";
 
+import { SecondaryText } from "components/Typography";
+
 import { SelectRole } from "../SelectRole";
 
 export interface ItemContentProps {
@@ -24,7 +26,7 @@ export const ItemContent = ({
         <Avatar />
         <VStack spacing={0} align="flex-start">
           <Text>{`${firstName} ${lastName}`}</Text>
-          <Text textColor="gray.500">{email}</Text>
+          <SecondaryText>{email}</SecondaryText>
         </VStack>
       </HStack>
       <SelectRole userId={userId} defaultValue={contextType} />

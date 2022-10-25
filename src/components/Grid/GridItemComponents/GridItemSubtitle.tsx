@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { SecondaryText } from "components/Typography";
 
 import { IChildrenProp } from "types";
 
@@ -6,7 +6,7 @@ interface IProps extends IChildrenProp {}
 
 export const GridItemSubtitle = ({ children }: IProps) => {
   return (
-    <Text
+    <SecondaryText
       textColor="gray.400"
       textTransform="uppercase"
       w="100%"
@@ -15,6 +15,6 @@ export const GridItemSubtitle = ({ children }: IProps) => {
       isTruncated
     >
       {children}
-    </Text>
+    </SecondaryText>
   );
 };

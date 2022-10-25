@@ -1,16 +1,18 @@
+import { VStack } from "@chakra-ui/react";
+
 import { Card } from "components/Card";
+import { useCheckMobile } from "components/Layout";
 import { withSuspense } from "components/RemoteData";
 
-import { OrdersList } from "modules/userOrders/presentation";
-import {
-  useUserDetailOrdersQuery,
-  useUserDetailsQuery,
-} from "modules/users/infrastructure";
+import { useUserDetailsQuery } from "modules/users/infrastructure";
 import {
   BasicInfoSection,
   ChangeRoleSection,
+  InfiniteUserDetailOrdersList,
   UserDetailsFiltersSection,
 } from "modules/users/presentation";
+
+import { CasualList } from "./CasualList";
 
 interface IProps {
   userId: string;
@@ -18,7 +20,7 @@ interface IProps {
 
 export const Content = withSuspense(({ userId }: IProps) => {
   const user = useUserDetailsQuery(userId);
-  const orders = useUserDetailOrdersQuery(userId);
+  const isMobile = useCheckMobile();
 
   return (
     <>
@@ -27,7 +29,13 @@ export const Content = withSuspense(({ userId }: IProps) => {
         <ChangeRoleSection user={user!} />
       </Card>
       <UserDetailsFiltersSection />
-      <OrdersList orders={orders?.collection!} />
+      <VStack w="100%">
+        {isMobile ? (
+          <InfiniteUserDetailOrdersList userId={userId} />
+        ) : (
+          <CasualList userId={userId} />
+        )}
+      </VStack>
     </>
   );
 });

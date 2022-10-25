@@ -1,4 +1,6 @@
-import { HStack, Avatar, VStack, Heading, Text } from "@chakra-ui/react";
+import { HStack, Avatar, VStack, Heading } from "@chakra-ui/react";
+
+import { SecondaryText } from "components/Typography";
 
 import { EmailButton } from "./EmailButton";
 import { InfoContentProps } from "./InfoContent";
@@ -17,9 +19,7 @@ export const MobileInfoContent = ({
             fontWeight="400"
             size="lg"
           >{`${firstName} ${lastName}`}</Heading>
-          <Text textColor="gray.500" isTruncated>
-            {email}
-          </Text>
+          <SecondaryText isTruncated>{email}</SecondaryText>
           <HStack w="100%" justify="flex-end">
             <EmailButton email={email} />
           </HStack>

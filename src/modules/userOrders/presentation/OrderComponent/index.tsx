@@ -1,11 +1,12 @@
 import { useIntl } from "react-intl";
-import { HStack, Heading, VStack, Text } from "@chakra-ui/react";
+import { HStack, Heading, VStack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 import { OrderStatusPolicy } from "utils";
 
 import { useGetContextType } from "components/Auth";
 import { ListItem } from "components/List";
+import { SecondaryText } from "components/Typography";
 
 import { Order } from "modules/userOrders/application";
 
@@ -39,9 +40,9 @@ export const OrderComponent = ({ order }: IProps) => {
               { orderId: order.orderId }
             )}
           </Heading>
-          <Text textTransform="uppercase" textColor="gray.500">
+          <SecondaryText textTransform="uppercase">
             {formatMessage(messages[order.status])}
-          </Text>
+          </SecondaryText>
         </VStack>
         <CopyLinkButton orderId={order.orderId} />
       </HStack>

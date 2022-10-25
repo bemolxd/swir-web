@@ -6,6 +6,8 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
+import { SecondaryText } from "components/Typography";
+
 interface IProps {
   initMessage: string;
   activeMessage: string;
@@ -65,7 +67,7 @@ export const StatusMessage = ({
           fontSize="22px"
           icon={<MdCheck />}
         />
-        <Text textColor="gray.500">{doneMessage}</Text>
+        <SecondaryText>{doneMessage}</SecondaryText>
       </HStack>
     );
 
@@ -78,7 +80,7 @@ export const StatusMessage = ({
         fontSize="22px"
         icon={<MdNotInterested />}
       />
-      <Text textColor="gray.500">{initMessage}</Text>
+      <SecondaryText>{initMessage}</SecondaryText>
     </HStack>
   );
 };

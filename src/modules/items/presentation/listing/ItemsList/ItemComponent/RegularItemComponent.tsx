@@ -33,7 +33,13 @@ export const RegularItemComponent = ({ item }: IProps) => {
             <AvailabilityTag itemId={item.itemId} />
           </VStack>
         </HStack>
-        <VStack h="100%" align="flex-start">
+        <VStack
+          h="100%"
+          align="flex-start"
+          justify="flex-start"
+          maxW="240px"
+          w="100%"
+        >
           <Badge variant="outline">
             {formatMessage(itemTypeMessages[item.type])}
           </Badge>

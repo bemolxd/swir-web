@@ -17,6 +17,7 @@ import { useItemDetailsQuery } from "modules/items/infrastructure";
 import { SelectedItem } from "modules/userOrders/application";
 
 import { DeleteSelectedItemButton } from "../../DeleteSelectedItemButton";
+import { SecondaryText } from "components/Typography";
 
 interface IProps {
   item: SelectedItem;
@@ -37,16 +38,16 @@ export const SelectedListItem = ({ item, orderId, index }: IProps) => {
         {isMobile ? (
           <VStack w="100%" align="flex-start">
             <Text fontSize="18px">{selectedItem?.name}</Text>
-            <Text textTransform="uppercase" textColor="gray.500">
+            <SecondaryText textTransform="uppercase">
               {selectedItem?.vendor}
-            </Text>
+            </SecondaryText>
           </VStack>
         ) : (
           <HStack w="100%">
             <Text fontSize="18px">{selectedItem?.name} •</Text>
-            <Text textTransform="uppercase" textColor="gray.500">
+            <SecondaryText textTransform="uppercase">
               {selectedItem?.vendor}
-            </Text>
+            </SecondaryText>
           </HStack>
         )}
         <NumberInput

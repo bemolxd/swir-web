@@ -54,7 +54,7 @@ const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
               <Text>&copy; {new Date().getFullYear()} Multimed</Text>
               <Text>Bartosz Bem</Text>
               <Text>
-                wersja: <code>0.1.1-rc1</code>
+                wersja: <code>0.1.1-rc2</code>
               </Text>
             </VStack>
             <Text textAlign="justify">

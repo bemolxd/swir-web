@@ -1,7 +1,12 @@
 import { useMutation } from "react-query";
 import { api } from "utils";
 
-import { useGetQueryData, useSetQueryData } from "components/RemoteData";
+import {
+  useGetQueryData,
+  useInvalidateQuery,
+  useSetQueryData,
+} from "components/RemoteData";
+import { useCheckMobile } from "components/Layout";
 
 import {
   DEFAULT_PARAMS,
@@ -20,6 +25,8 @@ export const useEditItem = (itemId: string) => {
   const itemDetailsQueryData = useGetQueryData<Item>(
     getItemDetailsQueryKey(itemId)
   );
+  const invalidateQuery = useInvalidateQuery();
+  const isMobile = useCheckMobile();
 
   const { mutateAsync, isLoading } = useMutation(
     async (dto: EditItemDto) => {
@@ -28,6 +35,12 @@ export const useEditItem = (itemId: string) => {
     {
       onSuccess: (res, dto) => {
         if (!res) return;
+
+        if (isMobile) {
+          invalidateQuery(getItemsQueryKey(DEFAULT_PARAMS));
+          invalidateQuery(getItemDetailsQueryKey(itemId));
+          return;
+        }
 
         if (!!itemsQueryData) {
           setQueryData<ItemsResponse>(getItemsQueryKey(DEFAULT_PARAMS), {

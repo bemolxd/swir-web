@@ -3,6 +3,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { useIntl } from "react-intl";
 
 import { useCheckMobile } from "components/Layout";
+import { SecondaryText } from "components/Typography";
 
 interface IProps {
   name: string;
@@ -29,7 +30,7 @@ export const PersonInfoContainer = ({
         <Avatar size="md" />
         <VStack spacing={0} align="flex-start">
           <Text>{name}</Text>
-          <Text textColor="gray.500">{email}</Text>
+          <SecondaryText>{email}</SecondaryText>
         </VStack>
       </HStack>
       {allowContacting && (
