@@ -2,7 +2,7 @@ import { useColorModeValue, chakra } from "@chakra-ui/react";
 import { RenderLeafProps } from "slate-react";
 
 export const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
-  const bgColor = useColorModeValue("gray.200", "gray.700");
+  const bgColor = useColorModeValue("gray.100", "gray.600");
 
   if (leaf.bold) {
     children = <strong>{children}</strong>;
@@ -14,7 +14,7 @@ export const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
         padding="3px"
         backgroundColor={bgColor}
         fontSize="90%"
-        borderRadius={4}
+        borderRadius="6px"
       >
         {children}
       </chakra.code>
