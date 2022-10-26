@@ -21,7 +21,9 @@ interface IProps {
 export const Content = ({ orderDetails }: IProps) => {
   return (
     <VStack align="flex-start" w="100%">
-      <DetailsHeader orderId={orderDetails?.orderId!} />
+      <DetailsHeader
+        orderId={orderDetails?.orderDoc ?? orderDetails?.orderId!}
+      />
       <OrderStatusSection order={orderDetails!} />
       {orderDetails?.techId && <TechUserSection techId={orderDetails.techId} />}
       <AwardingJustificationSection order={orderDetails!} />
