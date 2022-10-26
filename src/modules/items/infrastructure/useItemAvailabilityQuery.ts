@@ -5,7 +5,7 @@ export const getItemAvailabilityQueryKey = (itemId: string) =>
   `items/${itemId}/availability`;
 
 export const useItemAvailabilityQuery = (itemId: string) =>
-  useQuery<ItemAvailability[]>(
+  useQuery<ItemAvailability>(
     getItemAvailabilityQueryKey(itemId),
     getItemAvailabilityQueryKey(itemId)
   );

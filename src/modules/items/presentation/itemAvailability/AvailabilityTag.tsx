@@ -21,12 +21,12 @@ export const AvailabilityTag = withSuspense(
     const isMobile = useCheckMobile();
 
     const tagMessage =
-      availability && availability[0].isNowAvailable
+      availability && availability.isNowAvailable
         ? formatMessage(availabilityMessages.available)
         : formatMessage(availabilityMessages.unavailable);
 
     const tagColorScheme =
-      availability && availability[0].isNowAvailable ? "teal" : "red";
+      availability && availability.isNowAvailable ? "teal" : "red";
 
     const handleClick = () => {
       const element = document.getElementById("availability");

@@ -1,8 +1,7 @@
 import { Heading, Divider } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
-import styled from "@emotion/styled";
 
-import { DangerousInnerHtml } from "components/DangerousInnerHtml";
+import { StyledHtml } from "components/DangerousInnerHtml";
 
 interface IProps {
   parameters: string;
@@ -18,22 +17,8 @@ export const ParametersSection = ({ parameters }: IProps) => {
           defaultMessage: "Parametry techniczne:",
         })}
       </Heading>
-      <StyledHtml>
-        <DangerousInnerHtml html={parameters} />
-      </StyledHtml>
+      <StyledHtml html={parameters} />
       <Divider />
     </>
   );
 };
-
-const StyledHtml = styled.div`
-  * {
-    width: 100%;
-  }
-
-  ul,
-  ol,
-  dl {
-    list-style-position: inside;
-  }
-`;

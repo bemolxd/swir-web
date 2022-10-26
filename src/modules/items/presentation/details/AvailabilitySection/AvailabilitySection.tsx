@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Heading, Stack, VStack } from "@chakra-ui/react";
+import { Heading, HStack, VStack } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
-import { EventApi, EventClickArg, EventSourceInput } from "@fullcalendar/react";
+import { EventApi, EventClickArg } from "@fullcalendar/react";
 
 import { withSuspense } from "components/RemoteData";
 import { Calendar } from "components/Calendar";
 import { useCheckMobile } from "components/Layout";
 
 import { useItemAvailabilityQuery } from "modules/items/infrastructure";
+import { getAvailabilityCalendarEvents } from "modules/items/application";
 
 import { MoreDetails } from "./MoreDetails";
 
@@ -21,14 +22,7 @@ export const AvailabilitySection = withSuspense(({ itemId }: IProps) => {
   const [event, setEvent] = useState<EventApi | null>(null);
   const isMobile = useCheckMobile();
 
-  const occupiedDates: EventSourceInput = availability
-    ? availability[0].occupiedDates.map((occupiedDate) => ({
-        title: `Zajęte: ${occupiedDate.occupiedQuantity}`,
-        start: occupiedDate.dateFrom,
-        end: occupiedDate.dateTo,
-        allDay: true,
-      }))
-    : [];
+  const occupiedDates = getAvailabilityCalendarEvents(availability);
 
   const handleEventClick = ({ event: eventData }: EventClickArg) => {
     setEvent(eventData);
@@ -42,16 +36,17 @@ export const AvailabilitySection = withSuspense(({ itemId }: IProps) => {
           defaultMessage: "Dostępność:",
         })}
       </Heading>
-      <Stack
-        flexDir={isMobile ? "column" : "row"}
-        w="100%"
-        align="center"
-        justify="space-between"
-        spacing={4}
-      >
-        <Calendar events={occupiedDates} onEventClick={handleEventClick} />
-        <MoreDetails event={event} />
-      </Stack>
+      {!isMobile ? (
+        <HStack w="100%" align="center" justify="space-evenly" spacing={4}>
+          <Calendar events={occupiedDates} onEventClick={handleEventClick} />
+          <MoreDetails event={event} />
+        </HStack>
+      ) : (
+        <VStack w="100%" align="flex-start" spacing={4}>
+          <Calendar events={occupiedDates} onEventClick={handleEventClick} />
+          <MoreDetails event={event} />
+        </VStack>
+      )}
     </VStack>
   );
 });
