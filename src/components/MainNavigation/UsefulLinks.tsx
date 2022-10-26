@@ -14,21 +14,29 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { MdDownload } from "react-icons/md";
+import { useIntl } from "react-intl";
 import { Link as RouterLink } from "react-router-dom";
 
 export const UsefulLinks = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { formatMessage } = useIntl();
 
   return (
     <>
       <AboutModal isOpen={isOpen} onClose={onClose} />
       <HStack w="100%" spacing={1} justify="center">
         <Link as={RouterLink} to="/privacy" fontSize="xs">
-          Prywatność
+          {formatMessage({
+            id: "UsefulLinks.privacyLabel",
+            defaultMessage: "Prywatność",
+          })}
         </Link>
         <span>•</span>
         <Link as={Text} fontSize="xs" onClick={onOpen}>
-          Informacje
+          {formatMessage({
+            id: "UsefulLinks.infoLabel",
+            defaultMessage: "Informacje",
+          })}
         </Link>
       </HStack>
     </>
@@ -41,11 +49,18 @@ interface AboutModalProps {
 }
 
 const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
+  const { formatMessage } = useIntl();
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Informacje</ModalHeader>
+        <ModalHeader>
+          {formatMessage({
+            id: "AboutModal.header",
+            defaultMessage: "Informacje",
+          })}
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <VStack spacing={4}>
@@ -54,17 +69,26 @@ const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
               <Text>&copy; {new Date().getFullYear()} Multimed</Text>
               <Text>Bartosz Bem</Text>
               <Text>
-                wersja: <code>0.1.1-rc2</code>
+                {formatMessage(
+                  {
+                    id: "AboutModal.version",
+                    defaultMessage: "wersja: {version}",
+                  },
+                  { version: <code>0.1.2-pre</code> }
+                )}
               </Text>
             </VStack>
             <Text textAlign="justify">
-              System stworzony w ramach pracy dyplomowej pt. "Opracowanie
+              {formatMessage({
+                id: "AboutModal.body",
+                defaultMessage: `System stworzony w ramach pracy dyplomowej pt. "Opracowanie
               serwisu do rezerwacji i wypożyczeń sprzętu w Katedrze Systemów
               Multimedialnych". Oferuje podgląd aktualnej listy sprzętu KSM oraz
               możliwość zgłoszenia chęci jego rezerwacji, co znacząco ułatwia i
               usprawnia wewnętrzną komunikację. Więcej informacji, a także
               instrukcja dostępna jest do pobrania po kliknięciu w przycisk
-              poniżej.
+              poniżej.`,
+              })}
             </Text>
           </VStack>
         </ModalBody>
