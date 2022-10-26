@@ -37,7 +37,6 @@ export const AcceptModal = () => {
 
   const handleOnSubmit = async (model: AcceptOrderDto) => {
     try {
-      console.log(model);
       await acceptOrder(model);
       showSuccessNotification();
       onClose();
