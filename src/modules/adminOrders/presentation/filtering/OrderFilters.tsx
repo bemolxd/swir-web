@@ -44,7 +44,7 @@ export const OrderFilters = () => {
         isOpen={isOpen}
         onClose={onClose}
         header={formatMessage({
-          id: "Users.filtersModal",
+          id: "AdminOrders.filtersModal",
           defaultMessage: "Filtruj zgłoszenia",
         })}
       >
