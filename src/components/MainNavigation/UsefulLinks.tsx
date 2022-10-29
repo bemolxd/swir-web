@@ -92,7 +92,7 @@ export const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
                     id: "AboutModal.version",
                     defaultMessage: "wersja: {version}",
                   },
-                  { version: <code>0.1.2-pre</code> }
+                  { version: <code>0.1.3-2910.22</code> }
                 )}
               </Text>
             </VStack>
