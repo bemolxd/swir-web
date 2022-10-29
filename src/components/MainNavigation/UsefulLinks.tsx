@@ -17,6 +17,8 @@ import { MdDownload } from "react-icons/md";
 import { useIntl } from "react-intl";
 import { Link as RouterLink } from "react-router-dom";
 
+import { useGetContextType } from "components/Auth";
+
 export const UsefulLinks = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { formatMessage } = useIntl();
@@ -50,6 +52,11 @@ interface AboutModalProps {
 
 const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
   const { formatMessage } = useIntl();
+  const { isUser } = useGetContextType();
+
+  const manualLink = isUser
+    ? process.env.REACT_APP_MANUAL_LINK_USER
+    : process.env.REACT_APP_MANUAL_LINK_ADMIN;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -97,8 +104,14 @@ const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
             leftIcon={<MdDownload />}
             variant="outline"
             colorScheme="teal"
+            as="a"
+            href={manualLink}
+            target="_blank"
           >
-            Pobierz instrukcję
+            {formatMessage({
+              id: "AboutModal.downloadBtn",
+              defaultMessage: "Pobierz instrukcję",
+            })}
           </Button>
         </ModalFooter>
       </ModalContent>
