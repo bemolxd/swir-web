@@ -47,7 +47,8 @@
   },
   "scripts": {
     "dev": "BROWSER=none PORT=5001 react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "prod": "react-scripts build && serve -l 5001 -s build"
   },
   "eslintConfig": {
     "extends": [
