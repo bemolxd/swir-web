@@ -3,7 +3,16 @@ import { useIntl, defineMessages } from "react-intl";
 
 import { Card } from "components/Card";
 
-import { CollectingData, MainInfo } from "./sections";
+import {
+  CollectingData,
+  Contact,
+  DataProtection,
+  ExternalLinks,
+  InformationDisclosure,
+  MainInfo,
+  ManagingJustification,
+  UserRights,
+} from "./sections";
 
 export const Privacy = () => {
   const { formatMessage } = useIntl();
@@ -18,6 +27,12 @@ export const Privacy = () => {
       <Stack spacing={8}>
         <MainInfo />
         <CollectingData />
+        <ManagingJustification />
+        <UserRights />
+        <ExternalLinks />
+        <DataProtection />
+        <InformationDisclosure />
+        <Contact />
       </Stack>
     </Card>
   );
@@ -26,6 +41,6 @@ export const Privacy = () => {
 const messages = defineMessages({
   mainHeader: {
     id: "Privacy.mainHeader",
-    defaultMessage: "Polityka prywatności Systemu Wypożyczeń i Rezerwacji",
+    defaultMessage: "Polityka Prywatności Systemu Wypożyczeń i Rezerwacji",
   },
 });
