@@ -12,8 +12,11 @@ import {
   VStack,
   useTheme,
   useColorModeValue,
+  Link,
+  HStack,
 } from "@chakra-ui/react";
-import { MdSegment } from "react-icons/md";
+import { useNavigate } from "react-router";
+import { MdInfoOutline, MdOutlinePrivacyTip, MdSegment } from "react-icons/md";
 import { useIntl } from "react-intl";
 
 import { ColorModeSwitch } from "components/ColorMode";
@@ -22,9 +25,15 @@ import { MobileLogoutButton } from "components/Auth";
 
 import { useMobileMenuHandler } from "./useMobileMenuHandler";
 import { MobileNavigationMenuContent } from "./MobileNavigationMenuContent";
+import { AboutModal } from "./UsefulLinks";
+import { useAboutModalHandler } from "./useAboutModalHandler";
 
 export const MobileNavigation = () => {
   const [isOpen, onClose] = useMobileMenuHandler((handler) => [
+    handler.isOpen,
+    handler.onClose,
+  ]);
+  const [isAboutOpen, onAboutClose] = useAboutModalHandler((handler) => [
     handler.isOpen,
     handler.onClose,
   ]);
@@ -34,6 +43,7 @@ export const MobileNavigation = () => {
 
   return (
     <>
+      <AboutModal isOpen={isAboutOpen} onClose={onAboutClose} />
       <MenuIconButton />
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="full">
         <DrawerOverlay zIndex={10} />
@@ -55,6 +65,7 @@ export const MobileNavigation = () => {
           </DrawerBody>
           <DrawerFooter justifyContent="center">
             <VStack w="100%">
+              <UsefulButtons />
               <MobileLogoutButton />
               <Divider />
               <Text>
@@ -63,7 +74,19 @@ export const MobileNavigation = () => {
                   defaultMessage: "System Wypożyczeń i Rezerwacji",
                 })}
               </Text>
-              <Text>&copy; {new Date().getFullYear()} Multimed</Text>
+              <span>
+                &copy; {new Date().getFullYear()}{" "}
+                <Link href="https://multimed.org" target="_blank">
+                  Multimed
+                </Link>
+              </span>
+              <span>
+                Bartosz Bem{" ("}
+                <Link href="https://github.com/bemolxd" target="_blank">
+                  bemolx
+                </Link>
+                {")"}
+              </span>
             </VStack>
           </DrawerFooter>
         </DrawerContent>
@@ -82,5 +105,38 @@ const MenuIconButton = () => {
       icon={<MdSegment />}
       onClick={onOpen}
     />
+  );
+};
+
+const UsefulButtons = () => {
+  const onClose = useMobileMenuHandler((handler) => handler.onClose);
+  const navigate = useNavigate();
+  const borderColor = useColorModeValue("200", "600");
+  const theme = useTheme();
+  const onOpen = useAboutModalHandler((handler) => handler.onOpen);
+
+  return (
+    <HStack spacing={4} mb={8}>
+      <IconButton
+        icon={<MdOutlinePrivacyTip />}
+        onClick={() => {
+          onClose();
+          navigate("/privacy");
+        }}
+        border={`1px solid ${theme.colors.gray[borderColor]}`}
+        borderRadius="full"
+        variant="outline"
+      />
+      <IconButton
+        icon={<MdInfoOutline />}
+        onClick={() => {
+          onClose();
+          onOpen();
+        }}
+        border={`1px solid ${theme.colors.gray[borderColor]}`}
+        borderRadius="full"
+        variant="outline"
+      />
+    </HStack>
   );
 };

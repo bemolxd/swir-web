@@ -50,7 +50,7 @@ interface AboutModalProps {
   onClose(): void;
 }
 
-const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
+export const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
   const { formatMessage } = useIntl();
   const { isUser } = useGetContextType();
 
@@ -73,8 +73,19 @@ const AboutModal = ({ isOpen, onClose }: AboutModalProps) => {
           <VStack spacing={4}>
             <VStack spacing={0}>
               <Text>System Wypożyczeń i Rezerwacji</Text>
-              <Text>&copy; {new Date().getFullYear()} Multimed</Text>
-              <Text>Bartosz Bem</Text>
+              <span>
+                &copy; {new Date().getFullYear()}{" "}
+                <Link href="https://multimed.org" target="_blank">
+                  Multimed
+                </Link>
+              </span>
+              <span>
+                Bartosz Bem{" ("}
+                <Link href="https://github.com/bemolxd" target="_blank">
+                  bemolx
+                </Link>
+                {")"}
+              </span>
               <Text>
                 {formatMessage(
                   {
