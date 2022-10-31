@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 import { IconButton } from "components/IconButton";
 import { NotificationBadge } from "components/Notifications";
-import { useMeQuery } from "components/Auth";
+import { useGetContextType, useMeQuery } from "components/Auth";
 
 import { useUserOrdersQuery } from "../infrastructure";
 import { defaultParams, OrderStatus } from "../application";
@@ -12,6 +12,7 @@ import { defaultParams, OrderStatus } from "../application";
 export const CompletingOrderButton = () => {
   const { formatMessage } = useIntl();
   const me = useMeQuery();
+  const { isUser } = useGetContextType();
   const orders = useUserOrdersQuery(me?.userId!, defaultParams);
   const navigate = useNavigate();
 
@@ -19,6 +20,8 @@ export const CompletingOrderButton = () => {
     (order) => order.status === OrderStatus.COMPLETING
   );
   const hasOrders = !!completingOrder;
+
+  if (!isUser) return null;
 
   return (
     <div style={{ position: "relative" }}>
