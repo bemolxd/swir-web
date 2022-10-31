@@ -37,7 +37,6 @@ export const useFilterInput = (filterName: string, delay = 400) => {
       if (!state) return;
 
       change(filterName, state);
-      //TODO: naprawić zachowanie resetowania paginacji
       resetPagination(filterName);
     },
     delay,

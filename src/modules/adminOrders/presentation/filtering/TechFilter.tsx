@@ -11,7 +11,6 @@ export const TechFilter = withSuspense(
     const admins = useAdminsQuery();
     const { formatMessage } = useIntl();
 
-    // szpachla, ale może później wleci jakiś refactor
     let formattedMessages: any = {};
     const options = admins?.collection.map((admin) => admin.userId);
     admins?.collection.forEach(

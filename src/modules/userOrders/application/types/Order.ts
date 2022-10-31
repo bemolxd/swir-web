@@ -3,6 +3,7 @@ import { SelectedItem } from "./SelectedItem";
 
 export interface Order {
   orderId: string;
+  orderDoc: string | null;
   techId: string | null;
   senderId: string;
   status: OrderStatus;

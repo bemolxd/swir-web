@@ -19,7 +19,7 @@ export const OrderDetails = ({ order }: IProps) => {
   return (
     <Card maxW="1300px" w="100%">
       <VStack align="flex-start" w="100%">
-        <DetailsHeader orderId={order.orderId} />
+        <DetailsHeader orderId={order.orderDoc ?? order.orderId} />
         <ReservationDatesSection
           status={order.status}
           dateFrom={order.dateFrom!}

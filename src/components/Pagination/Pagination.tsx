@@ -1,6 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import { range } from "lodash";
-import { MdArrowBack, MdArrowForward } from "react-icons/md";
+import { MdArrowBack, MdArrowForward, MdFirstPage } from "react-icons/md";
 
 import { Meta } from "types";
 
@@ -8,6 +8,7 @@ import { useQueryParams } from "components/QueryParamsV2";
 import { useCheckMobile } from "components/Layout";
 
 import { PaginationButton } from "./PaginationButton";
+import { PaginationInput } from "./PaginationInput";
 
 interface IProps {
   meta: Meta | undefined;
@@ -40,6 +41,9 @@ export const Pagination = ({ meta, isLoading = false, margin = 3 }: IProps) => {
 
   return (
     <HStack w="100%" justify="flex-end" mt={4}>
+      <PaginationButton onClick={() => change(1)} isDisabled={isFirstPage}>
+        <MdFirstPage />
+      </PaginationButton>
       <PaginationButton
         onClick={() => change(current - 1)}
         isDisabled={isFirstPage}
@@ -57,6 +61,26 @@ export const Pagination = ({ meta, isLoading = false, margin = 3 }: IProps) => {
             <span>{page}</span>
           </PaginationButton>
         ))}
+        {pages.length > 7 ? (
+          <>
+            <PaginationInput
+              onChange={(newPage) => {
+                if (newPage > pages.length) {
+                  return;
+                }
+                change(newPage);
+              }}
+            />
+            <PaginationButton
+              key={lastPage}
+              isDisabled={lastPage === current}
+              onClick={() => change(lastPage)}
+              isLoading={isLoading}
+            >
+              <span>{lastPage}</span>
+            </PaginationButton>
+          </>
+        ) : null}
       </>
       <PaginationButton
         onClick={() => change(current + 1)}

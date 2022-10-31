@@ -7,3 +7,4 @@ export { messages } from "./messages";
 export { InfiniteArchivedOrdersList } from "./InfiniteArchivedOrdersList";
 export { ArchivedOrderAlert } from "./ArchivedOrderAlert";
 export { InfiniteUserOrdersList } from "./InfiniteUserOrdersList";
+export { CompletingOrderButton } from "./CompletingOrderButton";

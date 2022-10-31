@@ -5,4 +5,3 @@ export { useEditItem } from "./useEditItem";
 export { useDeleteItem } from "./useDeleteItem";
 export { useCreateItem } from "./useCreateItem";
 export { useItemAvailabilityQuery } from "./useItemAvailabilityQuery";
-export { useItemsAvailabilityQuery } from "./useItemsAvailabilityQuery";

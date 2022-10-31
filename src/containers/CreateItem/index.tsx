@@ -42,7 +42,6 @@ export const CreateItem = withErrorBoundary(() => {
 
   const formId = "item.createForm";
   const handleOnSubmit = async (item: CreateItemDto) => {
-    console.log("data", item);
     try {
       checkMissingData(item);
       await createItem(item);

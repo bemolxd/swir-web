@@ -19,12 +19,12 @@ export const BasicAvailabilityInfo = withSuspense(
         id: "ItemDetails.content.BasicInfoSection.itemsLeft",
         defaultMessage: "Dostępnych na ten moment: {value}",
       },
-      { value: availability && availability[0].availableNowCount }
+      { value: availability && availability.availableNowCount }
     );
 
     return (
       <>
-        {availability && availability[0].availableNowCount! > 0 && (
+        {availability && availability.availableNowCount! > 0 && (
           <Text fontSize="sm">{itemsLeftText}</Text>
         )}
       </>

@@ -61,7 +61,6 @@ export const Content = withSuspense(({ orderId }: IProps) => {
 
   const handleOnSubmit = async (data: any) => {
     try {
-      console.log(data);
       await submitData(data);
       navigate(`/zgloszenia/${orderId}`, { replace: true });
       showSuccessNotification();

@@ -1,6 +1,6 @@
 {
   "name": "swir-web",
-  "version": "0.1.1-rc2",
+  "version": "0.1.4-3110.22",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.8.5",
@@ -47,7 +47,8 @@
   },
   "scripts": {
     "dev": "BROWSER=none PORT=5001 react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "prod": "react-scripts build && serve -l 5001 -s build"
   },
   "eslintConfig": {
     "extends": [

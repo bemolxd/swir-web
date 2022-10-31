@@ -29,6 +29,8 @@ W celu poprawnego uruchomienia aplikacji w środowisku testowym należy upewnić
 ```
 REACT_APP_API_URL='http://localhost:5000'
 REACT_APP_CLIENT_URL='http://localhost:5001'
+REACT_APP_MANUAL_LINK_USER='swir_manual_user.pdf'
+REACT_APP_MANUAL_LINK_ADMIN='swir_manual_admin.pdf'
 ```
 
 a następnie wywołać polecenia:

@@ -6,6 +6,7 @@ export const MainInfo = () => {
 
   return (
     <Stack textAlign="justify">
+      <Text>{formatMessage(messages.owner)}</Text>
       <Text>{formatMessage(messages.takingCare)}</Text>
       <Text>{formatMessage(messages.user)}</Text>
       <Text>{formatMessage(messages.rules)}</Text>
@@ -15,6 +16,11 @@ export const MainInfo = () => {
 };
 
 const messages = defineMessages({
+  owner: {
+    id: "Privacy.MainInfo.owner",
+    defaultMessage:
+      "Właścicielem strony internetowej System Wypożyczeń i Rezerwacji jest Katedra Systemów Multimedialnych, która jest administratorem Twoich danych osobowych.",
+  },
   takingCare: {
     id: "Privacy.MainInfo.takingCare",
     defaultMessage:

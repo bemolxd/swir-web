@@ -1,11 +1,4 @@
-import {
-  Center,
-  Heading,
-  OrderedList,
-  ListItem,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Center, Heading, Stack, Text } from "@chakra-ui/react";
 import { defineMessages, useIntl } from "react-intl";
 
 export const CollectingData = () => {
@@ -19,15 +12,7 @@ export const CollectingData = () => {
         </Heading>
       </Center>
       <Stack textAlign="justify">
-        <Text>{formatMessage(messages.listHeader)}</Text>
-        <OrderedList paddingStart={4}>
-          {Object.keys(listMessages).map((message, index) => (
-            <ListItem key={index}>
-              {/* @ts-ignore */}
-              <Text>{formatMessage(listMessages[message])}</Text>
-            </ListItem>
-          ))}
-        </OrderedList>
+        <Text>{formatMessage(messages.info)}</Text>
       </Stack>
     </>
   );
@@ -38,22 +23,9 @@ const messages = defineMessages({
     id: "Privacy.CollectingData.header",
     defaultMessage: "I. Zbieranie danych osobowych",
   },
-  listHeader: {
-    id: "Privacy.CollectingData.listHeader",
+  info: {
+    id: "Privacy.CollectingData.info",
     defaultMessage:
-      "Następujące rodzaje danych osobowych mogą być gromadzone, przechowywane i wykorzystywane:",
-  },
-});
-
-const listMessages = defineMessages({
-  register: {
-    id: "Privacy.CollectingData.register",
-    defaultMessage:
-      "informacje, takie jak imię, nazwisko, adres e-mail, które podajesz podczas rejestracji poprzez logowanie za pomocą Centralnego Punktu Logowania PG;",
-  },
-  services: {
-    id: "Privacy.CollectingData.services",
-    defaultMessage:
-      "informacje wprowadzane podczas korzystania z usług oferowanych przez System;",
+      "Kiedy pierwszy raz logujesz się do Systemu Wypożyczeń i Rezerwacji, automatycznie przekazywane są dane, które podałeś podczas rejestracji w systemie MojaPG, takie jak: imię, nazwisko oraz adres email. Dodatkowo, możesz zdecydować się na przekazanie dodatkowych danych potrzebnych do realizacji niektórych usług oferowanych przez System (np. podczas przesyłania zgłoszenia). Ponadto, Strona zbiera pewne informacje o Twoim urządzeniu, w tym informacje o Twojej przeglądarce i niektórych plikach cookie zainstalowanych na Twoim urządzeniu.",
   },
 });

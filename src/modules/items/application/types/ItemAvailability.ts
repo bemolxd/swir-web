@@ -9,5 +9,7 @@ export interface OccupiedDate {
   dateFrom: string;
   dateTo: string;
   occupiedQuantity: number;
+  orderDoc: string;
+  techId: string;
   isOutOfBounds?: boolean;
 }

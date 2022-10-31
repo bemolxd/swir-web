@@ -28,6 +28,7 @@ export const Calendar = ({ events, onEventClick }: IProps) => {
 };
 
 const StyledBox = styled.div`
+  max-width: 600px;
   width: 100%;
   height: 100%;
   display: flex;
