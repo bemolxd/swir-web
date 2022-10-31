@@ -40,7 +40,8 @@ export const DeleteOrderSection = ({ senderId, orderId, status }: IProps) => {
     }
   };
 
-  if (status !== OrderStatus.COMPLETING) return null;
+  if (status !== OrderStatus.COMPLETING && status !== OrderStatus.PENDING)
+    return null;
 
   return (
     <>
