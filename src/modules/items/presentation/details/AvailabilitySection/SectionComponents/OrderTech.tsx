@@ -1,4 +1,4 @@
-import { Badge, Box, Skeleton, VStack } from "@chakra-ui/react";
+import { Badge, Skeleton, VStack } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
 import { withSuspense } from "components/RemoteData";
