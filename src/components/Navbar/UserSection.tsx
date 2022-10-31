@@ -5,6 +5,8 @@ import { ColorModeButton } from "components/ColorMode";
 import { useCheckMobile } from "components/Layout";
 import { MobileNavigation } from "components/MainNavigation";
 
+import { CompletingOrderButton } from "modules/userOrders/presentation";
+
 export const UserSection = () => {
   const me = useMeQuery();
 
@@ -15,6 +17,7 @@ export const UserSection = () => {
       <HStack h="60px">
         <Text>{me?.firstName}</Text>
         <Avatar size="sm" />
+        <CompletingOrderButton />
         <MobileNavigation />
       </HStack>
     );
@@ -24,6 +27,7 @@ export const UserSection = () => {
     <HStack h="60px">
       <Text>{me?.firstName}</Text>
       <Avatar size="sm" />
+      <CompletingOrderButton />
       <ColorModeButton />
       <LogoutIconButton />
     </HStack>

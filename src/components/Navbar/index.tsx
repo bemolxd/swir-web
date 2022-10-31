@@ -23,7 +23,11 @@ export const Navbar = () => {
       justify="center"
     >
       <HStack justify="space-evenly" maxW="1500px" w="100%">
-        <Image src="/multimed_logo.png" h="54px" />
+        <Image
+          src="/multimed_logo.png"
+          h={isMobile ? "46px" : "54px"}
+          borderRadius={8}
+        />
         <Heading size="lg" fontWeight="400">
           {isMobile
             ? "SWiR"
