@@ -6,11 +6,10 @@ import {
   InfoDetailsContent,
   InfoDetailsLabel,
 } from "components/Card";
-import { useFormContext } from "react-hook-form";
+import { FormControl } from "components/Form";
 
 export const SenderCommentSection = () => {
   const { formatMessage } = useIntl();
-  const { register, setValue } = useFormContext();
 
   return (
     <>
@@ -18,19 +17,46 @@ export const SenderCommentSection = () => {
         <InfoDetailsLabel>
           {formatMessage({
             id: "UserOrderSummary.senderComment.label",
-            defaultMessage: "Dodaj komentarz",
+            defaultMessage: "Dodaj cel wypożyczenia",
           })}
         </InfoDetailsLabel>
         <InfoDetailsContent>
-          <Textarea
-            {...register("senderComment")}
-            resize="none"
-            placeholder={formatMessage({
-              id: "UserOrderSummary.senderComment.placeholder",
-              defaultMessage: "Dodaj komentarz",
-            })}
-            onChange={(e) => setValue("senderComment", e.target.value)}
-          />
+          <FormControl name="senderComment" w="100%">
+            {(
+              { setValue, setError, clearErrors, register },
+              fieldProps,
+              { isInvalid }
+            ) => (
+              <Textarea
+                {...fieldProps}
+                {...register("senderComment", { required: true })}
+                resize="none"
+                isInvalid={isInvalid}
+                placeholder={formatMessage({
+                  id: "UserOrderSummary.senderComment.placeholder",
+                  defaultMessage: "Dodaj cel wypożyczenia",
+                })}
+                onChange={({ target: { value } }) => {
+                  setValue("senderComment", value);
+
+                  if (value === "") {
+                    setError("senderComment", {
+                      message: "Określ cel wypożyczenia",
+                    });
+                  }
+                  if (value) clearErrors("senderComment");
+                }}
+                onBlur={({ target: { value } }) => {
+                  if (value === "") {
+                    setError("senderComment", {
+                      message: "Określ cel wypożyczenia",
+                    });
+                    return;
+                  }
+                }}
+              />
+            )}
+          </FormControl>
         </InfoDetailsContent>
       </InfoDetailsContainer>
       <Divider />
