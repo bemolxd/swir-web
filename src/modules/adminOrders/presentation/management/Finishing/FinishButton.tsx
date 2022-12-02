@@ -51,7 +51,7 @@ export const FinishButton = ({ orderId }: IProps) => {
           onClose={onClose}
           header={formatMessage({
             id: "AdminOrderManagement.confirmHeader",
-            defaultMessage: "Odrzuć zgłoszenie",
+            defaultMessage: "Zakończ zgłoszenie",
           })}
           type="warning"
           confirmButton={
