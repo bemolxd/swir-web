@@ -22,8 +22,10 @@ export const OrderComponent = ({ order }: IProps) => {
   const navigate = useNavigate();
   const { formatMessage } = useIntl();
   const isPending = OrderStatusPolicy(order.status).isPending();
+  const isActive = OrderStatusPolicy(order.status).isActive();
   const { isUser } = useGetContextType();
-  const showBorder = (isPending && !isUser) || dayjs().isAfter(order.dateTo);
+  const showBorder =
+    (isPending && !isUser) || (isActive && dayjs().isAfter(order.dateTo));
   const isMobile = useCheckMobile();
 
   const titleWithDoc = formatMessage(
