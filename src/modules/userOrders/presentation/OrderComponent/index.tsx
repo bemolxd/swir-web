@@ -2,7 +2,7 @@ import { useIntl } from "react-intl";
 import { HStack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-import { OrderStatusPolicy } from "utils";
+import { OrderStatusPolicy, dayjs } from "utils";
 
 import { useGetContextType } from "components/Auth";
 import { ListItem } from "components/List";
@@ -22,8 +22,10 @@ export const OrderComponent = ({ order }: IProps) => {
   const navigate = useNavigate();
   const { formatMessage } = useIntl();
   const isPending = OrderStatusPolicy(order.status).isPending();
+  const isActive = OrderStatusPolicy(order.status).isActive();
   const { isUser } = useGetContextType();
-  const showBorder = isPending && !isUser;
+  const showBorder =
+    (isPending && !isUser) || (isActive && dayjs().isAfter(order.dateTo));
   const isMobile = useCheckMobile();
 
   const titleWithDoc = formatMessage(
